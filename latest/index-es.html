@@ -17,7 +17,7 @@
 
 
 <!-- SCHEMA.ORG METADATA -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"https://w3id.org/AgoraOWL/","image":"http://vowl.visualdataweb.org/webvowl/#iri=https://w3id.org/AgoraOWL/","name":"Ontología AgoraOWL", "headline":"Ontología ligera para espacios de datos. La versión 1.2.0 introduce el perfilado simétrico para DataApps (puertos de Entrada/Salida), generaliza los metadatos administrativos tanto para Recursos como para Apps, y refuerza el diseño independiente del esquema de los DataSpecifications. El modelado se ha diseñado siguiendo el alineamiento con DCAT-AP-ES, el modelo CRED y el Information Model de IDSA para asegurar la interoperabilidad semántica entre dominios.", "dateReleased":"2025-10-10", "dateModified":"2026-03-26", "version":"1.2.0", "license":"https://creativecommons.org/licenses/by/4.0/", "codeRepository":"https://github.com/KhaosResearch/AgoraOWL", "author":[{"@type":"Person","name":"https://www.linkedin.com/in/martin-jeronimo-salvachua/"},{"@type":"Person","name":"https://khaos.uma.es/"},{"@type":"Person","name":"https://github.com/MartinM10"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","url":"https://w3id.org/AgoraOWL/","image":"http://vowl.visualdataweb.org/webvowl/#iri=https://w3id.org/AgoraOWL/","name":"Ontología AgoraOWL", "headline":"Ontología ligera para espacios de datos. La versión 1.2.0 introduce el perfilado simétrico para DataApps (puertos de Entrada/Salida), generaliza los metadatos administrativos tanto para Recursos como para Apps, y refuerza el diseño independiente del esquema de los DataSpecifications. El modelado se ha diseñado siguiendo el alineamiento con DCAT-AP-ES, el modelo CRED y el Information Model de IDSA para asegurar la interoperabilidad semántica entre dominios.", "dateReleased":"2025-10-10", "dateModified":"2026-03-26", "version":"1.2.0", "license":"https://creativecommons.org/licenses/by/4.0/", "codeRepository":"https://github.com/KhaosResearch/AgoraOWL", "author":[{"@type":"Person","name":"https://github.com/MartinM10"},{"@type":"Person","name":"https://khaos.uma.es/"},{"@type":"Person","name":"https://www.linkedin.com/in/martin-jeronimo-salvachua/"}]}</script>
 
 <script src="resources/jquery.js"></script> 
 <script src="resources/marked.min.js"></script> 
@@ -78,7 +78,7 @@ $(function(){
 <dt>Revisi&oacute;n n&uacute;mero:</dt>
 <dd>1.2.0</dd>
 <dt>Autores:</dt>
-<dd>https://www.linkedin.com/in/martin-jeronimo-salvachua/</dd><dd>https://khaos.uma.es/</dd><dd>https://github.com/MartinM10</dd>
+<dd>https://github.com/MartinM10</dd><dd>https://khaos.uma.es/</dd><dd>https://www.linkedin.com/in/martin-jeronimo-salvachua/</dd>
 
 <dt>Publicado por:</dt>
 <dd>https://khaos.uma.es/</dd>
@@ -1064,7 +1064,7 @@ Ontología ligera para espacios de datos. La versión 1.2.0 introduce el perfila
 <!--DESCRIPTION SECTION-->
     <div id="description"><h2 id="desc" class="list">AgoraOWL: Descripci&oacute;n <span class="backlink"> volver a <a href="#toc">&iacute;ndice</a></span></h2>
 
-<span class="markdown">AgoraOWL aims to achieve sectoral semantic interoperability within data spaces by decoupling physical data distributions from their semantic specifications. Version 1.2.0 follows strategic alignment with DCAT-AP-ES, the CRED model, and the IDSA Information Model, and introduces symmetric app profiling (Input/Output Profiles) for formal technical matchmaking. For example, a DataApp requiring 'Soil Moisture' in percentage can automatically discover and consume a Dataset whose distribution (CSV/Parquet) is semantically mapped to that specification through FieldMappings.</span><img src="https://raw.githubusercontent.com/KhaosResearch/AgoraOWL/refs/heads/main/images/eda-an-architecture-en.svg"></div>
+<span class="markdown">El objetivo principal de AgoraOWL es conseguir la interoperabilidad semántica sectorial en los espacios de datos, desacoplando las distribuciones físicas de los activos de sus especificaciones semánticas. La versión 1.2.0 se ha diseñado siguiendo el alineamiento estratégico con DCAT-AP-ES, el modelo CRED y el Information Model de IDSA, e introduce el perfilado simétrico de aplicaciones (Input/Output Profiles) para un emparejamiento técnico formal. Por ejemplo, una aplicación que requiera 'Humedad del Suelo' en porcentaje puede descubrir y consumir automáticamente un Dataset cuya distribución (CSV/Parquet) esté mapeada semánticamente a dicha especificación mediante FieldMappings.</span><img src="https://raw.githubusercontent.com/KhaosResearch/AgoraOWL/refs/heads/main/images/eda-an-architecture-en.svg"></div>
    
 
 <!--CROSSREF SECTION-->
@@ -6743,7 +6743,1005 @@ Esta secci&oacute;n introduce m&aacute;s detalles sobre cada clase y propiedad d
    
 
 <!--CHANGELOG SECTION-->
-   <div id="changelog">null</div>
+   <div id="changelog"><div id="changelog">
+<h2 id="changes" class="list">Cambios desde la &uacute;ltima versi&oacute;n</h2>
+<h3 id="changeClass" class="list">Clases</h3>
+<details><summary><u>Clases modificadas</u></summary>
+<ul><li><a href="#http://www.w3.org/ns/dcat#Dataset">http://www.w3.org/ns/dcat#Dataset</a>
+<ul>
+<li><li><li></ul>
+</li>
+<li><a href="#http://www.w3.org/ns/dcat#Distribution">http://www.w3.org/ns/dcat#Distribution</a>
+<ul>
+<li><li><li><li></ul>
+<ul>
+<li><li><li></ul>
+</li>
+</ul></details><details><summary><u>Nuevas clases</u></summary>
+<ul><li><a href="#http://purl.org/dc/terms/PeriodOfTime">http://purl.org/dc/terms/PeriodOfTime</a>
+</li>
+<li><a href="#http://www.w3.org/2000/01/rdf-schema#Datatype">http://www.w3.org/2000/01/rdf-schema#Datatype</a>
+</li>
+<li><a href="#http://www.w3.org/ns/dcat#DatasetSeries">http://www.w3.org/ns/dcat#DatasetSeries</a>
+<ul>
+<li>Nuevo: Subclase de http://www.w3.org/ns/dcat#Resource</li>
+</ul>
+</li>
+<li><a href="#http://www.w3.org/ns/odrl/2/AssetCollection">http://www.w3.org/ns/odrl/2/AssetCollection</a>
+</li>
+<li><a href="#Accuracy">https://w3id.org/AgoraOWL/Accuracy</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/QualityMetric</li>
+</ul>
+</li>
+<li><a href="#AnalyzerApp">https://w3id.org/AgoraOWL/AnalyzerApp</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/DataApp</li>
+<li>Nuevo: Subclase de https://w3id.org/idsa/core/SmartDataApp</li>
+</ul>
+</li>
+<li><a href="#CertificationReport">https://w3id.org/AgoraOWL/CertificationReport</a>
+</li>
+<li><a href="#Completeness">https://w3id.org/AgoraOWL/Completeness</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/QualityMetric</li>
+</ul>
+</li>
+<li><a href="#ConstraintOperator">https://w3id.org/AgoraOWL/ConstraintOperator</a>
+</li>
+<li><a href="#DataApp">https://w3id.org/AgoraOWL/DataApp</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/idsa/core/DataApp</li>
+</ul>
+</li>
+<li><a href="#DataAsset">https://w3id.org/AgoraOWL/DataAsset</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/idsa/core/DataResource</li>
+</ul>
+</li>
+<li><a href="#DataConstraint">https://w3id.org/AgoraOWL/DataConstraint</a>
+<ul>
+<li><li><li></ul>
+</li>
+<li><a href="#DataProfile">https://w3id.org/AgoraOWL/DataProfile</a>
+</li>
+<li><a href="#DataRepresentation">https://w3id.org/AgoraOWL/DataRepresentation</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/idsa/core/DataRepresentation</li>
+</ul>
+</li>
+<li><a href="#DataSpecification">https://w3id.org/AgoraOWL/DataSpecification</a>
+<ul>
+<li><li>Nuevo: Subclase de http://purl.org/dc/terms/Standard</li>
+<li></ul>
+</li>
+<li><a href="#FeatureOfInterest">https://w3id.org/AgoraOWL/FeatureOfInterest</a>
+<ul>
+<li>Nuevo: Subclase de http://www.w3.org/ns/sosa/FeatureOfInterest</li>
+</ul>
+</li>
+<li><a href="#FieldMapping">https://w3id.org/AgoraOWL/FieldMapping</a>
+<ul>
+<li><li><li></ul>
+</li>
+<li><a href="#InputProfile">https://w3id.org/AgoraOWL/InputProfile</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/DataProfile</li>
+<li><li></ul>
+</li>
+<li><a href="#Metric">https://w3id.org/AgoraOWL/Metric</a>
+<ul>
+<li><li><li>Nuevo: Subclase de http://www.w3.org/ns/dqv#QualityMeasurement</li>
+</ul>
+</li>
+<li><a href="#MetricType">https://w3id.org/AgoraOWL/MetricType</a>
+<ul>
+<li>Nuevo: Subclase de http://www.w3.org/ns/dqv#Metric</li>
+</ul>
+</li>
+<li><a href="#ObservableProperty">https://w3id.org/AgoraOWL/ObservableProperty</a>
+<ul>
+<li>Nuevo: Subclase de http://www.w3.org/ns/sosa/ObservableProperty</li>
+</ul>
+</li>
+<li><a href="#ObservationMetric">https://w3id.org/AgoraOWL/ObservationMetric</a>
+</li>
+<li><a href="#OutputProfile">https://w3id.org/AgoraOWL/OutputProfile</a>
+<ul>
+<li><li>Nuevo: Subclase de https://w3id.org/AgoraOWL/DataProfile</li>
+</ul>
+</li>
+<li><a href="#PerformanceMetric">https://w3id.org/AgoraOWL/PerformanceMetric</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/Metric</li>
+</ul>
+</li>
+<li><a href="#PredictionApp">https://w3id.org/AgoraOWL/PredictionApp</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/DataApp</li>
+<li>Nuevo: Subclase de https://w3id.org/idsa/core/SmartDataApp</li>
+</ul>
+</li>
+<li><a href="#QualityMetric">https://w3id.org/AgoraOWL/QualityMetric</a>
+<ul>
+<li>Nuevo: Subclase de http://www.w3.org/ns/dqv#QualityMetric</li>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/MetricType</li>
+</ul>
+</li>
+<li><a href="#QualityReport">https://w3id.org/AgoraOWL/QualityReport</a>
+</li>
+<li><a href="#SpatialTemporalAsset">https://w3id.org/AgoraOWL/SpatialTemporalAsset</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/DataAsset</li>
+</ul>
+</li>
+<li><a href="#Uniqueness">https://w3id.org/AgoraOWL/Uniqueness</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/QualityMetric</li>
+</ul>
+</li>
+<li><a href="#VerifiableDataSpecification">https://w3id.org/AgoraOWL/VerifiableDataSpecification</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/DataSpecification</li>
+</ul>
+</li>
+<li><a href="#VisualizationApp">https://w3id.org/AgoraOWL/VisualizationApp</a>
+<ul>
+<li>Nuevo: Subclase de https://w3id.org/AgoraOWL/DataApp</li>
+<li>Nuevo: Subclase de https://w3id.org/idsa/core/SmartDataApp</li>
+</ul>
+</li>
+<li><a href="#https://w3id.org/idsa/core/AppResourceCatalog">https://w3id.org/idsa/core/AppResourceCatalog</a>
+<ul>
+<li>Nuevo: Subclase de http://www.w3.org/ns/dcat#Catalog</li>
+<li>Nuevo: Subclase de http://www.w3.org/ns/odrl/2/AssetCollection</li>
+<li>Nuevo: Subclase de https://w3id.org/idsa/core/Described</li>
+</ul>
+</li>
+</ul></details><details><summary><u>Clases eliminadas</u></summary>
+<ul><li><a href="#https://w3id.org/EDAAnOWL/Accuracy">https://w3id.org/EDAAnOWL/Accuracy</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/AnalyzerApp">https://w3id.org/EDAAnOWL/AnalyzerApp</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/CertificationReport">https://w3id.org/EDAAnOWL/CertificationReport</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/Completeness">https://w3id.org/EDAAnOWL/Completeness</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/ConstraintOperator">https://w3id.org/EDAAnOWL/ConstraintOperator</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/DataApp">https://w3id.org/EDAAnOWL/DataApp</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/DataAsset">https://w3id.org/EDAAnOWL/DataAsset</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/DataConstraint">https://w3id.org/EDAAnOWL/DataConstraint</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/DataProfile">https://w3id.org/EDAAnOWL/DataProfile</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/DataRepresentation">https://w3id.org/EDAAnOWL/DataRepresentation</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/DataSpecification">https://w3id.org/EDAAnOWL/DataSpecification</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/FeatureOfInterest">https://w3id.org/EDAAnOWL/FeatureOfInterest</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/FieldMapping">https://w3id.org/EDAAnOWL/FieldMapping</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/InputProfile">https://w3id.org/EDAAnOWL/InputProfile</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/Metric">https://w3id.org/EDAAnOWL/Metric</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/MetricType">https://w3id.org/EDAAnOWL/MetricType</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/ObservableProperty">https://w3id.org/EDAAnOWL/ObservableProperty</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/ObservationMetric">https://w3id.org/EDAAnOWL/ObservationMetric</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/OutputProfile">https://w3id.org/EDAAnOWL/OutputProfile</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/PerformanceMetric">https://w3id.org/EDAAnOWL/PerformanceMetric</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/PredictionApp">https://w3id.org/EDAAnOWL/PredictionApp</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/QualityMetric">https://w3id.org/EDAAnOWL/QualityMetric</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/QualityReport">https://w3id.org/EDAAnOWL/QualityReport</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/SpatialTemporalAsset">https://w3id.org/EDAAnOWL/SpatialTemporalAsset</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/Uniqueness">https://w3id.org/EDAAnOWL/Uniqueness</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/VerifiableDataSpecification">https://w3id.org/EDAAnOWL/VerifiableDataSpecification</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/VisualizationApp">https://w3id.org/EDAAnOWL/VisualizationApp</a>
+</li>
+</ul></details><h3 id="changeProp" class="list">Propiedades de objeto</h3>
+<details><summary><u>Propiedades de objeto modificadas</u></summary>
+<ul><li><a href="#http://www.w3.org/ns/prov#wasDerivedFrom">http://www.w3.org/ns/prov#wasDerivedFrom</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataAsset</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataAsset</li>
+</ul>
+<ul>
+<li>Eliminado: domain https://w3id.org/EDAAnOWL/DataAsset</li>
+<li>Eliminado: Rango https://w3id.org/EDAAnOWL/DataAsset</li>
+</ul>
+</li>
+<li><a href="#http://www.w3.org/ns/prov#wasGeneratedBy">http://www.w3.org/ns/prov#wasGeneratedBy</a>
+<ul>
+<li>Nuevo: rdfs:label "fue generado por"@es</li>
+<li>Nuevo: rdfs:label "was generated by"@en</li>
+<li>Nuevo: rdfs:comment "Vincula un recurso con la actividad o DataApp que lo generó. En AgoraOWL, típicamente vincula un DataAsset con la DataApp que lo produjo. Compatible con DCAT-AP-ES (prov:Activity) y AgoraOWL (agoraowl:DataApp)."@es</li>
+<li>Nuevo: rdfs:comment "Links a resource to the activity or DataApp that generated it. In AgoraOWL, typically links a DataAsset to the DataApp that produced it. Compatible with DCAT-AP-ES (prov:Activity) and AgoraOWL (agoraowl:DataApp)."@en</li>
+</ul>
+<ul>
+<li>Eliminado: domain https://w3id.org/EDAAnOWL/DataAsset</li>
+<li>Eliminado: Rango https://w3id.org/EDAAnOWL/DataApp</li>
+</ul>
+</li>
+<li><a href="#https://w3id.org/idsa/core/dataTypeSchema">https://w3id.org/idsa/core/dataTypeSchema</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataRepresentation</li>
+</ul>
+<ul>
+<li>Eliminado: domain https://w3id.org/EDAAnOWL/DataRepresentation</li>
+</ul>
+</li>
+</ul></details><details><summary><u>Nuevas propiedades de objeto</u></summary>
+<ul><li><a href="#http://purl.org/dc/terms/temporal">http://purl.org/dc/terms/temporal</a>
+<ul>
+<li>Nuevo: Rango http://purl.org/dc/terms/PeriodOfTime</li>
+</ul>
+</li>
+<li><a href="#http://www.w3.org/ns/dcat#inSeries">http://www.w3.org/ns/dcat#inSeries</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/ns/dcat#DatasetSeries</li>
+<li>Nuevo: domain http://www.w3.org/ns/dcat#Dataset</li>
+</ul>
+</li>
+<li><a href="#accessTypeConcept">https://w3id.org/AgoraOWL/accessTypeConcept</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2004/02/skos/core#Concept</li>
+<li>Nuevo: domain https://w3id.org/idsa/core/Resource</li>
+</ul>
+</li>
+<li><a href="#appliesToFeatureConcept">https://w3id.org/AgoraOWL/appliesToFeatureConcept</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2004/02/skos/core#Concept</li>
+</ul>
+</li>
+<li><a href="#conformsToSchema">https://w3id.org/AgoraOWL/conformsToSchema</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataSpecification</li>
+<li>Nuevo: Subpropiedad de http://purl.org/dc/terms/conformsTo</li>
+</ul>
+</li>
+<li><a href="#constraintMetricType">https://w3id.org/AgoraOWL/constraintMetricType</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataConstraint</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/MetricType</li>
+</ul>
+</li>
+<li><a href="#constraintOperator">https://w3id.org/AgoraOWL/constraintOperator</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataConstraint</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/ConstraintOperator</li>
+</ul>
+</li>
+<li><a href="#consumesAppRepresentation">https://w3id.org/AgoraOWL/consumesAppRepresentation</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/BIGOWLWorkflows/Component</li>
+<li>Nuevo: Rango https://w3id.org/idsa/core/AppRepresentation</li>
+</ul>
+</li>
+<li><a href="#consumesDataRepresentation">https://w3id.org/AgoraOWL/consumesDataRepresentation</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataRepresentation</li>
+<li>Nuevo: domain https://w3id.org/BIGOWLWorkflows/Component</li>
+</ul>
+</li>
+<li><a href="#consumesResource">https://w3id.org/AgoraOWL/consumesResource</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/BIGOWLWorkflows/Component</li>
+<li>Nuevo: Rango http://www.w3.org/ns/dcat#Distribution</li>
+</ul>
+</li>
+<li><a href="#declaresDataClass">https://w3id.org/AgoraOWL/declaresDataClass</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/BIGOWLData/Data</li>
+</ul>
+</li>
+<li><a href="#externalQualityReport">https://w3id.org/AgoraOWL/externalQualityReport</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/idsa/core/Resource</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/QualityReport</li>
+</ul>
+</li>
+<li><a href="#hasCRS">https://w3id.org/AgoraOWL/hasCRS</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2004/02/skos/core#Concept</li>
+</ul>
+</li>
+<li><a href="#hasCertification">https://w3id.org/AgoraOWL/hasCertification</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/CertificationReport</li>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/AgoraOWL/DataSpecification, https://w3id.org/idsa/core/Resource)</li>
+</ul>
+</li>
+<li><a href="#hasConstraint">https://w3id.org/AgoraOWL/hasConstraint</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataConstraint</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/InputProfile</li>
+</ul>
+</li>
+<li><a href="#hasCredential">https://w3id.org/AgoraOWL/hasCredential</a>
+<ul>
+<li>Nuevo: Rango https://www.w3.org/2018/credentials#VerifiableCredential</li>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/AgoraOWL/DataSpecification, https://w3id.org/idsa/core/Resource)</li>
+</ul>
+</li>
+<li><a href="#hasDPIA">https://w3id.org/AgoraOWL/hasDPIA</a>
+<ul>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+<li>Nuevo: Rango http://xmlns.com/foaf/0.1/Document</li>
+</ul>
+</li>
+<li><a href="#hasDataConstraint">https://w3id.org/AgoraOWL/hasDataConstraint</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/InputProfile</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataConstraint</li>
+<li>Nuevo: Subpropiedad de https://w3id.org/AgoraOWL/hasConstraint</li>
+</ul>
+</li>
+<li><a href="#hasDataSpecification">https://w3id.org/AgoraOWL/hasDataSpecification</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataSpecification</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataProfile</li>
+</ul>
+</li>
+<li><a href="#hasDataType">https://w3id.org/AgoraOWL/hasDataType</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/FieldMapping</li>
+<li>Nuevo: Rango http://www.w3.org/2000/01/rdf-schema#Datatype</li>
+</ul>
+</li>
+<li><a href="#hasDomainSector">https://w3id.org/AgoraOWL/hasDomainSector</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2004/02/skos/core#Concept</li>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+<li>Nuevo: Subpropiedad de http://www.w3.org/ns/dcat#theme</li>
+</ul>
+</li>
+<li><a href="#hasFeatureOfInterest">https://w3id.org/AgoraOWL/hasFeatureOfInterest</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/FeatureOfInterest</li>
+</ul>
+</li>
+<li><a href="#hasFieldMapping">https://w3id.org/AgoraOWL/hasFieldMapping</a>
+<ul>
+<li>Nuevo: domain http://www.w3.org/ns/dcat#Distribution</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/FieldMapping</li>
+</ul>
+</li>
+<li><a href="#hasInputProfile">https://w3id.org/AgoraOWL/hasInputProfile</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataApp</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/InputProfile</li>
+</ul>
+</li>
+<li><a href="#hasMetric">https://w3id.org/AgoraOWL/hasMetric</a>
+<ul>
+<li>Nuevo: domain Union de (http://www.w3.org/ns/dcat#Distribution, https://w3id.org/AgoraOWL/DataAsset, https://w3id.org/AgoraOWL/DataSpecification, https://w3id.org/AgoraOWL/FieldMapping)</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/Metric</li>
+</ul>
+</li>
+<li><a href="#hasMetricStandard">https://w3id.org/AgoraOWL/hasMetricStandard</a>
+</li>
+<li><a href="#hasMetricUnit">https://w3id.org/AgoraOWL/hasMetricUnit</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/Metric</li>
+</ul>
+</li>
+<li><a href="#hasObservableProperty">https://w3id.org/AgoraOWL/hasObservableProperty</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/ObservableProperty</li>
+</ul>
+</li>
+<li><a href="#hasObservationMetric">https://w3id.org/AgoraOWL/hasObservationMetric</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/ObservationMetric</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/FieldMapping</li>
+</ul>
+</li>
+<li><a href="#hasOutputProfile">https://w3id.org/AgoraOWL/hasOutputProfile</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataApp</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/OutputProfile</li>
+</ul>
+</li>
+<li><a href="#hasPerformanceMetric">https://w3id.org/AgoraOWL/hasPerformanceMetric</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/PerformanceMetric</li>
+<li>Nuevo: Subpropiedad de https://w3id.org/AgoraOWL/hasMetric</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataApp</li>
+</ul>
+</li>
+<li><a href="#hasProfile">https://w3id.org/AgoraOWL/hasProfile</a>
+<ul>
+<li>Nuevo: domain http://www.w3.org/ns/dcat#Distribution</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataProfile</li>
+</ul>
+</li>
+<li><a href="#hasSchemaType">https://w3id.org/AgoraOWL/hasSchemaType</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataSpecification</li>
+</ul>
+</li>
+<li><a href="#hasSpatialCoverage">https://w3id.org/AgoraOWL/hasSpatialCoverage</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/SpatialTemporalAsset</li>
+<li>Nuevo: Rango http://www.w3.org/ns/locn#Geometry</li>
+</ul>
+</li>
+<li><a href="#hasTemporalCoverage">https://w3id.org/AgoraOWL/hasTemporalCoverage</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/SpatialTemporalAsset</li>
+<li>Nuevo: Rango http://www.w3.org/2006/time#Interval</li>
+</ul>
+</li>
+<li><a href="#hasUnit">https://w3id.org/AgoraOWL/hasUnit</a>
+<ul>
+<li>Nuevo: Rango http://qudt.org/vocab/unit/Unit</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/FieldMapping</li>
+</ul>
+</li>
+<li><a href="#implementsComponent">https://w3id.org/AgoraOWL/implementsComponent</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataApp</li>
+<li>Nuevo: Rango https://w3id.org/BIGOWLWorkflows/Component</li>
+</ul>
+</li>
+<li><a href="#legalContact">https://w3id.org/AgoraOWL/legalContact</a>
+<ul>
+<li>Nuevo: Subpropiedad de http://www.w3.org/ns/dcat#contactPoint</li>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+<li>Nuevo: Rango http://www.w3.org/2006/vcard/ns#Kind</li>
+</ul>
+</li>
+<li><a href="#mapsToSpecification">https://w3id.org/AgoraOWL/mapsToSpecification</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/FieldMapping</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataSpecification</li>
+</ul>
+</li>
+<li><a href="#measuresProperty">https://w3id.org/AgoraOWL/measuresProperty</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/Metric</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/ObservableProperty</li>
+</ul>
+</li>
+<li><a href="#metricType">https://w3id.org/AgoraOWL/metricType</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/MetricType</li>
+<li>Nuevo: Subpropiedad de http://www.w3.org/ns/dqv#isMeasurementOf</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/Metric</li>
+</ul>
+</li>
+<li><a href="#parameter">https://w3id.org/AgoraOWL/parameter</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataApp</li>
+<li>Nuevo: Rango http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter</li>
+</ul>
+</li>
+<li><a href="#producesAppRepresentation">https://w3id.org/AgoraOWL/producesAppRepresentation</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/BIGOWLWorkflows/Component</li>
+<li>Nuevo: Rango https://w3id.org/idsa/core/AppRepresentation</li>
+</ul>
+</li>
+<li><a href="#producesDataRepresentation">https://w3id.org/AgoraOWL/producesDataRepresentation</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/BIGOWLWorkflows/Component</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataRepresentation</li>
+</ul>
+</li>
+<li><a href="#producesProfile">https://w3id.org/AgoraOWL/producesProfile</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataSpecification</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataApp</li>
+</ul>
+</li>
+<li><a href="#producesResource">https://w3id.org/AgoraOWL/producesResource</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/BIGOWLWorkflows/Component</li>
+<li>Nuevo: Rango http://www.w3.org/ns/dcat#Distribution</li>
+</ul>
+</li>
+<li><a href="#realizesWorkflow">https://w3id.org/AgoraOWL/realizesWorkflow</a>
+<ul>
+<li>Nuevo: Rango http://www.opmw.org/ontology/WorkflowTemplate</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataApp</li>
+</ul>
+</li>
+<li><a href="#reportingEntity">https://w3id.org/AgoraOWL/reportingEntity</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/ns/org#Organization</li>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/CertificationReport, https://w3id.org/AgoraOWL/QualityReport)</li>
+</ul>
+</li>
+<li><a href="#requiresDataType">https://w3id.org/AgoraOWL/requiresDataType</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataConstraint</li>
+<li>Nuevo: Rango http://www.w3.org/2000/01/rdf-schema#Datatype</li>
+</ul>
+</li>
+<li><a href="#requiresMetric">https://w3id.org/AgoraOWL/requiresMetric</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataConstraint</li>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/ObservationMetric</li>
+</ul>
+</li>
+<li><a href="#requiresProfile">https://w3id.org/AgoraOWL/requiresProfile</a>
+<ul>
+<li>Nuevo: Rango https://w3id.org/AgoraOWL/DataSpecification</li>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/AgoraOWL/InputProfile)</li>
+</ul>
+</li>
+<li><a href="#requiresUnit">https://w3id.org/AgoraOWL/requiresUnit</a>
+<ul>
+<li>Nuevo: Rango http://qudt.org/vocab/unit/Unit</li>
+<li>Nuevo: domain https://w3id.org/AgoraOWL/DataConstraint</li>
+</ul>
+</li>
+<li><a href="#spatialGranularityConcept">https://w3id.org/AgoraOWL/spatialGranularityConcept</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/idsa/core/Resource</li>
+<li>Nuevo: Rango http://www.w3.org/2004/02/skos/core#Concept</li>
+</ul>
+</li>
+<li><a href="#supportContact">https://w3id.org/AgoraOWL/supportContact</a>
+<ul>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+<li>Nuevo: Subpropiedad de http://www.w3.org/ns/dcat#contactPoint</li>
+<li>Nuevo: Rango http://www.w3.org/2006/vcard/ns#Kind</li>
+</ul>
+</li>
+<li><a href="#topic">https://w3id.org/AgoraOWL/topic</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2004/02/skos/core#Concept</li>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+<li>Nuevo: Subpropiedad de http://purl.org/dc/terms/subject</li>
+</ul>
+</li>
+<li><a href="#usesVocabulary">https://w3id.org/AgoraOWL/usesVocabulary</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2004/02/skos/core#ConceptScheme</li>
+<li>Nuevo: domain Union de (https://w3id.org/AgoraOWL/DataSpecification, https://w3id.org/AgoraOWL/Metric)</li>
+</ul>
+</li>
+<li><a href="#https://w3id.org/idsa/core/listedAppResource">https://w3id.org/idsa/core/listedAppResource</a>
+<ul>
+<li>Nuevo: domain https://w3id.org/idsa/core/AppResourceCatalog</li>
+<li>Nuevo: Subpropiedad de http://www.w3.org/ns/dcat#dataset</li>
+<li>Nuevo: Rango https://w3id.org/idsa/core/AppResource</li>
+</ul>
+</li>
+</ul></details><details><summary><u>Propiedades de objeto eliminadas</u></summary>
+<ul><li><a href="#https://w3id.org/EDAAnOWL/accessTypeConcept">https://w3id.org/EDAAnOWL/accessTypeConcept</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/appliesToFeatureConcept">https://w3id.org/EDAAnOWL/appliesToFeatureConcept</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/conformsToSchema">https://w3id.org/EDAAnOWL/conformsToSchema</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/constraintMetricType">https://w3id.org/EDAAnOWL/constraintMetricType</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/consumesAppRepresentation">https://w3id.org/EDAAnOWL/consumesAppRepresentation</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/consumesDataRepresentation">https://w3id.org/EDAAnOWL/consumesDataRepresentation</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/consumesResource">https://w3id.org/EDAAnOWL/consumesResource</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/declaresDataClass">https://w3id.org/EDAAnOWL/declaresDataClass</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/externalQualityReport">https://w3id.org/EDAAnOWL/externalQualityReport</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasCRS">https://w3id.org/EDAAnOWL/hasCRS</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasCertification">https://w3id.org/EDAAnOWL/hasCertification</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasConstraint">https://w3id.org/EDAAnOWL/hasConstraint</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasCredential">https://w3id.org/EDAAnOWL/hasCredential</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasDPIA">https://w3id.org/EDAAnOWL/hasDPIA</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasDataConstraint">https://w3id.org/EDAAnOWL/hasDataConstraint</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasDataSpecification">https://w3id.org/EDAAnOWL/hasDataSpecification</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasDataType">https://w3id.org/EDAAnOWL/hasDataType</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasDomainSector">https://w3id.org/EDAAnOWL/hasDomainSector</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasFeatureOfInterest">https://w3id.org/EDAAnOWL/hasFeatureOfInterest</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasFieldMapping">https://w3id.org/EDAAnOWL/hasFieldMapping</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasInputProfile">https://w3id.org/EDAAnOWL/hasInputProfile</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasMetric">https://w3id.org/EDAAnOWL/hasMetric</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasMetricStandard">https://w3id.org/EDAAnOWL/hasMetricStandard</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasMetricUnit">https://w3id.org/EDAAnOWL/hasMetricUnit</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasObservableProperty">https://w3id.org/EDAAnOWL/hasObservableProperty</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasObservationMetric">https://w3id.org/EDAAnOWL/hasObservationMetric</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasOutputProfile">https://w3id.org/EDAAnOWL/hasOutputProfile</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasPerformanceMetric">https://w3id.org/EDAAnOWL/hasPerformanceMetric</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasProfile">https://w3id.org/EDAAnOWL/hasProfile</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasSchemaType">https://w3id.org/EDAAnOWL/hasSchemaType</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasSpatialCoverage">https://w3id.org/EDAAnOWL/hasSpatialCoverage</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasTemporalCoverage">https://w3id.org/EDAAnOWL/hasTemporalCoverage</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/hasUnit">https://w3id.org/EDAAnOWL/hasUnit</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/implementsComponent">https://w3id.org/EDAAnOWL/implementsComponent</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/legalContact">https://w3id.org/EDAAnOWL/legalContact</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/mapsToSpecification">https://w3id.org/EDAAnOWL/mapsToSpecification</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/measuresProperty">https://w3id.org/EDAAnOWL/measuresProperty</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/metricType">https://w3id.org/EDAAnOWL/metricType</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/parameter">https://w3id.org/EDAAnOWL/parameter</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/producesAppRepresentation">https://w3id.org/EDAAnOWL/producesAppRepresentation</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/producesDataRepresentation">https://w3id.org/EDAAnOWL/producesDataRepresentation</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/producesProfile">https://w3id.org/EDAAnOWL/producesProfile</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/producesResource">https://w3id.org/EDAAnOWL/producesResource</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/realizesWorkflow">https://w3id.org/EDAAnOWL/realizesWorkflow</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/reportingEntity">https://w3id.org/EDAAnOWL/reportingEntity</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/requiresMetric">https://w3id.org/EDAAnOWL/requiresMetric</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/requiresProfile">https://w3id.org/EDAAnOWL/requiresProfile</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/requiresUnit">https://w3id.org/EDAAnOWL/requiresUnit</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/spatialGranularityConcept">https://w3id.org/EDAAnOWL/spatialGranularityConcept</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/supportContact">https://w3id.org/EDAAnOWL/supportContact</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/topic">https://w3id.org/EDAAnOWL/topic</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/usesVocabulary">https://w3id.org/EDAAnOWL/usesVocabulary</a>
+</li>
+</ul></details><h3 id="changeDataProp" class="list">Propiedades de datos</h3>
+<details><summary><u>Propiedades de datos modificadas</u></summary>
+<ul><li><a href="#http://purl.org/dc/terms/description">http://purl.org/dc/terms/description</a>
+<ul>
+<li>Nuevo: rdfs:label "descripción"@es</li>
+<li>Nuevo: rdfs:comment "Una descripción del recurso (DCAT-AP 3.0)."@es</li>
+</ul>
+<ul>
+<li>Eliminado: rdfs:comment "Una descripcion del recurso (DCAT-AP 3.0)."@es</li>
+<li>Eliminado: rdfs:label "descripcion"@es</li>
+</ul>
+</li>
+<li><a href="#http://purl.org/dc/terms/modified">http://purl.org/dc/terms/modified</a>
+<ul>
+<li>Nuevo: rdfs:comment "La fecha más reciente en la que se cambió el recurso (DCAT-AP 3.0)."@es</li>
+<li>Nuevo: rdfs:label "fecha de modificación"@es</li>
+</ul>
+<ul>
+<li>Eliminado: rdfs:label "fecha de modificacion"@es</li>
+<li>Eliminado: rdfs:comment "La fecha mas reciente en la que se cambio el recurso (DCAT-AP 3.0)."@es</li>
+<li>Eliminado: Rango http://www.w3.org/2000/01/rdf-schema#Literal</li>
+</ul>
+</li>
+<li><a href="#http://purl.org/dc/terms/title">http://purl.org/dc/terms/title</a>
+<ul>
+<li>Nuevo: rdfs:label "título"@es</li>
+</ul>
+<ul>
+<li>Eliminado: rdfs:label "titulo"@es</li>
+</ul>
+</li>
+<li><a href="#http://www.w3.org/ns/dcat#spatialResolutionInDegrees">http://www.w3.org/ns/dcat#spatialResolutionInDegrees</a>
+<ul>
+<li>Nuevo: rdfs:comment "The minimum distance to distinguish two objects, measured in degrees (DCAT 3)."@en</li>
+<li>Nuevo: rdfs:label "resolución espacial (grados)"@es</li>
+<li>Nuevo: rdfs:label "spatial resolution (degrees)"@en</li>
+<li>Nuevo: rdfs:comment "La distancia mínima para distinguir dos objetos, medida en grados (DCAT 3)."@es</li>
+</ul>
+</li>
+<li><a href="#http://www.w3.org/ns/dcat#spatialResolutionInMeters">http://www.w3.org/ns/dcat#spatialResolutionInMeters</a>
+<ul>
+<li>Nuevo: rdfs:label "spatial resolution (meters)"@en</li>
+<li>Nuevo: rdfs:comment "The minimum distance to distinguish two objects, measured in meters (DCAT 3)."@en</li>
+<li>Nuevo: rdfs:label "resolución espacial (metros)"@es</li>
+<li>Nuevo: rdfs:comment "La distancia mínima para distinguir dos objetos, medida en metros (DCAT 3)."@es</li>
+</ul>
+</li>
+<li><a href="#http://www.w3.org/ns/dcat#temporalResolution">http://www.w3.org/ns/dcat#temporalResolution</a>
+<ul>
+<li>Nuevo: rdfs:comment "The minimum time period to distinguish between two events (DCAT 3)."@en</li>
+<li>Nuevo: rdfs:comment "El periodo de tiempo mínimo para distinguir entre dos eventos (DCAT 3)."@es</li>
+<li>Nuevo: rdfs:label "resolución temporal"@es</li>
+<li>Nuevo: rdfs:label "temporal resolution"@en</li>
+</ul>
+</li>
+</ul></details><details><summary><u>Nuevas propiedades de datos</u></summary>
+<ul><li><a href="#accessType">https://w3id.org/AgoraOWL/accessType</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio https://w3id.org/idsa/core/Resource</li>
+</ul>
+</li>
+<li><a href="#alternativeName">https://w3id.org/AgoraOWL/alternativeName</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/idsa/core/Resource</li>
+<li>Nuevo: Subpropiedad de http://purl.org/dc/terms/alternative</li>
+<li>Nuevo: Rango http://www.w3.org/2000/01/rdf-schema#Literal</li>
+</ul>
+</li>
+<li><a href="#anonymizationTechnique">https://w3id.org/AgoraOWL/anonymizationTechnique</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/idsa/core/Resource</li>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/DataSpecification</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+</ul>
+</li>
+<li><a href="#appliesToFeature">https://w3id.org/AgoraOWL/appliesToFeature</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/Metric</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+</ul>
+</li>
+<li><a href="#auditLogAvailable">https://w3id.org/AgoraOWL/auditLogAvailable</a>
+<ul>
+<li>Nuevo: Dominio Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#boolean</li>
+</ul>
+</li>
+<li><a href="#certificationLevel">https://w3id.org/AgoraOWL/certificationLevel</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/CertificationReport</li>
+</ul>
+</li>
+<li><a href="#collectionMethod">https://w3id.org/AgoraOWL/collectionMethod</a>
+<ul>
+<li>Nuevo: Dominio Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+</ul>
+</li>
+<li><a href="#computedAt">https://w3id.org/AgoraOWL/computedAt</a>
+<ul>
+<li>Nuevo: Subpropiedad de http://www.w3.org/ns/prov#generatedAtTime</li>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/Metric</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#dateTime</li>
+</ul>
+</li>
+<li><a href="#constraintValue">https://w3id.org/AgoraOWL/constraintValue</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/DataConstraint</li>
+<li>Nuevo: Rango http://www.w3.org/2000/01/rdf-schema#Literal</li>
+</ul>
+</li>
+<li><a href="#containsPersonalData">https://w3id.org/AgoraOWL/containsPersonalData</a>
+<ul>
+<li>Nuevo: Dominio Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/AgoraOWL/DataSpecification, https://w3id.org/idsa/core/Resource)</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#boolean</li>
+</ul>
+</li>
+<li><a href="#isAlive">https://w3id.org/AgoraOWL/isAlive</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#boolean</li>
+<li>Nuevo: Dominio Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+</ul>
+</li>
+<li><a href="#isStreaming">https://w3id.org/AgoraOWL/isStreaming</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#boolean</li>
+<li>Nuevo: Dominio http://www.w3.org/ns/dcat#Distribution</li>
+</ul>
+</li>
+<li><a href="#knownLimitations">https://w3id.org/AgoraOWL/knownLimitations</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+</ul>
+</li>
+<li><a href="#mapsField">https://w3id.org/AgoraOWL/mapsField</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/FieldMapping</li>
+</ul>
+</li>
+<li><a href="#metricName">https://w3id.org/AgoraOWL/metricName</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/Metric</li>
+</ul>
+</li>
+<li><a href="#metricUnit">https://w3id.org/AgoraOWL/metricUnit</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/Metric</li>
+</ul>
+</li>
+<li><a href="#metricValue">https://w3id.org/AgoraOWL/metricValue</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/Metric</li>
+<li>Nuevo: Subpropiedad de http://www.w3.org/ns/dqv#value</li>
+<li>Nuevo: Rango http://www.w3.org/2000/01/rdf-schema#Literal</li>
+</ul>
+</li>
+<li><a href="#nullPercentage">https://w3id.org/AgoraOWL/nullPercentage</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/BIGOWLData/Column</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#decimal</li>
+</ul>
+</li>
+<li><a href="#paymentModelDescription">https://w3id.org/AgoraOWL/paymentModelDescription</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio Union de (https://w3id.org/AgoraOWL/DataApp, https://w3id.org/idsa/core/Resource)</li>
+</ul>
+</li>
+<li><a href="#profileCRS">https://w3id.org/AgoraOWL/profileCRS</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/DataSpecification</li>
+</ul>
+</li>
+<li><a href="#profileSpatialResolution">https://w3id.org/AgoraOWL/profileSpatialResolution</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/DataSpecification</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+</ul>
+</li>
+<li><a href="#profileTemporalResolution">https://w3id.org/AgoraOWL/profileTemporalResolution</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/DataSpecification</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#duration</li>
+</ul>
+</li>
+<li><a href="#qualityReportURI">https://w3id.org/AgoraOWL/qualityReportURI</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/QualityReport</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#anyURI</li>
+</ul>
+</li>
+<li><a href="#qualityScore">https://w3id.org/AgoraOWL/qualityScore</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/AgoraOWL/QualityReport</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#integer</li>
+</ul>
+</li>
+<li><a href="#recommendedUse">https://w3id.org/AgoraOWL/recommendedUse</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio https://w3id.org/idsa/core/Resource</li>
+</ul>
+</li>
+<li><a href="#refundPolicy">https://w3id.org/AgoraOWL/refundPolicy</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/idsa/core/Resource</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+</ul>
+</li>
+<li><a href="#reportDate">https://w3id.org/AgoraOWL/reportDate</a>
+<ul>
+<li>Nuevo: Dominio Union de (https://w3id.org/AgoraOWL/CertificationReport, https://w3id.org/AgoraOWL/QualityReport)</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#dateTime</li>
+</ul>
+</li>
+<li><a href="#sampleValue">https://w3id.org/AgoraOWL/sampleValue</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2000/01/rdf-schema#Literal</li>
+<li>Nuevo: Dominio https://w3id.org/BIGOWLData/Column</li>
+</ul>
+</li>
+<li><a href="#securityClassification">https://w3id.org/AgoraOWL/securityClassification</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+<li>Nuevo: Dominio https://w3id.org/idsa/core/Resource</li>
+</ul>
+</li>
+<li><a href="#spatialGranularity">https://w3id.org/AgoraOWL/spatialGranularity</a>
+<ul>
+<li>Nuevo: Dominio https://w3id.org/idsa/core/Resource</li>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#string</li>
+</ul>
+</li>
+<li><a href="#uniquenessRatio">https://w3id.org/AgoraOWL/uniquenessRatio</a>
+<ul>
+<li>Nuevo: Rango http://www.w3.org/2001/XMLSchema#decimal</li>
+<li>Nuevo: Dominio https://w3id.org/BIGOWLData/Column</li>
+</ul>
+</li>
+</ul></details><details><summary><u>Propiedades de datos eliminadas</u></summary>
+<ul><li><a href="#https://w3id.org/EDAAnOWL/accessType">https://w3id.org/EDAAnOWL/accessType</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/alternativeName">https://w3id.org/EDAAnOWL/alternativeName</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/anonymizationTechnique">https://w3id.org/EDAAnOWL/anonymizationTechnique</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/appliesToFeature">https://w3id.org/EDAAnOWL/appliesToFeature</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/auditLogAvailable">https://w3id.org/EDAAnOWL/auditLogAvailable</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/certificationLevel">https://w3id.org/EDAAnOWL/certificationLevel</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/collectionMethod">https://w3id.org/EDAAnOWL/collectionMethod</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/computedAt">https://w3id.org/EDAAnOWL/computedAt</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/constraintOperator">https://w3id.org/EDAAnOWL/constraintOperator</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/constraintValue">https://w3id.org/EDAAnOWL/constraintValue</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/containsPersonalData">https://w3id.org/EDAAnOWL/containsPersonalData</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/isAlive">https://w3id.org/EDAAnOWL/isAlive</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/isStreaming">https://w3id.org/EDAAnOWL/isStreaming</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/knownLimitations">https://w3id.org/EDAAnOWL/knownLimitations</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/mapsField">https://w3id.org/EDAAnOWL/mapsField</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/metricName">https://w3id.org/EDAAnOWL/metricName</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/metricUnit">https://w3id.org/EDAAnOWL/metricUnit</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/metricValue">https://w3id.org/EDAAnOWL/metricValue</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/nullPercentage">https://w3id.org/EDAAnOWL/nullPercentage</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/paymentModelDescription">https://w3id.org/EDAAnOWL/paymentModelDescription</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/profileCRS">https://w3id.org/EDAAnOWL/profileCRS</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/profileSpatialResolution">https://w3id.org/EDAAnOWL/profileSpatialResolution</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/profileTemporalResolution">https://w3id.org/EDAAnOWL/profileTemporalResolution</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/qualityReportURI">https://w3id.org/EDAAnOWL/qualityReportURI</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/qualityScore">https://w3id.org/EDAAnOWL/qualityScore</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/recommendedUse">https://w3id.org/EDAAnOWL/recommendedUse</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/refundPolicy">https://w3id.org/EDAAnOWL/refundPolicy</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/reportDate">https://w3id.org/EDAAnOWL/reportDate</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/sampleValue">https://w3id.org/EDAAnOWL/sampleValue</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/securityClassification">https://w3id.org/EDAAnOWL/securityClassification</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/spatialGranularity">https://w3id.org/EDAAnOWL/spatialGranularity</a>
+</li>
+<li><a href="#https://w3id.org/EDAAnOWL/uniquenessRatio">https://w3id.org/EDAAnOWL/uniquenessRatio</a>
+</li>
+</ul></details></div>
+</div>
 <div id="acknowledgments">
 <h2 id="ack" class="list">Agradecimientos <span class="backlink"> volver a <a href="#toc">&iacute;ndice</a></span></h2>
 <p>Los autores agradecen a <a href="http://www.essepuntato.it/">Silvio Peroni</a> el desarrollo de <a href="http://www.essepuntato.it/lode">LODE</a>, un entorno de documentaci&oacute;n para OWL que es usado para generar la descripci&oacute;n de t&eacute;rminos de la ontolog&iacute;a de este documento; y a  <a href="http://purl.org/net/dgarijo">Daniel Garijo</a> por desarrollar <a href="https://github.com/dgarijo/Widoco">Widoco</a>, el programa utilizado para producir la plantilla en la que se basa este documento.</p>

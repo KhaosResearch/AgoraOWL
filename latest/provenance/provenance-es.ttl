@@ -11,6 +11,6 @@
 	 prov:wasRevisionOf <https://w3id.org/AgoraOWL/1.1.0>;
 	 prov:wasGeneratedAt "2025-10-10";
 .
-:agent0 a prov:Agent; foaf:name "https://www.linkedin.com/in/martin-jeronimo-salvachua/".
+:agent0 a prov:Agent; foaf:name "https://github.com/MartinM10".
 :agent1 a prov:Agent; foaf:name "https://khaos.uma.es/".
-:agent2 a prov:Agent; foaf:name "https://github.com/MartinM10".
+:agent2 a prov:Agent; foaf:name "https://www.linkedin.com/in/martin-jeronimo-salvachua/".
