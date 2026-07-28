@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1](https://github.com/KhaosResearch/AgoraOWL/compare/v1.2.0...v1.2.1) (2026-07-28)
+
+
+### Fixed
+
+* **ci:** preserve nested shape/example dirs and validate shape file refs ([aa2c16c](https://github.com/KhaosResearch/AgoraOWL/commit/aa2c16cd89b4b08b48219661b31649f45a1a51f3))
+* **ontology:** release v1.2.1 with DCAT3 alignment and OWL modeling fixes ([d7f1e08](https://github.com/KhaosResearch/AgoraOWL/commit/d7f1e087fcd06064746a9ecd67cd082a897b0f71))
+
+
+### Changed
+
+* **release:** correct release-please manifest drift back to v1.2.0 ([217102a](https://github.com/KhaosResearch/AgoraOWL/commit/217102ab2a30db56a30a911c448f8e4d8c3b4329))
+
 ## [1.2.0](https://github.com/KhaosResearch/AgoraOWL/compare/v1.1.0...v1.2.0) (2026-03-26)
 
 ### Added
