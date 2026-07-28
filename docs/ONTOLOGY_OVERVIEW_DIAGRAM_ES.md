@@ -1,12 +1,12 @@
-# AgoraOWL v1.2.0 - Diagramas de Arquitectura y Capas
+# AgoraOWL v1.2.1 - Diagramas de Arquitectura y Capas
 
-Este documento presenta los diagramas actualizados que reflejan la arquitectura **simétrica de 4 capas** adoptada en la versión 1.2.0.
+Este documento presenta los diagramas actualizados que reflejan la arquitectura **simétrica de 4 capas** adoptada en la versión 1.2.1.
 
 ---
 
 ## 1️⃣ La Arquitectura Simétrica de 4 Capas
 
-AgoraOWL v1.2.0 organiza la información en cuatro niveles para desacoplar totalmente la semántica de la implementación técnica.
+AgoraOWL v1.2.1 organiza la información en cuatro niveles para desacoplar totalmente la semántica de la implementación técnica.
 
 ```mermaid
 graph TD
@@ -55,9 +55,9 @@ graph TD
 
 ---
 
-## 2️⃣ Jerarquía de Clases: IDSA → AgoraOWL (v1.2.0)
+## 2️⃣ Jerarquía de Clases: IDSA → AgoraOWL (v1.2.1)
 
-La versión 1.2.0 consolida el perfilado simétrico para aplicaciones e introduce nuevas propiedades de cumplimiento.
+La versión 1.2.1 consolida el perfilado simétrico para aplicaciones e introduce nuevas propiedades de cumplimiento.
 
 ```mermaid
 flowchart TD
@@ -95,7 +95,7 @@ flowchart TD
 
 ## 3️⃣ Matchmaking: Simetría entre Oferta y Demanda
 
-En v1.2.0, el matchmaking es bidireccional, permitiendo descubrir qué activos alimentan una App y qué Apps pueden procesar un Activo.
+En v1.2.1, el matchmaking es bidireccional, permitiendo descubrir qué activos alimentan una App y qué Apps pueden procesar un Activo.
 
 ```mermaid
 flowchart LR
@@ -130,20 +130,20 @@ flowchart LR
 
 ---
 
-## 4️⃣ Resumen de Propiedades Clave v1.2.0
+## 4️⃣ Resumen de Propiedades Clave v1.2.1
 
 | Capa            | Clase          | Propiedad               | Significado                                                    |
 | :-------------- | :------------- | :---------------------- | :------------------------------------------------------------- |
 | **Binding**     | FieldMapping   | `:hasDataType`          | Define el tipo técnico (xsd:float, etc)                        |
 | **Binding**     | FieldMapping   | `:hasObservationMetric` | Define la estadística (Media, Máximo, etc)                     |
-| **Requirement** | DataConstraint | `:requiresDataType`     | **(Nuevo v1.2.0)** Exige un tipo de dato específico            |
-| **Requirement** | DataConstraint | `:constraintOperator`   | **(Nuevo v1.2.0)** Operador formal (vía Vocabulario de Clases) |
-| **Offer**       | OutputProfile  | `:hasDataSpecification` | **(Nuevo v1.2.0)** La App produce esta variable                |
+| **Requirement** | DataConstraint | `:requiresDataType`     | **(Nuevo v1.2.1)** Exige un tipo de dato específico            |
+| **Requirement** | DataConstraint | `:constraintOperator`   | **(Nuevo v1.2.1)** Operador formal (vía Vocabulario de Clases) |
+| **Offer**       | OutputProfile  | `:hasDataSpecification` | **(Nuevo v1.2.1)** La App produce esta variable                |
 
 ---
 
-## 🎯 Mensaje Clave v1.2.0
+## 🎯 Mensaje Clave v1.2.1
 
 > **Sincronización Técnica y Semántica**
 >
-> Mientras que la v1.1.0 separaba el significado del mapeo, la **v1.2.0** permite que la demanda (Apps) y la oferta (Datasets) hablen el mismo lenguaje técnico a través de restricciones explícitas de tipos de datos y operadores formales, facilitando el encadenamiento automático de servicios en el espacio de datos.
+> Mientras que la v1.1.0 separaba el significado del mapeo, la **v1.2.1** permite que la demanda (Apps) y la oferta (Datasets) hablen el mismo lenguaje técnico a través de restricciones explícitas de tipos de datos y operadores formales, facilitando el encadenamiento automático de servicios en el espacio de datos.

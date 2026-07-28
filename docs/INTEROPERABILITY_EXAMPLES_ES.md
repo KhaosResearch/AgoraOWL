@@ -1,6 +1,6 @@
-# Ejemplos de Interoperabilidad Semántica y Polimorfismo (v1.2.0)
+# Ejemplos de Interoperabilidad Semántica y Polimorfismo (v1.2.1)
 
-Este documento ilustra cómo la arquitectura de 4 capas de AgoraOWL v1.2.0 permite que un único activo de datos sirva a múltiples aplicaciones de distintos dominios.
+Este documento ilustra cómo la arquitectura de 4 capas de AgoraOWL v1.2.1 permite que un único activo de datos sirva a múltiples aplicaciones de distintos dominios.
 
 ---
 
@@ -93,6 +93,10 @@ ex:DistribucionCSV a agoraowl:DataRepresentation, dcat:Distribution ;
 A esta app solo le interesa la temperatura para calcular la evapotranspiración.
 
 ```turtle
+@prefix ex: <https://example.org/> .
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix qudt: <http://qudt.org/vocab/unit/> .
+
 ex:AppSmartIrrigation a agoraowl:DataApp ;
     agoraowl:hasInputProfile [
         a agoraowl:InputProfile ;
@@ -111,6 +115,10 @@ ex:AppSmartIrrigation a agoraowl:DataApp ;
 A esta app le interesa el flujo de vehículos.
 
 ```turtle
+@prefix ex: <https://example.org/> .
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix qudt: <http://qudt.org/vocab/unit/> .
+
 ex:AppTrafficControl a agoraowl:DataApp ;
     agoraowl:hasInputProfile [
         a agoraowl:InputProfile ;
@@ -126,7 +134,7 @@ ex:AppTrafficControl a agoraowl:DataApp ;
 
 ---
 
-## 3. Beneficios de la Arquitectura v1.2.0
+## 3. Beneficios de la Arquitectura v1.2.1
 
 1.  **Sin Redundancia:** No hace falta crear perfiles específicos para cada combinación de columnas. El `FieldMapping` es granular (por columna).
 2.  **Matchmaking Desacoplado:** Las aplicaciones no necesitan conocer el nombre de la columna (`air_temp` vs `temperature`). Solo buscan por la URI de la `DataSpecification`.

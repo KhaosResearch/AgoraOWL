@@ -8,7 +8,7 @@ graph TB
     end
 
     subgraph Semantic ["Semantic Layer (Ontology)"]
-        subgraph CRED ["CRED / UNE 0087 Compliance (v1.2.0)"]
+        subgraph CRED ["CRED / UNE 0087 Compliance (v1.2.1)"]
             CAT["dcat:Catalog<br/>(Federated Registry)"]
             SRV["dcat:DataService<br/>(Access Interface)"]
             POL["odrl:Policy / Offer<br/>(Usage Rights)"]
@@ -25,7 +25,7 @@ graph TB
             DA[":DataAsset<br/>(Supply)"]
             Apps[":SmartDataApp Types<br/>(Demand)"]
 
-            subgraph Matchmaking ["v1.2.0 Symmetric Matchmaking"]
+            subgraph Matchmaking ["v1.2.1 Symmetric Matchmaking"]
                 Spec[":DataSpecification<br/>(Atomic Variable)"]
                 Prof[":DataProfile<br/>(Grouping)"]
                 Mapping[":FieldMapping<br/>(Bridge Layer)"]
@@ -43,7 +43,7 @@ graph TB
                 FOI[":FeatureOfInterest<br/>(Subject)"]
             end
 
-            Metric[":Metric (v1.2.0)"]
+            Metric[":Metric (v1.2.1)"]
             Prov_O[":Provenance<br/>(PROV-O)"]
             Repr[":DataRepresentation<br/>(Distribution)"]
         end
@@ -95,7 +95,7 @@ graph TB
     Metric -- "measuresProperty" --> OP
 
     DA -.->|"prov:wasGeneratedBy"| Apps
-    DA -.->|"prov:wasDerivedFrom"| DA
+    DA -.->|"assetWasDerivedFrom"| DA
 
     Apps -- "implementsComponent" --> Comp
     Comp -->|"part of"| WF
@@ -118,29 +118,29 @@ graph TB
 
 ## 🖼 Architecture diagram
 
-![AgoraOWL architecture — IDS ↔ BIGOWL (v1.1.0 Updated)](images/eda-an-architecture-en.svg)
+![AgoraOWL architecture — IDS ↔ BIGOWL (v1.2.1)](../images/eda-an-architecture-en.svg)
 
 _Figure 1: High-level architecture showing how AgoraOWL maps IDSA concepts to BIGOWL components, all wrapped within a CRED / DCAT-AP 3.0 compliant cataloguing layer._
 
-### 🔄 Semantic Matchmaking Flow (v1.2.0 Symmetric)
+### 🔄 Semantic Matchmaking Flow (v1.2.1 Symmetric)
 
-![Matchmaking flow concept](images/agoraowl-v1-matchmaking-flow.jpeg)
+![Matchmaking flow concept](../images/AgoraOWL-v1-matchmaking-flow.jpeg)
 
 _Figure 2: Conceptual flow showing the interaction between the Semantic, Dataset, Quality, and App layers._
 
-### 🧬 Class Diagram (v1.2.0)
+### 🧬 Class Diagram (v1.2.1)
 
-![Detailed Class Diagram](images/agoraowl-v1-class-diagram.jpeg)
+![Detailed Class Diagram](../images/AgoraOWL-v1-class-diagram.jpeg)
 
-_Figure 3: Core classes and relationships in the version 1.2.0 symmetric profile architecture._
+_Figure 3: Core classes and relationships in the version 1.2.1 symmetric profile architecture._
 
 ### Architecture overview
 
 The figure above shows how AgoraOWL connects real-world data-space assets with semantic models from IDSA, BIGOWL, and the **CRED (UNE 0087:2025)** recommendations.
 
-### CRED / DCAT-AP 3.0 Alignment (v1.2.0 - Full Compliance)
+### CRED / DCAT-AP 3.0 Alignment (v1.2.1)
 
-As of version 1.2.0, AgoraOWL achieves full alignment with the **Spanish Data Office (CRED)**, the **UNE 0087:2025** standard, and **DCAT-AP 3.0**.
+As of version 1.2.1, AgoraOWL provides an alignment layer for the **Spanish Data Office (CRED)**, the **UNE 0087:2025** standard, and **DCAT-AP 3.0**. Conformance to a specific application profile must be established by running the corresponding official SHACL suite.
 
 - **`dcat:Catalog`**: Acts as the root container for all assets and services within an EDAAn data space instance.
 - **`dcat:DataService`**: Describes the technical access points (APIs) to the data, effectively wrapping `ids:DataApp` or smart data apps.
@@ -162,9 +162,9 @@ In AgoraOWL, these classes are specialised to capture more domain-specific conce
 - **`DataAsset`** is aligned with and specialises `ids:DataResource` (supply side).
 - **Smart data app types** specialise `ids:DataApp` (demand side).
 
-### Matchmaking Layer: Atomic Specifications and Field Mappings (v1.2.0)
+### Matchmaking Layer: Atomic Specifications and Field Mappings (v1.2.1)
 
-In version 1.2.0, AgoraOWL consolidates the decoupled architecture that separates semantic meaning from technical schema to enable extreme reusability and symmetric app discovery.
+In version 1.2.1, AgoraOWL consolidates the decoupled architecture that separates semantic meaning from technical schema to enable extreme reusability and symmetric app discovery.
 
 #### 1. Atomic Data Specifications (`DataSpecification`)
 
@@ -283,7 +283,7 @@ This repository uses a `dev` -> `main` -> `gh-pages` git flow.
 
   - **Structure**:
     - `/src/`
-      - `1.0.0/` (Ontology and vocabs for v1.1.0 - Latest)
+      - `1.2.1/` (Latest stable ontology and vocabularies)
     - `/.github/workflows/` (The CI/CD workflow)
 
 - **`dev` branch**:
@@ -326,7 +326,7 @@ The validation pipeline performs three main checks:
    - Tool: [`pyshacl`](https://github.com/RDFLib/pySHACL) (installed in the Docker image).
    - Validates:
      - Main ontology: `src/<version>/AgoraOWL.ttl`
-     - Against shapes: `src/<version>/shapes/agoraowl-shapes.ttl`
+     - Against shapes: `src/<version>/shapes/edaan-shapes.ttl` and the relevant compliance shapes
      - With test data: `src/<version>/examples/test-consistency.ttl`
    - The validation runs with:
      - RDFS inference (`-i rdfs`)
