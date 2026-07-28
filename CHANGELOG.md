@@ -5,13 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.1](https://github.com/KhaosResearch/AgoraOWL/compare/v1.2.0...v1.2.1) (2026-06-08)
-
-
-### Changed
-
-* **siex.ttl:** add dct:description and rdfs:comment in spanish ([018fb35](https://github.com/KhaosResearch/AgoraOWL/commit/018fb35b846daaeb08f392c9ef81835afd50f074))
-
 ## [1.2.0](https://github.com/KhaosResearch/AgoraOWL/compare/v1.1.0...v1.2.0) (2026-03-26)
 
 ### Added
