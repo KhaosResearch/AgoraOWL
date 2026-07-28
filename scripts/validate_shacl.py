@@ -5,6 +5,12 @@ AgoraOWL SHACL validation script.
 By default this validates the ontology and AgoraOWL-authored examples for the
 latest version under `src/`. Official DCAT-AP-ES reference RDF examples can be
 included explicitly with `--include-official-examples`.
+
+Note: the official DCAT-AP-ES examples are expected to fail under this flag.
+See the "Fallos esperados con --include-official-examples" section in
+src/<version>/shapes/compliance/dcat-ap-es/README.md for why (RDFS entailment
+of dcat:Catalog as a dcat:Dataset, and external-vocabulary dependencies the
+standalone examples intentionally omit) -- it is not a regression.
 """
 
 import re
@@ -122,10 +128,18 @@ def main() -> None:
         shape_dir / "shacl_distribution_shape.ttl",
         shape_dir / "shacl_dataservice_shape.ttl",
         shape_dir / "shacl_mdr-vocabularies.shape.ttl",
-        version_dir / "shapes" / "agoraowl-shapes.ttl",
+        version_dir / "shapes" / "edaan-shapes.ttl",
         version_dir / "shapes" / "idsa-shapes.ttl",
         version_dir / "shapes" / "cred-alignment-shapes.ttl",
+        version_dir / "shapes" / "dcat-ap-alignment.ttl",
     ]
+
+    missing_shapes = [shape for shape in shape_files if not shape.exists()]
+    if missing_shapes:
+        print("[FAIL] Missing SHACL shape files:")
+        for shape in missing_shapes:
+            print(f"   - {shape}")
+        sys.exit(1)
 
     vocab_files: list[Path] = []
     major, minor, _ = map(int, version.split("."))

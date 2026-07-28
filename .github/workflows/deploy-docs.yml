@@ -39,6 +39,10 @@ jobs:
         run: |
           set -euo pipefail
           V="${{ steps.get_version.outputs.VERSION_NO_V }}"
+          if [ ! -d "src/$V" ]; then
+            echo "ERROR: release $V has no matching src/$V directory. Create the versioned ontology before publishing the release."
+            exit 1
+          fi
           echo "Updating version references to $V in TTL files..."
           # Find all TTL files in the versioned source directory
           find src/$V -name "*.ttl" -type f | while read f; do
@@ -128,14 +132,14 @@ jobs:
 
           echo "Copying shapes..."
           mkdir -p deploy/$DEST_VERSION/shapes
-          if [ -n "$(ls src/$DEST_VERSION/shapes/*.ttl 2>/dev/null)" ]; then
-            cp src/$DEST_VERSION/shapes/*.ttl deploy/$DEST_VERSION/shapes/
+          if [ -d "src/$DEST_VERSION/shapes" ]; then
+            cp -r "src/$DEST_VERSION/shapes/." "deploy/$DEST_VERSION/shapes/"
           fi
 
           echo "Copying examples..."
           mkdir -p deploy/$DEST_VERSION/examples
-          if [ -n "$(ls src/$DEST_VERSION/examples/*.ttl 2>/dev/null)" ]; then
-            cp src/$DEST_VERSION/examples/*.ttl deploy/$DEST_VERSION/examples/
+          if [ -d "src/$DEST_VERSION/examples" ]; then
+            cp -r "src/$DEST_VERSION/examples/." "deploy/$DEST_VERSION/examples/"
           fi
 
           echo "Copying versioned README.md..."
