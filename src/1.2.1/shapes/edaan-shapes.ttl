@@ -1,0 +1,438 @@
+@prefix : <https://w3id.org/AgoraOWL/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix bigdat: <https://w3id.org/BIGOWLData/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+#################################################################
+### Shapes for IDSA Classes (DataApp, DataResource)
+#################################################################
+
+:DataAppShape a sh:NodeShape ;
+    sh:targetClass ids:DataApp ;
+    rdfs:label "Data App Shape (v1.2.1)"@en ;
+    
+    sh:property [
+        sh:path dct:title ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:Literal ;
+        sh:message "DataApp must have at least one dct:title"@en ;
+    ] ;
+    
+    sh:property [
+        sh:path :hasInputProfile ;
+        sh:minCount 0 ;
+        sh:class :InputProfile ;
+        sh:message "DataApp SHOULD have :hasInputProfile for v1.2.1 matchmaking."@en ;
+        sh:severity sh:Info
+    ] ;
+
+    sh:property [
+        sh:path :hasOutputProfile ;
+        sh:minCount 0 ;
+        sh:class :OutputProfile ;
+        sh:message "DataApp SHOULD have :hasOutputProfile for v1.2.1 symmetric profiling."@en ;
+        sh:severity sh:Info
+    ] .
+
+:DataResourceShape a sh:NodeShape ;
+    sh:targetClass ids:DataResource ;
+    rdfs:label "Data Resource Shape"@en ;
+
+    sh:property [
+        sh:path dct:title ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:Literal ;
+        sh:message "DataResource must have at least one dct:title"@en ;
+    ] ;
+    
+    sh:property [
+        sh:path ids:representation ;
+        sh:minCount 0 ;
+        sh:class dcat:Distribution ;
+        sh:message "DataResource should have an ids:representation linking to a Distribution"@en ;
+    ] .
+
+:DataAssetLineageShape a sh:NodeShape ;
+    sh:targetClass :DataAsset ;
+    rdfs:label "Data Asset Lineage Shape"@en ;
+    sh:property [
+        sh:path :assetWasDerivedFrom ;
+        sh:class :DataAsset ;
+        sh:message "assetWasDerivedFrom values must be AgoraOWL DataAssets."@en ;
+    ] .
+
+#################################################################
+#    SHAPES: Distribution & Field Mapping (v1.2.1)
+#################################################################
+
+:TechnicalDataRepresentationShape a sh:NodeShape ;
+    sh:targetObjectsOf ids:representation ;
+    rdfs:label "Distribution Shape (v1.2.1)"@en ;
+    
+    sh:property [
+        sh:path dct:format ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Distribution MUST have exactly one format."@en ;
+    ] ;
+    
+    sh:property [
+        sh:path :hasFieldMapping ;
+        sh:minCount 1 ;
+        sh:class :FieldMapping ;
+        sh:message "v1.2.1 REQUIRES at least one :hasFieldMapping to link atomic specifications."@en ;
+        sh:severity sh:Violation
+    ] ;
+
+    # Technical metadata moved to Distribution
+    sh:property [
+        sh:path :declaresDataClass ;
+        sh:maxCount 1 ;
+        sh:class bigdat:Data ;
+        sh:message "Technical data class SHOULD be declared at Distribution level."@en ;
+    ] ;
+    
+    sh:property [
+        sh:path dcat:temporalResolution ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:duration ;
+        sh:message "Temporal resolution MUST be an xsd:duration."@en ;
+    ] ;
+
+    sh:property [
+        sh:path dcat:spatialResolutionInMeters ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:message "Spatial resolution (meters) MUST be an xsd:decimal."@en ;
+    ] ;
+
+    sh:property [
+        sh:path dcat:spatialResolutionInDegrees ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:message "Spatial resolution (degrees) MUST be an xsd:decimal."@en ;
+    ] .
+
+:FieldMappingShape a sh:NodeShape ;
+    sh:targetClass :FieldMapping ;
+    rdfs:label "Field Mapping Shape"@en ;
+    
+    sh:property [
+        sh:path :mapsToSpecification ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class :DataSpecification ;
+        sh:message "FieldMapping MUST map to exactly one atomic DataSpecification."@en ;
+    ] ;
+    
+    sh:property [
+        sh:path :mapsField ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "FieldMapping MUST specify the physical field name (column/JSONPath)."@en ;
+    ] ;
+    
+    sh:property [
+        sh:path :hasMetric ;
+        sh:class :Metric ;
+        sh:message "FieldMapping SHOULD contain quality metrics for its specific field."@en ;
+    ] .
+
+#################################################################
+#    SHAPES: DataSpecification & Input Profile
+#################################################################
+
+:DataSpecificationShape a sh:NodeShape ;
+    sh:targetClass :DataSpecification ;
+    rdfs:label "Atomic Data Specification Shape"@en ;
+    
+    sh:property [
+        sh:path :hasFeatureOfInterest ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class :FeatureOfInterest ;
+        sh:message "Atomic specification MUST define exactly one Feature of Interest."@en ;
+    ] ;
+    
+    sh:property [
+        sh:path :hasObservableProperty ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class :ObservableProperty ;
+        sh:message "Atomic specification MUST define exactly one Observable Property."@en ;
+    ] .
+
+:InputProfileShape a sh:NodeShape ;
+    sh:targetClass :InputProfile ;
+    # hasDataSpecification inherited from DataProfileShape
+
+    sh:property [
+        sh:path :hasConstraint ;
+        sh:class :DataConstraint ;
+        sh:message "InputProfile can have multiple DataConstraints."@en ;
+    ] .
+
+:OutputProfileShape a sh:NodeShape ;
+    sh:targetClass :OutputProfile .
+    # hasDataSpecification inherited from DataProfileShape
+
+:DataConstraintShape a sh:NodeShape ;
+    sh:targetClass :DataConstraint ;
+    
+    sh:property [
+        sh:path :requiresUnit ;
+        sh:maxCount 1 ;
+        sh:message "Constraint can specify a required Unit."@en ;
+    ] ;
+    
+    sh:property [
+        sh:path :requiresMetric ;
+        sh:maxCount 1 ;
+        sh:class :ObservationMetric ;
+        sh:message "Constraint can specify a required Observation Metric."@en ;
+    ] ;
+
+    sh:property [
+        sh:path :constraintMetricType ;
+        sh:maxCount 1 ;
+        sh:class :MetricType ;
+        sh:message "Constraint can specify a target MetricType."@en ;
+    ] ;
+
+    sh:property [
+        sh:path :constraintOperator ;
+        sh:maxCount 1 ;
+        sh:class :ConstraintOperator ;
+        sh:message "Constraint should specify a formal comparison operator (e.g., :GreaterOrEqual)."@en ;
+    ] ;
+
+    sh:property [
+        sh:path :constraintValue ;
+        sh:maxCount 1 ;
+        sh:message "Constraint must specify a target value."@en ;
+    ] ;
+
+    sh:property [
+        sh:path :requiresDataType ;
+        sh:maxCount 1 ;
+        sh:message "Constraint can specify a required DataType (matchmaking)."@en ;
+    ] .
+
+#################################################################
+#    SHAPES: Metrics & Quality (Stable)
+#################################################################
+
+:MetricDQVComplianceShape a sh:NodeShape ;
+    sh:targetClass :Metric ;
+    sh:property [
+        sh:path :metricType ;
+        sh:maxCount 1 ;
+        sh:class :MetricType ;
+        sh:message "Metric SHOULD link to a MetricType."@en ;
+    ] ;
+    sh:property [
+        sh:path :metricValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Metric MUST have exactly one value."@en ;
+    ] .
+
+#################################################################
+#    SHAPES: Semantic Coherence (v1.2.1)
+#################################################################
+
+:ProfileMatchmakingCoherenceShape a sh:NodeShape ;
+    sh:targetClass :DataApp ;
+    rdfs:comment "Verifies that each InputProfile's required specification declares an ObservableProperty."@en ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "InputProfile's required specification {?spec} has no ObservableProperty declared."@en ;
+        sh:prefixes : , ids: ;
+        sh:select """
+            SELECT $this ?spec
+            WHERE {
+                $this :hasInputProfile ?prof .
+                ?prof :hasDataSpecification ?spec .
+                FILTER NOT EXISTS {
+                    ?spec :hasObservableProperty ?obs .
+                }
+            }
+        """ ;
+        sh:severity sh:Violation
+    ] .
+
+:DistributionMappingCoherenceShape a sh:NodeShape ;
+    sh:targetClass dcat:Distribution ;
+    rdfs:comment "Verifies that mappings exist for all declared properties."@en ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Distribution lacks a mapping for required semantic property {?spec}"@en ;
+        sh:prefixes : , dcat: ;
+        sh:select """
+            SELECT $this ?spec
+            WHERE {
+                $this :hasFieldMapping ?mapping .
+                ?mapping :mapsToSpecification ?spec .
+                FILTER NOT EXISTS {
+                    ?spec :hasObservableProperty ?anyObs .
+                }
+            }
+        """ ;
+        sh:severity sh:Violation
+    ] .
+
+#################################################################
+#    SHAPES: Vocabulary Validation (Stable)
+#################################################################
+
+:MetricTypeShape a sh:NodeShape ;
+    sh:targetClass :MetricType ;
+    sh:property [ sh:path skos:prefLabel ; sh:minCount 1 ] .
+
+:ObservablePropertyShape a sh:NodeShape ;
+    sh:targetClass :ObservableProperty ;
+    sh:property [ sh:path skos:prefLabel ; sh:minCount 1 ] .
+
+:FeatureOfInterestShape a sh:NodeShape ;
+    sh:targetClass :FeatureOfInterest .
+
+#################################################################
+#    SHAPES: DataProfile (v1.2.1)
+#################################################################
+
+:DataProfileShape a sh:NodeShape ;
+    sh:targetClass :DataProfile ;
+    rdfs:label "Data Profile Shape"@en ;
+    sh:property [
+        sh:path :hasDataSpecification ;
+        sh:minCount 1 ;
+        sh:class :DataSpecification ;
+        sh:message "DataProfile MUST contain at least one DataSpecification."@en ;
+        sh:severity sh:Violation
+    ] .
+
+#################################################################
+#    SHAPES: SpatialTemporalAsset (v1.2.1)
+#################################################################
+
+:SpatialTemporalAssetShape a sh:NodeShape ;
+    sh:targetClass :SpatialTemporalAsset ;
+    rdfs:label "Spatial Temporal Asset Shape"@en ;
+
+    sh:property [
+        sh:path :hasSpatialCoverage ;
+        sh:minCount 1 ;
+        sh:message "SpatialTemporalAsset SHOULD have a spatial coverage."@en ;
+        sh:severity sh:Warning
+    ] ;
+
+    sh:property [
+        sh:path :hasTemporalCoverage ;
+        sh:minCount 1 ;
+        sh:message "SpatialTemporalAsset SHOULD have a temporal coverage."@en ;
+        sh:severity sh:Warning
+    ] .
+
+#################################################################
+#    SHAPES: QualityReport (v1.2.1)
+#################################################################
+
+:QualityReportShape a sh:NodeShape ;
+    sh:targetClass :QualityReport ;
+    rdfs:label "Quality Report Shape"@en ;
+
+    sh:property [
+        sh:path :qualityReportURI ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+        sh:message "QualityReport MUST have exactly one qualityReportURI."@en ;
+        sh:severity sh:Violation
+    ] ;
+
+    sh:property [
+        sh:path :reportDate ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "QualityReport reportDate MUST be xsd:dateTime."@en ;
+    ] ;
+
+    sh:property [
+        sh:path :reportingEntity ;
+        sh:maxCount 1 ;
+        sh:message "QualityReport SHOULD specify a reporting entity."@en ;
+        sh:severity sh:Info
+    ] .
+
+#################################################################
+#    SHAPES: CertificationReport (v1.2.1)
+#################################################################
+
+:CertificationReportShape a sh:NodeShape ;
+    sh:targetClass :CertificationReport ;
+    rdfs:label "Certification Report Shape"@en ;
+
+    sh:property [
+        sh:path :certificationLevel ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "CertificationReport MUST specify a certification level."@en ;
+        sh:severity sh:Violation
+    ] ;
+
+    sh:property [
+        sh:path :reportDate ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "CertificationReport reportDate MUST be xsd:dateTime."@en ;
+    ] ;
+
+    sh:property [
+        sh:path :reportingEntity ;
+        sh:maxCount 1 ;
+        sh:message "CertificationReport SHOULD specify a reporting entity."@en ;
+        sh:severity sh:Info
+    ] .
+
+#################################################################
+#    SHAPES: Verifiable Credentials
+#################################################################
+
+:VerifiableCredentialShape a sh:NodeShape ;
+    sh:targetClass <https://www.w3.org/2018/credentials#VerifiableCredential> ;
+    sh:property [
+        sh:path <https://www.w3.org/2018/credentials#issuer> ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^did:" ;
+        sh:message "Verifiable Credential MUST have exactly one issuer with a DID"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path <https://www.w3.org/2018/credentials#credentialSubject> ;
+        sh:minCount 1 ;
+        sh:message "Verifiable Credential MUST have at least one credentialSubject"@en ;
+        sh:severity sh:Violation
+    ] ;
+    sh:property [
+        sh:path <https://www.w3.org/2018/credentials#issuanceDate> ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "Verifiable Credential MUST have exactly one issuanceDate"@en ;
+        sh:severity sh:Violation
+    ] .

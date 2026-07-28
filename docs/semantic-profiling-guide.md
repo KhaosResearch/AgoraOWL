@@ -1,6 +1,6 @@
-# Guía de Perfilado Semántico: Dataset Real y Matchmaking (v1.2.0)
+# Guía de Perfilado Semántico: Dataset Real y Matchmaking (v1.2.1)
 
-En la versión **v1.2.0** de AgoraOWL, hemos evolucionado la arquitectura para permitir un perfilado simétrico. La clave es la **separación en 4 capas**:
+En la versión **v1.2.1** de AgoraOWL, hemos evolucionado la arquitectura para permitir un perfilado simétrico. La clave es la **separación en 4 capas**:
 
 1.  **Capa 1: Semántica (¿Qué es?):** `DataSpecification`. Define el fenómeno físico (ej. Humedad) y el sujeto (ej. Suelo). Es pura y reutilizable.
 2.  **Capa 2: Puente (¿Cómo viene?):** `FieldMapping`. Une la especificación semántica con una columna física, definiendo la **Unidad**, el **Tipo de Dato** y la **Métrica de Observación**.
@@ -25,7 +25,7 @@ Este CSV ofrece datos sobre 2 variables semánticas:
 
 ---
 
-## 2. Modelando con AgoraOWL v1.2.0 (Turtle)
+## 2. Modelando con AgoraOWL v1.2.1 (Turtle)
 
 ### 2.1 Especificaciones Semánticas (Librería Reutilizable)
 
@@ -34,6 +34,7 @@ Estas definiciones se crean una vez y se reutilizan en todo el espacio de datos.
 ```turtle
 @prefix : <https://w3id.org/AgoraOWL/> .
 @prefix agrovoc: <http://aims.fao.org/aos/agrovoc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 # Especificación de Humedad del Suelo
 <spec/soil-moisture> a :DataSpecification ;
@@ -53,7 +54,9 @@ Estas definiciones se crean una vez y se reutilizan en todo el espacio de datos.
 Aquí es donde vinculamos la semántica con la realidad física del archivo.
 
 ```turtle
+@prefix : <https://w3id.org/AgoraOWL/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix qudt: <http://qudt.org/vocab/unit/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -97,11 +100,17 @@ Aquí es donde vinculamos la semántica con la realidad física del archivo.
 
 ## 3. Matchmaking: ¿Cómo una App pide lo que necesita?
 
-En v1.2.0, las aplicaciones no solo piden "Humedad", sino que pueden exigir requisitos técnicos específicos (como el `xsd:float`) mediante **Constraints**.
+En v1.2.1, las aplicaciones no solo piden "Humedad", sino que pueden exigir requisitos técnicos específicos (como el `xsd:float`) mediante **Constraints**.
 
 ### 3.1 La DataApp y su perfil de entrada (Demand)
 
 ```turtle
+@prefix : <https://w3id.org/AgoraOWL/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix qudt: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 <app/smart-irrigator> a :DataApp, ids:DataApp ;
     dct:title "Irrigador Inteligente v1.0"@es ;
 
@@ -139,12 +148,18 @@ En v1.2.0, las aplicaciones no solo piden "Humedad", sino que pueden exigir requ
 Las métricas de calidad (precisión, completitud) se asocian ahora al `FieldMapping`, permitiendo saber la calidad de cada columna individualmente.
 
 ```turtle
+@prefix : <https://w3id.org/AgoraOWL/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
 # Dentro del FieldMapping de temperatura
-:hasFieldMapping [
+<distribution/field-sensors-csv> :hasFieldMapping [
     a :FieldMapping ;
     :mapsToSpecification <spec/air-temperature> ;
+    :mapsField "temp_c" ;
     :hasMetric [
         a :Metric ;
+        :metricName "Accuracy" ;
         :metricType :Accuracy ;
         :metricValue "0.98"^^xsd:decimal ;
         prov:generatedAtTime "2026-05-11T10:00:00Z"^^xsd:dateTime
@@ -154,7 +169,7 @@ Las métricas de calidad (precisión, completitud) se asocian ahora al `FieldMap
 
 ---
 
-## Resumen: Regla de Oro v1.2.0
+## Resumen: Regla de Oro v1.2.1
 
 - **DataSpecification:** Es el "Fenómeno Puro" (ej. Precipitación). No cambia nunca.
 - **FieldMapping:** Es el "Cómo se entrega" (ej. en la columna 'rain_mm' como float en Milímetros).

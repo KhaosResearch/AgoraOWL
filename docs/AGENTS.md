@@ -7,9 +7,9 @@
 
 When starting a session or resuming work, perform these checks to establish current state:
 
-1.  **Current Version**: Check `owl:versionInfo` in the root `AgoraOWL.ttl` (usually symlinked or copied to the latest version).
+1.  **Current Version**: Check `owl:versionInfo` in `src/<latest-version>/AgoraOWL.ttl`.
 2.  **Recent Changes**: Read `CHANGELOG.md` to understand what was implemented in the last few increments.
-3.  **Critical Feedback**: Review `docs/REVIEW_v1.1.0_ES.md` for pending semantic fixes or architectural debts.
+3.  **Critical Feedback**: Review the latest release notes and open issues for pending semantic fixes or architectural debts.
 4.  **Active Version Path**: Documentation and source code reside in `src/<version>/`.
 
 ## 2. Technical Commandments
@@ -41,7 +41,7 @@ Adhere to these rules in every edit:
 
 1.  **Ontology**: Add definition to `AgoraOWL.ttl`.
 2.  **Alignment**: Map it to DQV (`dqv:Metric` / `dqv:QualityMeasurement`) or PROV (`prov:Activity`) if applicable.
-3.  **SHACL**: Add a targeted shape in `shapes/agoraowl-shapes.ttl`.
+3.  **SHACL**: Add a targeted shape in `shapes/edaan-shapes.ttl` or the relevant compliance-shape directory.
 4.  **Example**: Update `examples/` to demonstrate the new property.
 
 ### Check scripts

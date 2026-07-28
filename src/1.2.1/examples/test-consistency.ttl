@@ -1,0 +1,171 @@
+@prefix : <https://w3id.org/AgoraOWL/> .
+@prefix test: <https://w3id.org/AgoraOWL/test/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix theme: <http://publications.europa.eu/resource/authority/data-theme/> .
+@prefix es-sector: <http://datos.gob.es/kos/sector-publico/sector/> .
+@prefix qudt: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix agrovoc: <http://aims.fao.org/aos/agrovoc/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://w3id.org/AgoraOWL/test/> a owl:Ontology ;
+    owl:imports <https://w3id.org/AgoraOWL/> ;
+    dct:title "Consistency Test Instances"@en , "Instancias de Prueba de Consistencia"@es ;
+    dct:description "Test cases for verifying AgoraOWL SHACL rules and DCAT-AP-ES compliance."@en , "Casos de prueba para verificar las reglas SHACL de AgoraOWL y el cumplimiento de DCAT-AP-ES."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> , <http://publications.europa.eu/resource/authority/language/SPA> .
+
+# --- Agents ---
+<http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> a foaf:Agent ;
+    foaf:name "Universidad de Málaga - Khaos Research Group"@en , "Universidad de Málaga - Grupo de Investigación Khaos"@es ;
+    dct:identifier "U01100001" ;
+    dct:type <http://purl.org/adms/publishertype/AcademicInstitution> .
+
+# --- Specifications ---
+test:NDVISpecification a :DataSpecification ;
+    rdfs:label "NDVI Specification"@en , "Especificación NDVI"@es ;
+    :hasFeatureOfInterest agrovoc:c_12926 ;
+    :hasObservableProperty agrovoc:c_ce585e0d .
+
+# --- Profiles (v1.2.1) ---
+test:InputProfileApp a :InputProfile ;
+    rdfs:label "Example Input Profile"@en , "Perfil de Entrada de Ejemplo"@es ;
+    :hasDataSpecification test:NDVISpecification ;
+    :hasConstraint [
+        a :DataConstraint ;
+        :constraintMetricType :Accuracy ;
+        :constraintOperator :GreaterOrEqual ;
+        :constraintValue "0.85"^^xsd:float 
+    ] .
+
+# --- Activities ---
+test:ValidApp a prov:Activity ;
+    rdfs:label "Data Generation App"@en , "App de Generación de Datos"@es ;
+    dct:title "Data Generation App"@en , "App de Generación de Datos"@es ;
+    prov:startedAtTime "2026-01-01T10:00:00Z"^^xsd:dateTime ;
+    prov:endedAtTime "2026-01-01T11:00:00Z"^^xsd:dateTime .
+
+# --- Datasets ---
+
+### 1. Valid DataAsset with Distribution
+test:ValidDataAsset a :DataAsset, dcat:Dataset ;
+    dct:title "Valid Data Asset"@en , "Activo de Datos Válido"@es ;
+    dct:description "A fully compliant data asset for testing."@en , "Un activo de datos totalmente conforme para pruebas."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcat:theme theme:AGRI , <http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> ;
+    dcat:keyword "Test"@en, "Prueba"@es ;
+    dcat:contactPoint [ 
+        a vcard:Individual ; 
+        vcard:fn "Test Developer"@en , "Desarrollador de Prueba"@es ;
+        vcard:organization-name "Test Org"@es ;
+        vcard:hasEmail <mailto:test@example.org> ;
+        vcard:hasURL <https://test.example.org> ;
+        vcard:hasTelephone <tel:+34000000000> ;
+        vcard:hasUID <https://test.example.org/uid/1>
+    ] ;
+    dct:spatial [ 
+        a dct:Location ; 
+        rdfs:label "Malaga, Spain"@en , "Málaga, España"@es ;
+        locn:geometry "POINT(-4.4214 36.7213)"^^gsp:wktLiteral
+    ] ;
+    dct:temporal [ 
+        a dct:PeriodOfTime ; 
+        dcat:startDate "2026-01-01"^^xsd:date 
+    ] ;
+    dcat:distribution test:ValidRepresentation ;
+    ids:representation test:ValidRepresentation ;
+    prov:wasGeneratedBy test:ValidApp .
+
+### 2. Valid Spatial Temporal Asset
+test:ValidSpatialAsset a :SpatialTemporalAsset, dcat:Dataset ;
+    dct:title "Valid Spatial Asset"@en , "Activo Espacial Válido"@es ;
+    dct:description "A spatial asset with coordinate reference system."@en , "Un activo espacial con sistema de referencia de coordenadas."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcat:theme theme:AGRI , <http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> ;
+    dcat:keyword "Spatial"@en, "Espacial"@es ;
+    dcat:contactPoint [ 
+        a vcard:Individual ; 
+        vcard:fn "Test Developer"@en , "Desarrollador de Prueba"@es ;
+        vcard:organization-name "Test Org"@es ;
+        vcard:hasEmail <mailto:test@example.org> ;
+        vcard:hasURL <https://test.example.org> ;
+        vcard:hasTelephone <tel:+34000000000> ;
+        vcard:hasUID <https://test.example.org/uid/2>
+    ] ;
+    dct:spatial [ 
+        a dct:Location ; 
+        rdfs:label "Andalusia"@en , "Andalucía"@es ;
+        locn:geometry "POLYGON((-7.5 36.0, -7.5 38.7, -1.6 38.7, -1.6 36.0, -7.5 36.0))"^^gsp:wktLiteral
+    ] ;
+    dct:temporal [ 
+        a dct:PeriodOfTime ; 
+        dcat:startDate "2026-01-01"^^xsd:date 
+    ] ;
+    dcat:distribution test:ValidRepresentation ;
+    :hasSpatialCoverage [ a gsp:Geometry ] ;
+    :hasTemporalCoverage [ a time:Interval ] ;
+    ids:representation test:ValidRepresentation .
+
+# --- Distributions ---
+
+test:ValidRepresentation a :DataRepresentation, dcat:Distribution ;
+    dct:title "Valid CSV Distribution"@en , "Distribución CSV Válida"@es ;
+    dct:description "Compliant CSV distribution."@en , "Distribución CSV conforme."@es ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/csv> ;
+    dct:license <http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> ;
+    dcat:accessURL <https://example.org/test/valid.csv> ;
+    dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/AVAILABLE> ;
+    dcatap:applicableLegislation <https://www.boe.es/eli/es/rd/2023/12/19/1089> ;
+    :hasFieldMapping [
+        a :FieldMapping ;
+        :mapsField "ndvi_col" ;
+        :mapsToSpecification test:NDVISpecification ;
+        :hasUnit qudt:UNITLESS ;
+        :hasDataType xsd:float 
+    ] .
+
+<http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> a dct:LicenseDocument ;
+    dct:type <http://purl.org/adms/licencetype/Attribution> .
+
+# --- Invalid Case ---
+test:InvalidFOIAsset a :DataAsset, dcat:Dataset ;
+    dct:title "Invalid Asset Case"@en , "Caso de Activo Inválido"@es ;
+    dct:description "This asset is intentionally incomplete for SHACL testing."@en , "Este activo es intencionalmente incompleto para pruebas SHACL."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcat:theme theme:AGRI , <http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> ;
+    dcat:keyword "Incomplete"@en, "Incompleto"@es ;
+    dcat:contactPoint [ 
+        a vcard:Individual ; 
+        vcard:fn "Troubleshooter"@en, "Localizador de Errores"@es ;
+        vcard:organization-name "Khaos Research"@es ;
+        vcard:hasEmail <mailto:test@example.org> ;
+        vcard:hasTelephone <tel:+34000000000> ;
+        vcard:hasUID <https://test.example.org/uid/trouble> ;
+        vcard:hasURL <https://test.example.org>
+    ] ;
+    dct:spatial [ 
+        a dct:Location ; 
+        rdfs:label "Nowhere"@en ;
+        locn:geometry "POINT(0 0)"^^gsp:wktLiteral
+    ] ;
+    dct:temporal [ 
+        a dct:PeriodOfTime ; 
+        dcat:startDate "2000-01-01"^^xsd:date 
+    ] ;
+    dcat:distribution test:ValidRepresentation .
+
+agrovoc:c_ce585e0d a skos:Concept, :ObservableProperty ; skos:prefLabel "NDVI"@en .
+agrovoc:c_12926 a skos:Concept, :FeatureOfInterest ; skos:prefLabel "Olive"@en .

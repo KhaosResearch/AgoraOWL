@@ -1,15 +1,15 @@
 cff-version: 1.2.0
 message: "If you use this ontology, please cite it as below."
 title: "AgoraOWL: An ontology for annotating data-space assets aligned with IDSA and BIGOWL"
-abstract: "AgoraOWL is a lightweight, modular ontology for describing data-space assets (datasets, data apps, policies, processes) aligned with the IDSA Information Model and connected to BIGOWL. Version 1.2.0 introduces symmetric app profiling and generalized administrative metadata."
-version: 1.2.0
-date-released: 2026-03-26
+abstract: "AgoraOWL is a lightweight, modular ontology for describing data-space assets (datasets, data apps, policies, processes) aligned with the IDSA Information Model and connected to BIGOWL. Version 1.2.1 refines DCAT alignment, constraint modeling, validation, and documentation."
+version: 1.2.1
+date-released: 2026-06-08
 authors:
   - family-names: "Salvachúa Galimberti"
     given-names: "Martín Jerónimo"
     orcid: "https://orcid.org/0000-0002-8508-1940"
   - name: "Khaos Research"
-license: "MIT"
+license: "Apache-2.0"
 repository-code: "https://github.com/KhaosResearch/AgoraOWL"
 url: "https://w3id.org/AgoraOWL/"
 keywords:

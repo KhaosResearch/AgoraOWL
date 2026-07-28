@@ -1,0 +1,218 @@
+@prefix : <https://w3id.org/AgoraOWL/> .
+@prefix ex: <http://example.org/data/eo/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix bigdat: <https://w3id.org/BIGOWLData/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix agrovoc: <http://aims.fao.org/aos/agrovoc/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix theme: <http://publications.europa.eu/resource/authority/data-theme/> .
+@prefix es-sector: <http://datos.gob.es/kos/sector-publico/sector/> .
+@prefix qudt: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix spec: <http://example.org/spec/> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+
+<http://example.org/data/eo/> rdf:type owl:Ontology ;
+    owl:imports <https://w3id.org/AgoraOWL/> ;
+    dct:title "Examples for Earth Observation (v1.2.1)"@en , "Ejemplos de Observación de la Tierra (v1.2.1)"@es ;
+    dct:description "Earth Observation examples using the v1.2.1 symmetric profiling architecture."@en , "Ejemplos de observación de la tierra usando la arquitectura de perfilado simétrico v1.2.1."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dct:language <http://publications.europa.eu/resource/authority/language/ENG> , <http://publications.europa.eu/resource/authority/language/SPA> .
+
+# --- Reusable Data Specifications (Semantic Layer) ---
+
+spec:NDVI_Olives a :DataSpecification ;
+    rdfs:label "NDVI for Olives Specification"@en , "Especificación de NDVI para Olivos"@es ;
+    :hasFeatureOfInterest agrovoc:c_12926 ;     # Olives
+    :hasObservableProperty agrovoc:c_ce585e0d .  # NDVI
+
+spec:Temperature_Olives a :DataSpecification ;
+    rdfs:label "Temperature for Olives Specification"@en , "Especificación de Temperatura para Olivos"@es ;
+    :hasFeatureOfInterest agrovoc:c_12926 ;
+    :hasObservableProperty agrovoc:c_7657 .      # Temperature
+
+spec:SoilMoisture_Olives a :DataSpecification ;
+    rdfs:label "Soil Moisture for Olives Specification"@en , "Especificación de Humedad del Suelo para Olivos"@es ;
+    :hasFeatureOfInterest agrovoc:c_12926 ;
+    :hasObservableProperty agrovoc:c_7208 .      # Soil moisture
+
+# --- Use Case 1: Sentinel-2 Data Asset (Supply) ---
+
+ex:Sentinel2_NDVI_Jaen_2024 a :DataAsset, dcat:Dataset ;
+    dct:title "Sentinel-2 NDVI for Jaén (2024)"@en , "NDVI de Sentinel-2 para Jaén (2024)"@es ;
+    dct:description "NDVI time series for olive groves in Jaén province."@en , "Serie temporal de NDVI para olivares en la provincia de Jaén."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcat:theme theme:AGRI , <http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> ;
+    dcat:keyword "NDVI"@en, "Sentinel-2"@en, "Agriculture"@en, "Agricultura"@es ;
+    dcat:contactPoint [ 
+        a vcard:Organization ; 
+        vcard:fn "Khaos Research"@en , "Khaos Research"@es ;
+        vcard:organization-name "Khaos Research"@en , "Khaos Research"@es ;
+        vcard:hasEmail <mailto:info@khaos.uma.es> ;
+        vcard:hasURL <https://khaos.uma.es> ;
+        vcard:hasTelephone <tel:+34952131000> ;
+        vcard:hasUID <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001id/U01100001>
+    ] ;
+    dct:spatial [ 
+        a dct:Location ; 
+        rdfs:label "Jaén, Spain"@en , "Jaén, España"@es ;
+        locn:geometry "POINT(-3.7903 37.7796)"^^gsp:wktLiteral
+    ] ;
+    dct:temporal [ 
+        a dct:PeriodOfTime ; 
+        dcat:startDate "2024-01-01"^^xsd:date 
+    ] ;
+    
+    # DCAT 3 Compliance: Dataset-level resolutions
+    dcat:spatialResolutionInMeters "10.0"^^xsd:decimal ;
+    dcat:temporalResolution "P5D"^^xsd:duration ;
+
+    dcat:distribution ex:Sentinel2Distribution ;
+    ids:representation ex:Sentinel2Distribution .
+
+ex:Sentinel2Distribution a :DataRepresentation, dcat:Distribution ;
+    dct:title "Sentinel-2 NDVI TIFF Distribution"@en , "Distribución TIFF de NDVI de Sentinel-2"@es ;
+    dct:description "Tiff file containing NDVI values."@en , "Archivo Tiff conteniendo valores de NDVI."@es ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/TIFF> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/image/tiff> ;
+    dct:license <http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> ;
+    dcat:accessURL <http://example.org/downloads/jaen_ndvi.tif> ;
+    dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/AVAILABLE> ;
+    dcatap:applicableLegislation <https://www.boe.es/eli/es/rd/2023/12/19/1089> ;
+    
+    # Technical Layer 
+    dcat:spatialResolutionInMeters "10.0"^^xsd:decimal ;
+    dcat:temporalResolution "P5D"^^xsd:duration ;
+    :hasCRS <http://www.opengis.net/def/crs/EPSG/0/4326> ;
+
+    # Binding Layer (FieldMappings)
+    :hasFieldMapping [
+        a :FieldMapping ;
+        :mapsToSpecification spec:NDVI_Olives ;
+        :mapsField "NDVI_BAND" ;
+        :hasUnit qudt:UNITLESS ;
+        :hasDataType xsd:float ;
+        :hasMetric [
+            a :Metric ;
+            :metricType :Completeness ;
+            :metricValue "0.98"^^xsd:decimal
+        ]
+    ] .
+
+# --- Use Case 2: Smart Irrigation App (Demand) ---
+
+ex:SmartIrrigatorApp a :DataApp, ids:DataApp ;
+    dct:title "Automated Irrigation App"@en , "Aplicación de Riego Automático"@es ;
+    dct:description "App that consumes soil moisture data for irrigation control."@en , "Aplicación que consume datos de humedad del suelo para control de riego."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcat:theme theme:AGRI , <http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> ;
+    
+    # Matching Requirements via InputProfile
+    :hasInputProfile [
+        a :InputProfile ;
+        :hasDataSpecification spec:SoilMoisture_Olives ;
+        :hasConstraint [
+            a :DataConstraint ;
+            :requiresUnit qudt:PERCENT ;
+            :requiresDataType xsd:float ;
+            :requiresMetric :DailyAverage ;
+            :constraintMetricType :Accuracy ;
+            :constraintOperator :GreaterOrEqual ;
+            :constraintValue "0.90"^^xsd:decimal
+        ]
+    ] ;
+
+    # Symmetric Profiling: Prediction Apps produce data
+    :hasOutputProfile [
+        a :OutputProfile ;
+        :hasDataSpecification spec:IrrigationRecommendation ;
+        rdfs:comment "Produces formal irrigation recommendations (volumes)."@en 
+    ] .
+
+spec:IrrigationRecommendation a :DataSpecification ;
+    rdfs:label "Irrigation Recommendation"@en ;
+    :hasFeatureOfInterest agrovoc:c_12926 ;
+    :hasObservableProperty agrovoc:c_7176 . # placeholder for irrigation property
+
+# --- Use Case 3: Mixed CSV (Weather Station) ---
+
+ex:JaenWeatherStation a :DataAsset, dcat:Dataset ;
+    dct:title "Jaén Weather Station Data (2026)"@en , "Datos de la Estación Meteorológica de Jaén (2026)"@es ;
+    dct:description "Daily weather measurements from Jaén station."@en , "Mediciones meteorológicas diarias de la estación de Jaén."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcat:theme theme:AGRI , <http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> ;
+    dcat:keyword "Weather"@en, "Jaén"@en, "Meteorología"@es ;
+    dcat:contactPoint [ 
+        a vcard:Organization ; 
+        vcard:fn "Khaos Research"@en , "Khaos Research"@es ;
+        vcard:organization-name "Khaos Research"@en , "Khaos Research"@es ;
+        vcard:hasEmail <mailto:info@khaos.uma.es> ;
+        vcard:hasURL <https://khaos.uma.es> ;
+        vcard:hasTelephone <tel:+34952131000> ;
+        vcard:hasUID <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001id/U01100001>
+    ] ;
+    dct:spatial [ 
+        a dct:Location ; 
+        rdfs:label "Jaén, Spain"@en , "Jaén, España"@es ;
+        locn:geometry "POINT(-3.7903 37.7796)"^^gsp:wktLiteral
+    ] ;
+    dct:temporal [ 
+        a dct:PeriodOfTime ; 
+        dcat:startDate "2026-01-01"^^xsd:date 
+    ] ;
+    dcat:distribution ex:WeatherCSV ;
+    ids:representation ex:WeatherCSV .
+
+ex:WeatherCSV a :DataRepresentation, dcat:Distribution ;
+    dct:title "Weather CSV Distribution"@en , "Distribución CSV Meteorológica"@es ;
+    dct:description "CSV file with temperature and moisture."@en , "Archivo CSV con temperatura y humedad."@es ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/csv> ;
+    dct:license <http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> ;
+    dcat:accessURL <http://example.org/downloads/weather.csv> ;
+    dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/AVAILABLE> ;
+    dcatap:applicableLegislation <https://www.boe.es/eli/es/rd/2023/12/19/1089> ;
+    
+    # Multiple FieldMappings
+    :hasFieldMapping [
+        a :FieldMapping ;
+        :mapsToSpecification spec:Temperature_Olives ;
+        :mapsField "temp_c" ;
+        :hasUnit qudt:DEG_C ;
+        :hasDataType xsd:float 
+    ] ,
+    [
+        a :FieldMapping ;
+        :mapsToSpecification spec:SoilMoisture_Olives ;
+        :mapsField "moisture_p" ;
+        :hasUnit qudt:PERCENT ;
+        :hasDataType xsd:float 
+    ] .
+
+# --- Supporting Stubs ---
+agrovoc:c_12926 a skos:Concept, :FeatureOfInterest ; skos:prefLabel "Olives"@en , "Olivos"@es .
+agrovoc:c_ce585e0d a skos:Concept, :ObservableProperty ; skos:prefLabel "NDVI"@en , "NDVI"@es .
+agrovoc:c_7657 a skos:Concept, :ObservableProperty ; skos:prefLabel "Temperature"@en , "Temperatura"@es .
+agrovoc:c_7208 a skos:Concept, :ObservableProperty ; skos:prefLabel "Soil Moisture"@en , "Humedad del Suelo"@es .
+agrovoc:c_7176 a skos:Concept, :ObservableProperty ; skos:prefLabel "Irrigation Recommendation"@en .
+theme:AGRI a skos:Concept ; skos:prefLabel "Agriculture"@en .
+<http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> a skos:Concept ; skos:prefLabel "Medio rural y pesca"@es .
+
+<http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> a foaf:Agent ;
+    foaf:name "Universidad de Málaga - Khaos Research Group"@en , "Universidad de Málaga - Grupo de Investigación Khaos"@es ;
+    dct:identifier "U01100001" ;
+    dct:type <http://purl.org/adms/publishertype/AcademicInstitution> .
+
+<http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> a dct:LicenseDocument ;
+    dct:type <http://purl.org/adms/licencetype/Attribution> .
