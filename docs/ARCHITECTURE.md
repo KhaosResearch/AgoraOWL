@@ -361,41 +361,64 @@ v0.18.0.
 
 ## 📁 Repository Structure & Branching Model
 
-This repository uses a `dev` -> `main` -> `gh-pages` git flow.
+This repository uses a `feat/*` -> `main` -> `gh-pages` git flow, automated by
+[release-please](https://github.com/googleapis/release-please) for versioning
+and changelog generation.
 
-> [!CAUTION]
-> **Do NOT commit directly in `main` branch.** All changes must come from the `dev` branch via a Pull Request.
+> [!NOTE]
+> An earlier revision of this document described a `dev` -> `main` -> `gh-pages`
+> flow with a mandatory `dev` staging branch. That branch exists but has been
+> stale since before the EDAAnOWL → AgoraOWL rename and is not part of the live
+> workflow — every recent release (v0.7.0 through v1.2.1) merged a feature
+> branch directly into `main` via Pull Request. The description below matches
+> what actually happens.
 
 > [!CAUTION]
 > **`gh-pages` branch is AUTO-GENERATED. DO NOT EDIT MANUALLY.**
 
-- **`main` branch**:
-  - **Purpose**: This branch represents the most recent _stable, released_ version of the ontology.
-  - Creating a "Release" from this branch triggers the `gh-pages` deployment.
+1. **Feature branches** (e.g. `feat/v1.3.0-...`, `fix/...`): all new work,
+   including new ontology versions. Commit messages MUST follow
+   [Conventional Commits](https://www.conventionalcommits.org/) — release-please
+   parses them to decide the next version number and to write the changelog.
+   A commit under `src/<version>/` for a version folder that does not yet exist
+   on `main` is what introduces a new ontology release; bumping requires at
+   least one `feat:` commit (minor) or a `!`/`BREAKING CHANGE:` marker (major).
 
-  - **Structure**:
-    - `/src/`
-      - `1.3.0/` (Latest stable ontology and vocabularies)
-      - `1.2.1/`, `1.2.0/`, ... (Previously released versions, kept immutable)
-    - `/.github/workflows/` (The CI/CD workflow)
+2. **Pull Request into `main`**: opened from the feature branch, targeting
+   `main` directly. `.github/workflows/validate.yml` runs RDF syntax, the OWL 2
+   DL profile, SHACL, and the conformance suite (`scripts/conformance_suite.py`)
+   on every PR that touches `src/` or `scripts/`.
 
-- **`dev` branch**:
-  - **Purpose**: This is the main **development branch**. All new features, fixes, and preparations for the _next_ version happen here.
-  - All Pull Requests should be targeted at `dev`.
-  - **Structure**:
-    - Same as `main`, but may contain the _next_ unreleased version folder (e.g., `src/0.7.0/`) while it is in progress.
+3. **Merge into `main`** (a real merge commit, not squash — release-please
+   needs each individual conventional commit, not one collapsed PR commit):
+   `main` always represents the most recently merged state. The push triggers
+   `.github/workflows/release-please.yml`, which opens or updates a
+   `chore(main): release X.Y.Z` Pull Request carrying the computed version bump
+   and the generated `CHANGELOG.md` entry — it does **not** publish anything by
+   itself.
 
-- **`gh-pages` branch**:
-  - **Purpose**: This branch contains the static output of the `deploy-docs.yml` workflow. It hosts the public-facing documentation and RDF files served by GitHub Pages.
+   - **Structure of `main`**:
+     - `/src/`
+       - `1.3.0/` (Latest stable ontology and vocabularies)
+       - `1.2.1/`, `1.2.0/`, ... (Previously released versions, kept immutable)
+     - `/.github/workflows/` (The CI/CD workflows)
 
-  - **Structure**:
-    - `/latest/` (A mirror of the most recent version)
-    - `/0.6.0/`
-    - `/0.7.0/`
-    - `.nojekyll` (Disables Jekyll on GitHub Pages)
+4. **Merging the release-please PR** is what actually cuts the release: it
+   bumps `.github/.release-please-manifest.json`, updates `CHANGELOG.md`,
+   creates the git tag (e.g. `v1.3.0`), and publishes a GitHub Release. Only
+   *this* merge is irreversible in the way a public release is — review its
+   generated CHANGELOG before merging it.
 
-- **Feature Branches (e.g., `feat/my-fix`)**:
-  - **Purpose**: Temporary branches for new work. They should be based on `dev` and merged back into `dev` via a Pull Request.
+5. **`gh-pages` branch**: the GitHub Release (step 4) triggers
+   `.github/workflows/deploy-docs.yml` (`on: release: types: [created]`), which
+   builds the Widoco documentation, the vocabulary docs
+   (`scripts/generate_vocab_docs.py`), and publishes everything to `gh-pages` —
+   the branch served at <https://khaosresearch.github.io/AgoraOWL/>.
+
+   - **Structure**:
+     - `/latest/` (A mirror of the most recent version)
+     - `/1.3.0/`, `/1.2.1/`, `/1.2.0/`, ... (One folder per released version)
+     - `.nojekyll` (Disables Jekyll on GitHub Pages)
 
 ---
 
