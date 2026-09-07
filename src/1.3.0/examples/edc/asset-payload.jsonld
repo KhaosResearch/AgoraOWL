@@ -1,0 +1,102 @@
+{
+  "_comment": [
+    "AgoraOWL 1.3.0 - Reference EDC Management API payload for a semantically annotated Data Asset.",
+    "",
+    "This is the SOURCE artefact: POST it to the EDC Management API (/v3/assets) and the connector",
+    "will publish it over DSP as the dcat:Dataset shown in ../edc-dsp-catalog.ttl.",
+    "",
+    "Three things here are load-bearing and were wrong in production payloads before 1.3.0:",
+    "",
+    "  1. @context MUST include the official EDC management context. A hand-written prefix map",
+    "     does not define the term 'properties', and JSON-LD silently drops every key under an",
+    "     undefined term: a payload without it expands to exactly 1 triple.",
+    "",
+    "  2. @type MUST list 'Asset' FIRST. The EDC management context scopes 'properties' under the",
+    "     terms Asset / CatalogAsset. A payload typed only 'agoraowl:DataAsset' never activates that",
+    "     scope and also expands to 1 triple. Put the semantic type alongside, not instead.",
+    "",
+    "  3. Language tags and datatypes DO NOT survive on scalar asset properties: EDC's",
+    "     JsonValueToGenericTypeTransformer keeps only the @value. They DO survive inside nested",
+    "     node objects, which is why the AgoraOWL subtree below round-trips intact."
+  ],
+
+  "@context": [
+    "https://w3id.org/edc/connector/management/v2",
+    "https://w3id.org/AgoraOWL/context.jsonld",
+    {
+      "agrovoc": "http://aims.fao.org/aos/agrovoc/",
+      "unit": "http://qudt.org/vocab/unit/",
+      "theme": "http://publications.europa.eu/resource/authority/data-theme/",
+      "bigdat": "https://w3id.org/BIGOWLData/"
+    }
+  ],
+  "@type": ["Asset", "agoraowl:DataAsset"],
+  "@id": "urn:dataset:input-yield-predict",
+
+  "properties": {
+    "dct:identifier": "urn:dataset:input-yield-predict",
+    "dct:title": "Input Yield Predict",
+    "dct:description": "Tabular dataset of agricultural yield prediction with precipitation, crop and net-yield variables.",
+    "dct:publisher": { "@id": "http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001" },
+    "dct:creator":   { "@id": "http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001" },
+    "dct:license":   { "@id": "http://publications.europa.eu/resource/authority/licence/CC_BY_4_0" },
+    "dct:type":      { "@id": "http://publications.europa.eu/resource/authority/dataset-type/STATISTICAL" },
+    "dct:accessRights": { "@id": "http://publications.europa.eu/resource/authority/access-right/NORMAL" },
+    "dct:language":  { "@id": "http://publications.europa.eu/resource/authority/language/SPA" },
+    "dct:spatial":   { "@id": "http://publications.europa.eu/resource/authority/country/ESP" },
+    "dct:format":    { "@id": "http://publications.europa.eu/resource/authority/file-type/CSV" },
+    "dcat:mediaType":{ "@id": "https://www.iana.org/assignments/media-types/text/csv" },
+    "dcat:theme":    { "@id": "http://publications.europa.eu/resource/authority/data-theme/AGRI" },
+    "dcat:keyword":  ["precipitation", "yield", "agriculture"],
+    "dcat:version":  "1.0.0",
+
+    "agoraowl:declaresDataClass": { "@id": "bigdat:TabularDataSet" },
+
+    "agoraowl:hasFieldMapping": [
+      {
+        "@id": "urn:dataset:input-yield-predict/field-mapping/0",
+        "@type": "agoraowl:FieldMapping",
+        "agoraowl:mapsField": "PesoNetoArticulo",
+        "agoraowl:hasUnit": { "@id": "unit:KiloGM" },
+        "agoraowl:hasDataType": { "@id": "xsd:decimal" },
+        "agoraowl:mapsToSpecification": {
+          "@id": "urn:dataset:input-yield-predict/specification/0",
+          "@type": "agoraowl:DataSpecification",
+          "agoraowl:hasFeatureOfInterest": { "@id": "agrovoc:c_7550" },
+          "agoraowl:hasObservableProperty": { "@id": "agrovoc:c_44ae766c" }
+        },
+        "agoraowl:hasMetric": [
+          {
+            "@type": "agoraowl:Metric",
+            "agoraowl:metricType": { "@id": "agoraowl:Completeness" },
+            "agoraowl:metricValue": { "@value": "0.93", "@type": "xsd:decimal" }
+          },
+          {
+            "@type": "agoraowl:Metric",
+            "agoraowl:metricType": { "@id": "agoraowl:Uniqueness" },
+            "agoraowl:metricValue": { "@value": "1.0", "@type": "xsd:decimal" }
+          }
+        ]
+      },
+      {
+        "@id": "urn:dataset:input-yield-predict/field-mapping/1",
+        "@type": "agoraowl:FieldMapping",
+        "agoraowl:mapsField": "SuperficieCultivableFinca",
+        "agoraowl:hasUnit": { "@id": "unit:M2" },
+        "agoraowl:hasDataType": { "@id": "xsd:decimal" },
+        "agoraowl:mapsToSpecification": {
+          "@id": "urn:dataset:input-yield-predict/specification/1",
+          "@type": "agoraowl:DataSpecification",
+          "agoraowl:hasFeatureOfInterest": { "@id": "agrovoc:c_294" },
+          "agoraowl:hasObservableProperty": { "@id": "agrovoc:c_330588" }
+        }
+      }
+    ]
+  },
+
+  "dataAddress": {
+    "@type": "DataAddress",
+    "type": "HttpData",
+    "baseUrl": "https://data.example.org/downloads/input-yield-predict.csv"
+  }
+}

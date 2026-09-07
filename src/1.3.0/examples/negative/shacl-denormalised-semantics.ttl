@@ -1,0 +1,22 @@
+# MUST FAIL: SHACL. Front-ends copy semantic values up to the asset for faceted
+# search. Reusing the AgoraOWL properties makes an RDFS reasoner infer that the
+# dataset IS a FieldMapping and IS a DataSpecification, which v1.3.0 forbids.
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix agrovoc:  <http://aims.fao.org/aos/agrovoc/> .
+@prefix dcat:     <http://www.w3.org/ns/dcat#> .
+@prefix dct:      <http://purl.org/dc/terms/> .
+@prefix ex:       <http://example.org/> .
+
+ex:Dataset a dcat:Dataset , agoraowl:DataAsset ;
+    dct:identifier "urn:dataset:demo" ;
+    dct:title "Demo" ;
+    dct:description "Denormalised semantics at asset level." ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcat:distribution ex:Distribution ;
+    agoraowl:mapsField "temp_c" ;
+    agoraowl:hasObservableProperty agrovoc:c_7657 ;
+    agoraowl:hasFeatureOfInterest agrovoc:c_7550 ;
+    agoraowl:hasUnit <http://qudt.org/vocab/unit/DEG_C> .
+
+ex:Distribution a dcat:Distribution ;
+    dcat:accessURL <https://data.example.org/demo.csv> .

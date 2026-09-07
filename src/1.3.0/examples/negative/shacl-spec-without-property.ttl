@@ -1,0 +1,9 @@
+# MUST FAIL: SHACL. An atomic specification states what is observed but not what
+# is measured, so it cannot participate in matchmaking. This is the single most
+# common defect in real connector payloads.
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix agrovoc:  <http://aims.fao.org/aos/agrovoc/> .
+@prefix ex:       <http://example.org/> .
+
+ex:Spec a agoraowl:DataSpecification ;
+    agoraowl:hasFeatureOfInterest agrovoc:c_4c9c111f .

@@ -1,0 +1,235 @@
+@prefix : <https://w3id.org/AgoraOWL/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix bigdat: <https://w3id.org/BIGOWLData/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix theme: <http://publications.europa.eu/resource/authority/data-theme/> .
+@prefix agrovoc: <http://aims.fao.org/aos/agrovoc/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix es-sector: <http://datos.gob.es/kos/sector-publico/sector/> .
+@prefix qudt: <http://qudt.org/vocab/unit/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix gsp: <http://www.opengis.net/ont/geosparql#> .
+
+# ─────────────────────────────────────────────────────────────
+#  1. CATALOG 
+# ─────────────────────────────────────────────────────────────
+
+<https://w3id.org/AgoraOWL/examples/cred/catalog/agri-data-space> a dcat:Catalog ;
+    dct:title "Catálogo del Espacio de Datos Agrícola"@es ,
+              "Agricultural Data Space Catalog"@en ;
+    dct:description "Catálogo de recursos semánticos del espacio de datos agrícola de Andalucía"@es ,
+                    "Semantic resource catalog for the agricultural data space in Andalusia"@en ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dct:language <http://publications.europa.eu/resource/authority/language/SPA> ;
+    dct:license <http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> ;
+    dct:issued "2025-06-15"^^xsd:date ;
+    dct:modified "2026-03-01"^^xsd:date ;
+    dct:spatial <http://datos.gob.es/recurso/sector-publico/territorio/Autonomia/Andalucia> ;
+    dct:temporal [ 
+        a dct:PeriodOfTime ; 
+        dcat:startDate "2025-06-15"^^xsd:date ;
+        dcat:endDate "2026-03-01"^^xsd:date
+    ] ;
+    dcat:theme theme:AGRI , <http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> ;
+    dcat:keyword "agricultura"@es , "olivar"@es , "agriculture"@en ;
+    foaf:homepage <https://datos.juntadeandalucia.es> ;
+    dcat:themeTaxonomy <http://datos.gob.es/kos/sector-publico/sector> , <http://publications.europa.eu/resource/authority/data-theme> ;
+    dcat:dataset <https://w3id.org/AgoraOWL/examples/cred/dataset/olive-grove-monitoring> ;
+    dcat:distribution <https://w3id.org/AgoraOWL/examples/cred/distribution/catalog-rdf> ;
+    dcatap:applicableLegislation <https://www.boe.es/eli/es-ga/2024/10/01> ;
+    dcat:contactPoint [ 
+        a vcard:Organization ; 
+        vcard:fn "Khaos Research"@en , "Khaos Research"@es ;
+        vcard:organization-name "Khaos Research Group"@en , "Grupo de Investigación Khaos"@es ;
+        vcard:hasEmail <mailto:info@khaos.uma.es> ;
+        vcard:hasURL <https://khaos.uma.es> ;
+        vcard:hasTelephone <tel:+34952131000> ;
+        vcard:hasUID <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001id/U01100001>
+    ] .
+
+# Strictly DCAT-aligned Catalog Distribution
+<https://w3id.org/AgoraOWL/examples/cred/distribution/catalog-rdf> a dcat:Distribution ;
+    dct:title "Catálogo en formato RDF"@es , "Catalog in RDF format"@en ;
+    dct:description "Distribución del catálogo en formato RDF Turtle para acceso programático"@es , "Catalog distribution in RDF Turtle format for programmatic access"@en ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/RDF_TURTLE> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/turtle> ;
+    dct:license <http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> ;
+    dcat:accessURL <https://w3id.org/AgoraOWL/examples/cred-asset-example.ttl> ;
+    dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/AVAILABLE> ;
+    dcatap:applicableLegislation <https://www.boe.es/eli/es/rd/2023/12/19/1089> .
+
+# ─────────────────────────────────────────────────────────────
+#  2. AGENTS
+# ─────────────────────────────────────────────────────────────
+
+<http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> a foaf:Agent ;
+    foaf:name "Universidad de Málaga - Khaos Research Group"@en , "Universidad de Málaga - Grupo de Investigación Khaos"@es ;
+    dct:identifier "U01100001" ;
+    dct:type <http://purl.org/adms/publishertype/AcademicInstitution> .
+
+# ─────────────────────────────────────────────────────────────
+#  3. DATASET
+# ─────────────────────────────────────────────────────────────
+
+<https://w3id.org/AgoraOWL/examples/cred/dataset/olive-grove-monitoring> a :DataAsset , dcat:Dataset ;
+    dct:title "Datos de Monitorización de Olivares"@es ,
+              "Olive Grove Monitoring Data"@en ;
+    dct:description "Datos de sensores y satélite sobre el estado de olivares en la provincia de Jaén"@es ,
+                    "Sensor and satellite data about the state of olive groves in Jaen province"@en ;
+    dct:identifier "olive-grove-monitoring-2026" ;
+    dct:modified "2026-03-01"^^xsd:date ;
+    dct:issued "2025-06-15"^^xsd:date ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dct:creator <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dct:language <http://publications.europa.eu/resource/authority/language/SPA> ,
+                  <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:type <http://publications.europa.eu/resource/authority/dataset-type/STATISTICAL> ;
+    dct:spatial <http://datos.gob.es/recurso/sector-publico/territorio/Autonomia/Andalucia> ;
+    dct:accessRights <http://publications.europa.eu/resource/authority/access-right/PUBLIC> ;
+    dcat:theme theme:AGRI , theme:ENVI , <http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> ;
+    dcat:keyword "olivar"@es , "NDVI"@en , "teledetección"@es , "remote sensing"@en ;
+    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/DAILY> ;
+    owl:versionInfo "2.1.0" ;
+    dcatap:applicableLegislation <https://www.boe.es/eli/es/rd/2023/12/19/1089> ;
+    dcat:landingPage <https://datos.juntadeandalucia.es/olivar-monitoring> ;
+    dcat:distribution <https://w3id.org/AgoraOWL/examples/cred/distribution/olive-csv> ;
+    ids:representation <https://w3id.org/AgoraOWL/examples/cred/distribution/olive-csv> ;
+    dcat:contactPoint [ 
+        a vcard:Organization ; 
+        vcard:fn "Khaos Research"@en , "Khaos Research"@es ;
+        vcard:organization-name "Khaos Research Group"@en , "Grupo de Investigación Khaos"@es ;
+        vcard:hasEmail <mailto:info@khaos.uma.es> ;
+        vcard:hasURL <https://khaos.uma.es> ;
+        vcard:hasTelephone <tel:+34952131000> ;
+        vcard:hasUID <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001id/U01100001>
+    ] ;
+    dct:temporal [ 
+        a dct:PeriodOfTime ; 
+        dcat:startDate "2025-06-15"^^xsd:date ;
+        dcat:endDate "2026-03-01"^^xsd:date
+    ] ;
+    :hasDomainSector theme:AGRI ;
+    :isAlive true ;
+    dct:conformsTo <http://data.europa.eu/r5r/dcat-ap/3.0.1> ;
+    dqv:hasQualityMetadata <https://w3id.org/AgoraOWL/examples/cred/quality/olive-dataset-assessment> ;
+    odrl:hasPolicy <https://w3id.org/AgoraOWL/examples/cred/policy/olive-data-offer> .
+
+<https://w3id.org/AgoraOWL/examples/cred/distribution/olive-csv> a :DataRepresentation , dcat:Distribution ;
+    dct:title "Distribución CSV de datos de olivar"@es ,
+              "Olive grove CSV distribution"@en ;
+    dct:description "Archivo CSV con datos tabulares de monitorización de olivar"@es ,
+                    "CSV file with tabular olive grove monitoring data"@en ;
+    dcat:accessURL <https://datos.juntadeandalucia.es/api/v1/olivar/download> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/csv> ;
+    dct:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dct:license <http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> ;
+    dcatap:availability <http://publications.europa.eu/resource/authority/planned-availability/AVAILABLE> ;
+    dcatap:applicableLegislation <https://www.boe.es/eli/es/rd/2023/12/19/1089> ;
+    dct:rights <https://datos.gob.es/catalogo/derechos-de-access> ;
+    dcat:byteSize "15728640"^^xsd:nonNegativeInteger ;
+    dct:issued "2025-06-15"^^xsd:date ;
+    dct:modified "2026-03-01"^^xsd:date ;
+    adms:status <http://publications.europa.eu/resource/authority/distribution-status/COMPLETED> ;
+    dcat:temporalResolution "P1D"^^xsd:duration ;
+    dcat:spatialResolutionInMeters "10.0"^^xsd:decimal ;
+    :hasCRS <http://www.opengis.net/def/crs/EPSG/0/4326> ;
+    :hasFieldMapping [
+        a :FieldMapping ;
+        :mapsToSpecification <https://w3id.org/AgoraOWL/examples/cred/spec/ndvi-daily-spec> ;
+        :mapsField "ndvi_daily" ;
+        :hasUnit qudt:UNITLESS ;
+        :hasDataType xsd:float ;
+        :hasObservationMetric :DailyAverage ;
+        :hasMetric <https://w3id.org/AgoraOWL/examples/cred/metric/olive-record-count> ,
+                    <https://w3id.org/AgoraOWL/examples/cred/metric/olive-completeness> ,
+                    <https://w3id.org/AgoraOWL/examples/cred/metric/olive-ndvi-avg>
+    ] .
+
+<https://w3id.org/AgoraOWL/examples/cred/spec/ndvi-daily-spec> a :DataSpecification ;
+    rdfs:label "NDVI Daily Specification"@en , "Especificación diaria de NDVI"@es ;
+    :hasObservableProperty agrovoc:c_ce585e0d ;
+    :hasFeatureOfInterest agrovoc:c_12926 .
+
+<https://w3id.org/AgoraOWL/examples/cred/metric/olive-record-count> a :Metric ;
+    :metricName "recordCount" ;
+    :metricValue "365000"^^xsd:integer ;
+    :hasMetricStandard <http://qudt.org/vocab/unit/NUM> ;
+    :computedAt "2026-03-01T10:00:00"^^xsd:dateTime ;
+    dqv:computedOn <https://w3id.org/AgoraOWL/examples/cred/dataset/olive-grove-monitoring> .
+
+<https://w3id.org/AgoraOWL/examples/cred/metric/olive-completeness> a :Metric ;
+    :metricType :Completeness ;
+    :metricName "completeness" ;
+    :metricValue "0.97"^^xsd:decimal ;
+    :hasMetricStandard <http://qudt.org/vocab/unit/PERCENT> ;
+    :computedAt "2026-03-01T10:00:00"^^xsd:dateTime ;
+    dqv:computedOn <https://w3id.org/AgoraOWL/examples/cred/dataset/olive-grove-monitoring> .
+
+:Completeness a :MetricType ; skos:prefLabel "Completeness"@en .
+
+<https://w3id.org/AgoraOWL/examples/cred/metric/olive-ndvi-avg> a :Metric ;
+    :metricName "average_ndvi" ;
+    :measuresProperty agrovoc:c_ce585e0d ;
+    :metricValue "0.65"^^xsd:decimal ;
+    :hasMetricStandard <http://qudt.org/vocab/unit/UNITLESS> ;
+    :computedAt "2026-03-01T10:00:00"^^xsd:dateTime ;
+    dqv:computedOn <https://w3id.org/AgoraOWL/examples/cred/dataset/olive-grove-monitoring> .
+
+<https://w3id.org/AgoraOWL/examples/cred/quality/olive-dataset-assessment> a dqv:QualityMetadata ;
+    dqv:hasQualityMeasurement <https://w3id.org/AgoraOWL/examples/cred/metric/olive-record-count> ,
+                               <https://w3id.org/AgoraOWL/examples/cred/metric/olive-completeness> ,
+                               <https://w3id.org/AgoraOWL/examples/cred/metric/olive-ndvi-avg> .
+
+<https://w3id.org/AgoraOWL/examples/cred/policy/olive-data-offer> a odrl:Offer ;
+    odrl:target <https://w3id.org/AgoraOWL/examples/cred/dataset/olive-grove-monitoring> ;
+    odrl:permission [
+        odrl:action odrl:use ;
+        odrl:assigner <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+        odrl:constraint [
+            odrl:leftOperand odrl:purpose ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "research"
+        ]
+    ] ;
+    odrl:prohibition [
+        odrl:action odrl:distribute ;
+        odrl:assigner <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001>
+    ] .
+
+<http://publications.europa.eu/resource/authority/access-right/PUBLIC> a dct:RightsStatement ;
+    rdfs:label "Public"@en , "Público"@es .
+
+<http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> a dct:LicenseDocument ;
+    dct:type <http://purl.org/adms/licencetype/Attribution> ;
+    rdfs:label "Creative Commons Attribution 4.0 International"@en .
+
+<https://datos.gob.es/catalogo/derechos-de-access> a dct:RightsStatement ;
+    rdfs:label "Derechos relativos a la reutilización del Catálogo de Datos Abiertos"@es .
+
+agrovoc:c_ce585e0d a skos:Concept, :ObservableProperty ;
+    skos:prefLabel "NDVI"@en , "NDVI"@es .
+
+agrovoc:c_12926 a skos:Concept, :FeatureOfInterest ;
+    skos:prefLabel "Olive"@en , "Olivo"@es .
+
+<http://datos.gob.es/kos/sector-publico/sector/medio-rural-pesca> a skos:Concept ;
+    skos:prefLabel "Medio rural y pesca"@es .
+
+<http://www.opengis.net/def/crs/EPSG/0/4326> a skos:Concept ;
+    skos:prefLabel "WGS 84"@en .
+
+<http://datos.gob.es/recurso/sector-publico/territorio/Autonomia/Andalucia> a dct:Location ;
+    locn:geometry "POLYGON((-7.5 36.0, -7.5 38.7, -1.6 38.7, -1.6 36.0, -7.5 36.0))"^^gsp:wktLiteral .

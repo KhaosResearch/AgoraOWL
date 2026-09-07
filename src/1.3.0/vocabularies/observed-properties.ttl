@@ -1,0 +1,503 @@
+@prefix : <https://w3id.org/AgoraOWL/vocabularies/observed-properties#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix agrovoc: <http://aims.fao.org/aos/agrovoc/> .
+@prefix observed-properties: <https://w3id.org/AgoraOWL/vocabularies/observed-properties> .
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+
+
+observed-properties: rdf:type owl:Ontology ;
+    owl:versionIRI <https://w3id.org/AgoraOWL/1.3.0/vocabularies/observed-properties> ;
+    owl:versionInfo "1.3.0" ;
+    dct:isPartOf <https://w3id.org/AgoraOWL/> ;
+    dct:title "Observed Properties Vocabulary - Bridge Alignments"@en ,
+              "Vocabulario de Propiedades Observadas - Alineaciones Puente"@es ;
+    dct:description """Bridge vocabulary for observable properties used with AgoraOWL.
+
+NOT IMPORTED by the core ontology. This file exists to improve discoverability,
+lexical normalization, and crosswalks to external vocabularies.
+
+Policy:
+1. Use external URIs directly when they are sufficient.
+2. Mint local concepts only when they add value, such as acronyms, aliases,
+   project-stable identifiers, or concepts without a reliable external match.
+3. Link local concepts to external vocabularies with skos:exactMatch or
+   skos:closeMatch whenever possible.
+
+This vocabulary intentionally focuses on ObservableProperty-like concepts.
+Features of interest such as Building, Water, or Vegetation are out of scope."""@en ,
+    """Vocabulario puente de propiedades observables usado con AgoraOWL.
+
+NO es importado por la ontología principal. Este fichero existe para mejorar la
+descubribilidad, la normalización léxica y los crosswalks con vocabularios externos.
+
+Política:
+1. Usar URIs externas directamente cuando sean suficientes.
+2. Acuñar conceptos locales solo cuando aporten valor, como acrónimos, alias,
+   identificadores estables o conceptos sin correspondencia externa fiable.
+3. Enlazar conceptos locales con vocabularios externos via skos:exactMatch o
+   skos:closeMatch siempre que sea posible.
+
+Este vocabulario se centra intencionalmente en conceptos de tipo ObservableProperty.
+Las características de interés como Edificio, Agua o Vegetación están fuera de ámbito."""@es .
+
+:ObservedPropertyScheme rdf:type owl:NamedIndividual ,
+                                 skos:ConceptScheme ;
+    dct:title "Observed Properties"@en ,
+              "Propiedades Observadas"@es ;
+    rdfs:label "Observed Properties"@en ,
+               "Propiedades Observadas"@es ;
+    dct:description "Bridge vocabulary for observable or computable properties used in AgoraOWL profiles."@en ,
+                    "Vocabulario puente de propiedades observables o computables usadas en perfiles AgoraOWL."@es .
+
+#################################################################
+#    Vegetation and spectral indices
+#################################################################
+
+:ndvi rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Normalized Difference Vegetation Index"@en ,
+                   "Índice de Vegetación de Diferencia Normalizada"@es ;
+    skos:altLabel "NDVI"@en , "NDVI"@es ;
+    rdfs:label "NDVI"@en , "NDVI"@es ;
+    skos:notation "NDVI" ;
+    skos:definition "Vegetation index derived from red and near-infrared reflectance."@en ,
+                    "Índice de vegetación derivado de la reflectancia en rojo e infrarrojo cercano."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_ce585e0d .
+
+:ndwi rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Normalized Difference Water Index"@en ,
+                   "Índice de Agua de Diferencia Normalizada"@es ;
+    skos:altLabel "NDWI"@en , "NDWI"@es ;
+    rdfs:label "NDWI"@en , "NDWI"@es ;
+    skos:notation "NDWI" ;
+    skos:definition "Spectral index used to emphasize water or vegetation water content, depending on the band definition."@en ,
+                    "Índice espectral usado para resaltar el contenido de agua o el contenido hídrico de la vegetación, según la definición de banda."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:ndsi rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Normalized Difference Snow Index"@en ,
+                   "Índice de Nieve de Diferencia Normalizada"@es ;
+    skos:altLabel "NDSI"@en , "NDSI"@es ;
+    rdfs:label "NDSI"@en , "NDSI"@es ;
+    skos:notation "NDSI" ;
+    skos:definition "Spectral index commonly used to detect snow cover."@en ,
+                    "Índice espectral utilizado habitualmente para detectar la cubierta de nieve."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:evi rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Enhanced Vegetation Index"@en ,
+                   "Índice de Vegetación Mejorado"@es ;
+    skos:altLabel "EVI"@en , "EVI"@es ;
+    rdfs:label "EVI"@en , "EVI"@es ;
+    skos:notation "EVI" ;
+    skos:definition "Vegetation index optimized for dense vegetation and atmospheric correction."@en ,
+                    "Índice de vegetación optimizado para vegetación densa y corrección atmosférica."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:savi rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Soil-Adjusted Vegetation Index"@en ,
+                   "Índice de Vegetación Ajustado al Suelo"@es ;
+    skos:altLabel "SAVI"@en , "SAVI"@es ;
+    rdfs:label "SAVI"@en , "SAVI"@es ;
+    skos:notation "SAVI" ;
+    skos:definition "Vegetation index that compensates for soil brightness."@en ,
+                    "Índice de vegetación que compensa el brillo del suelo."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:fapar rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Fraction of Absorbed Photosynthetically Active Radiation"@en ,
+                   "Fracción de Radiación Fotosintéticamente Activa Absorbida"@es ;
+    skos:altLabel "FAPAR"@en , "FAPAR"@es ;
+    rdfs:label "FAPAR"@en , "FAPAR"@es ;
+    skos:notation "FAPAR" ;
+    skos:definition "Fraction of incoming photosynthetically active radiation absorbed by vegetation."@en ,
+                    "Fracción de la radiación fotosintéticamente activa entrante absorbida por la vegetación."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:closeMatch <http://vocabs.lter-europe.net/EnvThes/22330> .
+
+:lai rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Leaf Area Index"@en ,
+                   "Índice de Área Foliar"@es ;
+    skos:altLabel "LAI"@en , "LAI"@es ;
+    rdfs:label "LAI"@en , "LAI"@es ;
+    skos:notation "LAI" ;
+    skos:definition "Total one-sided leaf area per unit ground area."@en ,
+                    "Área foliar total de un solo lado por unidad de superficie de suelo."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_35196 .
+
+:ari rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Anthocyanin Reflectance Index"@en ,
+                   "Índice de Reflectancia de Antocianinas"@es ;
+    skos:altLabel "ARI"@en , "ARI"@es ;
+    rdfs:label "ARI"@en , "ARI"@es ;
+    skos:notation "ARI" ;
+    skos:definition "Hyperspectral index used as a proxy for anthocyanin content."@en ,
+                    "Índice hiperespectral usado como indicador del contenido de antocianinas."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:cri rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Carotenoid Reflectance Index"@en ,
+                   "Índice de Reflectancia de Carotenoides"@es ;
+    skos:altLabel "CRI"@en , "CRI"@es ;
+    rdfs:label "CRI"@en , "CRI"@es ;
+    skos:notation "CRI" ;
+    skos:definition "Hyperspectral index used as a proxy for carotenoid content."@en ,
+                    "Índice hiperespectral usado como indicador del contenido de carotenoides."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:ndni rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Normalized Difference Nitrogen Index"@en ,
+                   "Índice de Nitrógeno de Diferencia Normalizada"@es ;
+    skos:altLabel "NDNI"@en , "NDNI"@es ;
+    rdfs:label "NDNI"@en , "NDNI"@es ;
+    skos:notation "NDNI" ;
+    skos:definition "Hyperspectral index used as a proxy for nitrogen-related absorption features."@en ,
+                    "Índice hiperespectral usado como indicador de características de absorción relacionadas con el nitrógeno."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:ndli rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Normalized Difference Lignin Index"@en ,
+                   "Índice de Lignina de Diferencia Normalizada"@es ;
+    skos:altLabel "NDLI"@en , "NDLI"@es ;
+    rdfs:label "NDLI"@en , "NDLI"@es ;
+    skos:notation "NDLI" ;
+    skos:definition "Hyperspectral index used as a proxy for lignin or dry matter content."@en ,
+                    "Índice hiperespectral usado como indicador del contenido de lignina o materia seca."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:cai rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Cellulose Absorption Index"@en ,
+                   "Índice de Absorción de Celulosa"@es ;
+    skos:altLabel "CAI"@en , "CAI"@es ;
+    rdfs:label "CAI"@en , "CAI"@es ;
+    skos:notation "CAI" ;
+    skos:definition "Hyperspectral index associated with cellulose and non-photosynthetic vegetation."@en ,
+                    "Índice hiperespectral asociado a la celulosa y a la vegetación no fotosintética."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+#################################################################
+#    RGB-derived indices
+#################################################################
+
+:gcc rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Green Chromatic Coordinate"@en ,
+                   "Coordenada Cromática Verde"@es ;
+    skos:altLabel "GCC"@en , "GCC"@es ;
+    rdfs:label "GCC"@en , "GCC"@es ;
+    skos:notation "GCC" ;
+    skos:definition "RGB-derived chromatic index used as a proxy for greenness."@en ,
+                    "Índice cromático derivado de RGB usado como indicador de verdor."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:rcc rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Red Chromatic Coordinate"@en ,
+                   "Coordenada Cromática Roja"@es ;
+    skos:altLabel "RCC"@en , "RCC"@es ;
+    rdfs:label "RCC"@en , "RCC"@es ;
+    skos:notation "RCC" ;
+    skos:definition "RGB-derived chromatic index emphasizing the red channel contribution."@en ,
+                    "Índice cromático derivado de RGB que enfatiza la contribución del canal rojo."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:gi rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Greenness Index"@en ,
+                   "Índice de Verdor"@es ;
+    skos:altLabel "GI"@en , "GI"@es ;
+    rdfs:label "GI"@en , "GI"@es ;
+    skos:notation "GI" ;
+    skos:definition "RGB-derived index used as a proxy for vegetation greenness."@en ,
+                    "Índice derivado de RGB usado como indicador del verdor de la vegetación."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:ri rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Redness Index"@en ,
+                   "Índice de Rojez"@es ;
+    skos:altLabel "RI"@en , "RI"@es ;
+    rdfs:label "RI"@en , "RI"@es ;
+    skos:notation "RI" ;
+    skos:definition "RGB-derived index used as a proxy for senescence or red pigmentation."@en ,
+                    "Índice derivado de RGB usado como indicador de senescencia o pigmentación roja."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+#################################################################
+#    Spectral and physical properties
+#################################################################
+
+:reflectance rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Reflectance"@en ,
+                   "Reflectancia"@es ;
+    rdfs:label "Reflectance"@en , "Reflectancia"@es ;
+    skos:definition "Ratio of reflected to incident radiation."@en ,
+                    "Razón entre la radiación reflejada y la radiación incidente."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_28538 ;
+    skos:closeMatch <http://sweetontology.net/propFraction/Reflectance> .
+
+:reflectance_red rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Red Reflectance"@en ,
+                   "Reflectancia en Rojo"@es ;
+    skos:altLabel "Reflectance Red"@en ,
+                  "Reflectancia Roja"@es ;
+    rdfs:label "Red Reflectance"@en , "Reflectancia en Rojo"@es ;
+    skos:definition "Surface reflectance in the red band."@en ,
+                    "Reflectancia superficial en la banda roja."@es ;
+    skos:broader :reflectance ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:reflectance_nir rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Near-Infrared Reflectance"@en ,
+                   "Reflectancia en Infrarrojo Cercano"@es ;
+    skos:altLabel "NIR Reflectance"@en ,
+                  "Reflectancia NIR"@es ;
+    rdfs:label "Near-Infrared Reflectance"@en , "Reflectancia en Infrarrojo Cercano"@es ;
+    skos:definition "Surface reflectance in the near-infrared band."@en ,
+                    "Reflectancia superficial en la banda del infrarrojo cercano."@es ;
+    skos:broader :reflectance ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:radiance rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Radiance"@en ,
+                   "Radiancia"@es ;
+    rdfs:label "Radiance"@en , "Radiancia"@es ;
+    skos:definition "Radiant flux emitted, reflected, transmitted, or received by a surface per unit solid angle and projected area."@en ,
+                    "Flujo radiante emitido, reflejado, transmitido o recibido por una superficie por unidad de ángulo sólido y área proyectada."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_f2046035 ;
+    skos:closeMatch <http://sweetontology.net/propEnergyFlux/Radiance> .
+
+:emissivity rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Emissivity"@en ,
+                   "Emisividad"@es ;
+    rdfs:label "Emissivity"@en , "Emisividad"@es ;
+    skos:definition "Efficiency with which a surface emits thermal radiation."@en ,
+                    "Eficiencia con la que una superficie emite radiación térmica."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_2af4a35c ;
+    skos:closeMatch <http://sweetontology.net/propFraction/Emissivity> .
+
+:chlorophyllContent rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Chlorophyll Content"@en ,
+                   "Contenido de Clorofila"@es ;
+    rdfs:label "Chlorophyll Content"@en , "Contenido de Clorofila"@es ;
+    skos:definition "Amount or concentration of chlorophyll in vegetation."@en ,
+                    "Cantidad o concentración de clorofila en la vegetación."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:closeMatch agrovoc:c_1577 .
+
+:celluloseContent rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Cellulose Content"@en ,
+                   "Contenido de Celulosa"@es ;
+    rdfs:label "Cellulose Content"@en , "Contenido de Celulosa"@es ;
+    skos:definition "Amount or concentration of cellulose in biomass or vegetation material."@en ,
+                    "Cantidad o concentración de celulosa en la biomasa o material vegetal."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:closeMatch agrovoc:c_1423 ;
+    skos:closeMatch <http://www.eionet.europa.eu/gemet/concept/1244> .
+
+:nitrogenContent rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Nitrogen Content"@en ,
+                   "Contenido de Nitrógeno"@es ;
+    rdfs:label "Nitrogen Content"@en , "Contenido de Nitrógeno"@es ;
+    skos:definition "Amount or concentration of nitrogen in soil, vegetation, or biomass."@en ,
+                    "Cantidad o concentración de nitrógeno en el suelo, la vegetación o la biomasa."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:closeMatch agrovoc:c_5192 ;
+    skos:closeMatch <https://vocab.aeris-data.fr/parameter/2ff52a58-540a-5c8c-3916-5ea0c70fe75d> .
+
+#################################################################
+#    Meteorology, soil, crop, and stress
+#################################################################
+
+:temperature rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Temperature"@en ,
+                   "Temperatura"@es ;
+    rdfs:label "Temperature"@en , "Temperatura"@es ;
+    skos:definition "Measure of thermal energy of a substance or environment."@en ,
+                    "Medida de la energía térmica de una sustancia o entorno."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_7657 .
+
+:precipitation rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Precipitation"@en ,
+                   "Precipitación"@es ;
+    rdfs:label "Precipitation"@en , "Precipitación"@es ;
+    skos:definition "Water that falls from the atmosphere to the Earth's surface in liquid or solid form."@en ,
+                    "Agua que cae de la atmósfera a la superficie terrestre en forma líquida o sólida."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_6161 .
+
+:relativeHumidity rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Relative Humidity"@en ,
+                   "Humedad Relativa"@es ;
+    rdfs:label "Relative Humidity"@en , "Humedad Relativa"@es ;
+    skos:definition "Ratio of the current absolute humidity to the highest possible absolute humidity."@en ,
+                    "Razón entre la humedad absoluta actual y la máxima posible a la misma temperatura."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_6496 .
+
+:windSpeed rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Wind Speed"@en ,
+                   "Velocidad del Viento"@es ;
+    rdfs:label "Wind Speed"@en , "Velocidad del Viento"@es ;
+    skos:definition "Rate at which air moves past a fixed point."@en ,
+                    "Velocidad a la que el aire se desplaza por un punto fijo."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_37675 .
+
+:solarRadiation rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Solar Radiation"@en ,
+                   "Radiación Solar"@es ;
+    rdfs:label "Solar Radiation"@en , "Radiación Solar"@es ;
+    skos:definition "Electromagnetic radiation emitted by the Sun, measured at the Earth's surface."@en ,
+                    "Radiación electromagnética emitida por el Sol, medida en la superficie terrestre."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_14415 .
+
+:evapotranspiration rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Evapotranspiration"@en ,
+                   "Evapotranspiración"@es ;
+    rdfs:label "Evapotranspiration"@en , "Evapotranspiración"@es ;
+    skos:definition "Combined process of evaporation from soil and transpiration from vegetation."@en ,
+                    "Proceso combinado de evaporación del suelo y transpiración de la vegetación."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_2741 .
+
+:soilMoisture rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Soil Moisture"@en ,
+                   "Humedad del Suelo"@es ;
+    rdfs:label "Soil Moisture"@en , "Humedad del Suelo"@es ;
+    skos:definition "Amount of water held in the soil."@en ,
+                    "Cantidad de agua retenida en el suelo."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_7208 .
+
+:soilTemperature rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Soil Temperature"@en ,
+                   "Temperatura del Suelo"@es ;
+    rdfs:label "Soil Temperature"@en , "Temperatura del Suelo"@es ;
+    skos:definition "Temperature measured at various depths within the soil profile."@en ,
+                    "Temperatura medida a diferentes profundidades del perfil del suelo."@es ;
+    skos:broader :temperature ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:soilPH rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Soil pH"@en ,
+                   "pH del Suelo"@es ;
+    rdfs:label "Soil pH"@en , "pH del Suelo"@es ;
+    skos:definition "Measure of acidity or alkalinity of the soil solution."@en ,
+                    "Medida de la acidez o alcalinidad de la solución del suelo."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_34901 .
+
+:electricalConductivity rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Electrical Conductivity"@en ,
+                   "Conductividad Eléctrica"@es ;
+    skos:altLabel "EC"@en , "CE"@es ;
+    rdfs:label "Electrical Conductivity"@en , "Conductividad Eléctrica"@es ;
+    skos:definition "Ability of the soil solution to conduct electrical current, used as a proxy for salinity."@en ,
+                    "Capacidad de la solución del suelo para conducir corriente eléctrica, usada como indicador de salinidad."@es ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:organicMatter rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Organic Matter"@en ,
+                   "Materia Orgánica"@es ;
+    rdfs:label "Organic Matter"@en , "Materia Orgánica"@es ;
+    skos:definition "Organic material in various stages of decomposition found in soil."@en ,
+                    "Material orgánico en diversas etapas de descomposición presente en el suelo."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_35657 .
+
+:yield rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Crop Yield"@en ,
+                   "Rendimiento del Cultivo"@es ;
+    rdfs:label "Crop Yield"@en , "Rendimiento del Cultivo"@es ;
+    skos:definition "Amount of agricultural production obtained from a given area."@en ,
+                    "Cantidad de producción agrícola obtenida por unidad de superficie."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_8488 .
+
+:yieldForecast rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Yield Forecast"@en ,
+                   "Previsión de Rendimiento"@es ;
+    rdfs:label "Yield Forecast"@en , "Previsión de Rendimiento"@es ;
+    skos:definition "Predicted crop yield based on models or historical observations."@en ,
+                    "Rendimiento de cosecha predicho basado en modelos u observaciones históricas."@es ;
+    skos:broader :yield ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:biomass rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Biomass"@en ,
+                   "Biomasa"@es ;
+    rdfs:label "Biomass"@en , "Biomasa"@es ;
+    skos:definition "Total mass of living organisms in a given area or volume."@en ,
+                    "Masa total de organismos vivos en una superficie o volumen determinado."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_926 .
+
+:productivity rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Productivity"@en ,
+                   "Productividad"@es ;
+    rdfs:label "Productivity"@en , "Productividad"@es ;
+    skos:definition "Observable or derived indicator of production performance."@en ,
+                    "Indicador observable o derivado del rendimiento productivo."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_6210 ;
+    skos:closeMatch <http://sweetontology.net/humanCommerce/Productivity> .
+
+:waterStress rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Water Stress"@en ,
+                   "Estrés Hídrico"@es ;
+    rdfs:label "Water Stress"@en , "Estrés Hídrico"@es ;
+    skos:definition "Condition in which the demand for water exceeds the available amount."@en ,
+                    "Condición en la que la demanda de agua supera la cantidad disponible."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_24993 .
+
+:irrigationNeed rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Irrigation Need"@en ,
+                   "Necesidad de Riego"@es ;
+    rdfs:label "Irrigation Need"@en , "Necesidad de Riego"@es ;
+    skos:definition "Amount of water required to supplement natural precipitation for optimal crop growth."@en ,
+                    "Cantidad de agua necesaria para complementar la precipitación natural y garantizar el crecimiento óptimo del cultivo."@es ;
+    skos:broader :waterStress ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:pestIncidence rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Pest Incidence"@en ,
+                   "Incidencia de Plagas"@es ;
+    rdfs:label "Pest Incidence"@en , "Incidencia de Plagas"@es ;
+    skos:definition "Occurrence rate or presence of pest organisms affecting crops."@en ,
+                    "Tasa de ocurrencia o presencia de organismos plaga que afectan a los cultivos."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_3855 .
+
+:diseaseIncidence rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Disease Incidence"@en ,
+                   "Incidencia de Enfermedades"@es ;
+    rdfs:label "Disease Incidence"@en , "Incidencia de Enfermedades"@es ;
+    skos:definition "Occurrence rate or presence of plant diseases affecting crops."@en ,
+                    "Tasa de ocurrencia o presencia de enfermedades vegetales que afectan a los cultivos."@es ;
+    skos:inScheme :ObservedPropertyScheme ;
+    skos:exactMatch agrovoc:c_5962 .
+
+:repiloIncidence rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Repilo Incidence"@en ,
+                   "Incidencia de Repilo"@es ;
+    rdfs:label "Repilo Incidence"@en , "Incidencia de Repilo"@es ;
+    skos:definition "Occurrence rate of Repilo (Spilocea oleagina), a leaf spot disease affecting olive trees."@en ,
+                    "Tasa de ocurrencia del repilo (Spilocea oleagina), enfermedad de la mancha foliar que afecta a los olivos."@es ;
+    skos:broader :diseaseIncidence ;
+    skos:inScheme :ObservedPropertyScheme .
+
+:occupancy rdf:type owl:NamedIndividual , skos:Concept , agoraowl:ObservableProperty ;
+    skos:prefLabel "Occupancy"@en ,
+                   "Ocupación"@es ;
+    rdfs:label "Occupancy"@en , "Ocupación"@es ;
+    skos:definition "Proportion or state of land or space occupied by vegetation or other cover types."@en ,
+                    "Proporción o estado de ocupación del suelo o espacio por vegetación u otros tipos de cobertura."@es ;
+    skos:inScheme :ObservedPropertyScheme .

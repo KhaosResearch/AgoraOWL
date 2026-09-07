@@ -1,0 +1,10 @@
+# MUST FAIL: SHACL. Completeness published on a 0..100 scale. Compared against a
+# 0.90 threshold this succeeds silently and produces a false match: exactly what
+# real connector quality blobs emit today ("completeness": "93").
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix ex:       <http://example.org/> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Metric a agoraowl:Metric ;
+    agoraowl:metricType agoraowl:Completeness ;
+    agoraowl:metricValue "93"^^xsd:decimal .

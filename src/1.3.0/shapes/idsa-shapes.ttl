@@ -1,0 +1,119 @@
+@prefix :      <https://w3id.org/AgoraOWL/idsa-profile/> .
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix dcat:  <http://www.w3.org/ns/dcat#> .
+@prefix odrl:  <http://www.w3.org/ns/odrl/2/> .
+@prefix ids:   <https://w3id.org/idsa/core/> .
+
+#################################################################
+#
+#   AgoraOWL 1.3.0 - IDSA Information Model profile shapes
+#
+#   REPLACES the v1.2.1 file, which contained ZERO sh:NodeShape and zero
+#   targets: it was 94 triples of IDS ontology metadata plus 26 owl:imports
+#   pointing at relative paths (testing/content/AssetShape.ttl and friends)
+#   that do not exist anywhere in this repository. Because it was listed in
+#   scripts/validate_shacl.py and in compatibility-test/tests/test.ini, every
+#   validation run reported "IDSA validation" while executing no constraint at
+#   all - a false green.
+#
+#   This file now constrains the IDS terms that AgoraOWL actually uses. It is
+#   deliberately small: it validates the AgoraOWL/IDS boundary, not the whole
+#   IDS Information Model. For full IDS IM validation, fetch the upstream
+#   shapes from the InformationModel repository and add them alongside.
+#
+#################################################################
+
+<https://w3id.org/AgoraOWL/idsa-profile/> rdf:type owl:Ontology ;
+    owl:versionInfo "1.3.0" ;
+    rdfs:label "AgoraOWL IDSA profile shapes"@en ,
+               "Shapes del perfil IDSA de AgoraOWL"@es ;
+    rdfs:comment "Constrains the subset of the IDSA Information Model that AgoraOWL reuses. Not a replacement for the upstream IDS IM shapes."@en ,
+                 "Restringe el subconjunto del Information Model de IDSA que AgoraOWL reutiliza. No sustituye a las shapes oficiales del IDS IM."@es ;
+    dct:isPartOf <https://w3id.org/AgoraOWL/> ;
+    rdfs:seeAlso <https://international-data-spaces-association.github.io/InformationModel/> .
+
+
+:IdsResourceShape a sh:NodeShape ;
+    sh:targetClass ids:Resource ;
+    rdfs:label "IDS Resource shape"@en ;
+    sh:property [
+        sh:path dct:title ;
+        sh:minCount 1 ;
+        sh:message "An ids:Resource MUST carry at least one dct:title."@en ;
+    ] ;
+    sh:property [
+        sh:path ids:contractOffer ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:message "ids:contractOffer MUST reference a policy node, not a literal."@en ;
+    ] ;
+    sh:property [
+        sh:path ids:representation ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:message "ids:representation MUST reference a representation node."@en ;
+    ] .
+
+:IdsDataAppShape a sh:NodeShape ;
+    sh:targetClass ids:DataApp ;
+    rdfs:label "IDS DataApp shape"@en ;
+    sh:property [
+        sh:path dct:title ;
+        sh:minCount 1 ;
+        sh:message "An ids:DataApp MUST carry at least one dct:title."@en ;
+    ] ;
+    sh:property [
+        sh:path ids:appEndpoint ;
+        sh:nodeKind sh:BlankNodeOrIRI ;
+        sh:message "ids:appEndpoint MUST reference an ids:AppEndpoint node."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:hasInputProfile ;
+        sh:class agoraowl:InputProfile ;
+        sh:message "Values of :hasInputProfile MUST be InputProfile instances."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:hasOutputProfile ;
+        sh:class agoraowl:OutputProfile ;
+        sh:message "Values of :hasOutputProfile MUST be OutputProfile instances."@en ;
+    ] .
+
+:IdsEndpointShape a sh:NodeShape ;
+    sh:targetClass ids:AppEndpoint , ids:ConnectorEndpoint ;
+    rdfs:label "IDS Endpoint shape"@en ;
+    sh:property [
+        sh:path ids:accessURL ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "An IDS endpoint MUST expose an ids:accessURL as an IRI."@en ;
+    ] .
+
+:IdsArtifactShape a sh:NodeShape ;
+    sh:targetClass ids:Artifact ;
+    rdfs:label "IDS Artifact shape"@en ;
+    sh:property [
+        sh:path ids:fileName ;
+        sh:maxCount 1 ;
+        sh:message "An ids:Artifact MUST have at most one ids:fileName."@en ;
+    ] ;
+    sh:property [
+        sh:path ids:checkSum ;
+        sh:maxCount 1 ;
+        sh:message "An ids:Artifact MUST have at most one ids:checkSum."@en ;
+    ] .
+
+# AgoraOWL's own DataRepresentation specialises ids:DataRepresentation, which in
+# turn extends dcat:Distribution. Keep the two worlds consistent.
+:IdsDataRepresentationShape a sh:NodeShape ;
+    sh:targetClass ids:DataRepresentation ;
+    rdfs:label "IDS DataRepresentation shape"@en ;
+    sh:property [
+        sh:path dcat:accessURL ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "An ids:DataRepresentation is a dcat:Distribution and MUST expose a dcat:accessURL."@en ;
+    ] .

@@ -1,0 +1,358 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "agoraowl": "https://w3id.org/AgoraOWL/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dct": "http://purl.org/dc/terms/",
+    "dcatap": "http://data.europa.eu/r5r/",
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "ids": "https://w3id.org/idsa/core/",
+    "dqv": "http://www.w3.org/ns/dqv#",
+    "adms": "http://www.w3.org/ns/adms#",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "locn": "http://www.w3.org/ns/locn#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "agrovoc": "http://aims.fao.org/aos/agrovoc/",
+    "theme": "http://publications.europa.eu/resource/authority/data-theme/",
+    "siex": "https://w3id.org/AgoraOWL/vocabularies/siex#",
+    "epsg": "http://www.opengis.net/def/crs/EPSG/0/",
+    "bigdat": "https://w3id.org/BIGOWLData/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "AnalyzerApp": "agoraowl:AnalyzerApp",
+    "CertificationReport": "agoraowl:CertificationReport",
+    "ConstraintEnforcement": "agoraowl:ConstraintEnforcement",
+    "ConstraintOperator": "agoraowl:ConstraintOperator",
+    "DataApp": "agoraowl:DataApp",
+    "DataAsset": "agoraowl:DataAsset",
+    "DataConstraint": "agoraowl:DataConstraint",
+    "DataProfile": "agoraowl:DataProfile",
+    "DataRepresentation": "agoraowl:DataRepresentation",
+    "DataSpecification": "agoraowl:DataSpecification",
+    "FeatureOfInterest": "agoraowl:FeatureOfInterest",
+    "FieldMapping": "agoraowl:FieldMapping",
+    "InputProfile": "agoraowl:InputProfile",
+    "Metric": "agoraowl:Metric",
+    "MetricType": "agoraowl:MetricType",
+    "ObservableProperty": "agoraowl:ObservableProperty",
+    "ObservationMetric": "agoraowl:ObservationMetric",
+    "OutputProfile": "agoraowl:OutputProfile",
+    "PerformanceMetric": "agoraowl:PerformanceMetric",
+    "PredictionApp": "agoraowl:PredictionApp",
+    "QualityMetric": "agoraowl:QualityMetric",
+    "QualityReport": "agoraowl:QualityReport",
+    "SpatialTemporalAsset": "agoraowl:SpatialTemporalAsset",
+    "UnitIntervalMetric": "agoraowl:UnitIntervalMetric",
+    "VerifiableDataSpecification": "agoraowl:VerifiableDataSpecification",
+    "VisualizationApp": "agoraowl:VisualizationApp",
+    "accessTypeConcept": {
+      "@id": "agoraowl:accessTypeConcept",
+      "@type": "@id"
+    },
+    "appliesToFeatureConcept": {
+      "@id": "agoraowl:appliesToFeatureConcept",
+      "@type": "@id"
+    },
+    "assetWasDerivedFrom": {
+      "@id": "agoraowl:assetWasDerivedFrom",
+      "@type": "@id"
+    },
+    "constraintEnforcement": {
+      "@id": "agoraowl:constraintEnforcement",
+      "@type": "@id"
+    },
+    "constraintMetricType": {
+      "@id": "agoraowl:constraintMetricType",
+      "@type": "@id"
+    },
+    "constraintOperator": {
+      "@id": "agoraowl:constraintOperator",
+      "@type": "@id"
+    },
+    "consumesAppRepresentation": {
+      "@id": "agoraowl:consumesAppRepresentation",
+      "@type": "@id"
+    },
+    "consumesDataRepresentation": {
+      "@id": "agoraowl:consumesDataRepresentation",
+      "@type": "@id"
+    },
+    "declaresDataClass": {
+      "@id": "agoraowl:declaresDataClass",
+      "@type": "@id"
+    },
+    "externalQualityReport": {
+      "@id": "agoraowl:externalQualityReport",
+      "@type": "@id"
+    },
+    "hasCRS": {
+      "@id": "agoraowl:hasCRS",
+      "@type": "@id"
+    },
+    "hasCertification": {
+      "@id": "agoraowl:hasCertification",
+      "@type": "@id"
+    },
+    "hasConstraint": {
+      "@id": "agoraowl:hasConstraint",
+      "@type": "@id"
+    },
+    "hasCredential": {
+      "@id": "agoraowl:hasCredential",
+      "@type": "@id"
+    },
+    "hasDPIA": {
+      "@id": "agoraowl:hasDPIA",
+      "@type": "@id"
+    },
+    "hasDataSpecification": {
+      "@id": "agoraowl:hasDataSpecification",
+      "@type": "@id"
+    },
+    "hasDataType": {
+      "@id": "agoraowl:hasDataType",
+      "@type": "@id"
+    },
+    "hasDomainSector": {
+      "@id": "agoraowl:hasDomainSector",
+      "@type": "@id"
+    },
+    "hasFeatureOfInterest": {
+      "@id": "agoraowl:hasFeatureOfInterest",
+      "@type": "@id"
+    },
+    "hasFieldMapping": {
+      "@id": "agoraowl:hasFieldMapping",
+      "@type": "@id"
+    },
+    "hasInputProfile": {
+      "@id": "agoraowl:hasInputProfile",
+      "@type": "@id"
+    },
+    "hasMetric": {
+      "@id": "agoraowl:hasMetric",
+      "@type": "@id"
+    },
+    "hasMetricStandard": {
+      "@id": "agoraowl:hasMetricStandard",
+      "@type": "@id"
+    },
+    "hasObservableProperty": {
+      "@id": "agoraowl:hasObservableProperty",
+      "@type": "@id"
+    },
+    "hasObservationMetric": {
+      "@id": "agoraowl:hasObservationMetric",
+      "@type": "@id"
+    },
+    "hasOutputProfile": {
+      "@id": "agoraowl:hasOutputProfile",
+      "@type": "@id"
+    },
+    "hasPerformanceMetric": {
+      "@id": "agoraowl:hasPerformanceMetric",
+      "@type": "@id"
+    },
+    "hasProfile": {
+      "@id": "agoraowl:hasProfile",
+      "@type": "@id"
+    },
+    "hasSpatialCoverage": {
+      "@id": "agoraowl:hasSpatialCoverage",
+      "@type": "@id"
+    },
+    "hasTemporalCoverage": {
+      "@id": "agoraowl:hasTemporalCoverage",
+      "@type": "@id"
+    },
+    "hasUnit": {
+      "@id": "agoraowl:hasUnit",
+      "@type": "@id"
+    },
+    "implementsComponent": {
+      "@id": "agoraowl:implementsComponent",
+      "@type": "@id"
+    },
+    "legalContact": {
+      "@id": "agoraowl:legalContact",
+      "@type": "@id"
+    },
+    "mapsToSpecification": {
+      "@id": "agoraowl:mapsToSpecification",
+      "@type": "@id"
+    },
+    "measuresProperty": {
+      "@id": "agoraowl:measuresProperty",
+      "@type": "@id"
+    },
+    "metricType": {
+      "@id": "agoraowl:metricType",
+      "@type": "@id"
+    },
+    "parameter": {
+      "@id": "agoraowl:parameter",
+      "@type": "@id"
+    },
+    "producesAppRepresentation": {
+      "@id": "agoraowl:producesAppRepresentation",
+      "@type": "@id"
+    },
+    "producesDataRepresentation": {
+      "@id": "agoraowl:producesDataRepresentation",
+      "@type": "@id"
+    },
+    "reportingEntity": {
+      "@id": "agoraowl:reportingEntity",
+      "@type": "@id"
+    },
+    "requiresDataType": {
+      "@id": "agoraowl:requiresDataType",
+      "@type": "@id"
+    },
+    "requiresFormat": {
+      "@id": "agoraowl:requiresFormat",
+      "@type": "@id"
+    },
+    "requiresMediaType": {
+      "@id": "agoraowl:requiresMediaType",
+      "@type": "@id"
+    },
+    "requiresMetric": {
+      "@id": "agoraowl:requiresMetric",
+      "@type": "@id"
+    },
+    "requiresUnit": {
+      "@id": "agoraowl:requiresUnit",
+      "@type": "@id"
+    },
+    "spatialGranularityConcept": {
+      "@id": "agoraowl:spatialGranularityConcept",
+      "@type": "@id"
+    },
+    "supportContact": {
+      "@id": "agoraowl:supportContact",
+      "@type": "@id"
+    },
+    "topic": {
+      "@id": "agoraowl:topic",
+      "@type": "@id"
+    },
+    "alternativeName": {
+      "@id": "agoraowl:alternativeName"
+    },
+    "anonymizationTechnique": {
+      "@id": "agoraowl:anonymizationTechnique",
+      "@type": "xsd:string"
+    },
+    "auditLogAvailable": {
+      "@id": "agoraowl:auditLogAvailable",
+      "@type": "xsd:boolean"
+    },
+    "certificationLevel": {
+      "@id": "agoraowl:certificationLevel",
+      "@type": "xsd:string"
+    },
+    "collectionMethod": {
+      "@id": "agoraowl:collectionMethod",
+      "@type": "xsd:string"
+    },
+    "computedAt": {
+      "@id": "agoraowl:computedAt",
+      "@type": "xsd:dateTime"
+    },
+    "constraintValue": {
+      "@id": "agoraowl:constraintValue"
+    },
+    "containsPersonalData": {
+      "@id": "agoraowl:containsPersonalData",
+      "@type": "xsd:boolean"
+    },
+    "isAlive": {
+      "@id": "agoraowl:isAlive",
+      "@type": "xsd:boolean"
+    },
+    "isStreaming": {
+      "@id": "agoraowl:isStreaming",
+      "@type": "xsd:boolean"
+    },
+    "knownLimitations": {
+      "@id": "agoraowl:knownLimitations",
+      "@type": "xsd:string"
+    },
+    "mapsField": {
+      "@id": "agoraowl:mapsField",
+      "@type": "xsd:string"
+    },
+    "metricName": {
+      "@id": "agoraowl:metricName",
+      "@type": "xsd:string"
+    },
+    "metricValue": {
+      "@id": "agoraowl:metricValue"
+    },
+    "nullPercentage": {
+      "@id": "agoraowl:nullPercentage",
+      "@type": "xsd:decimal"
+    },
+    "paymentModelDescription": {
+      "@id": "agoraowl:paymentModelDescription",
+      "@type": "xsd:string"
+    },
+    "qualityReportURI": {
+      "@id": "agoraowl:qualityReportURI",
+      "@type": "xsd:anyURI"
+    },
+    "qualityScore": {
+      "@id": "agoraowl:qualityScore",
+      "@type": "xsd:integer"
+    },
+    "recommendedUse": {
+      "@id": "agoraowl:recommendedUse",
+      "@type": "xsd:string"
+    },
+    "refundPolicy": {
+      "@id": "agoraowl:refundPolicy",
+      "@type": "xsd:string"
+    },
+    "reportDate": {
+      "@id": "agoraowl:reportDate",
+      "@type": "xsd:dateTime"
+    },
+    "sampleValue": {
+      "@id": "agoraowl:sampleValue"
+    },
+    "securityClassification": {
+      "@id": "agoraowl:securityClassification",
+      "@type": "xsd:string"
+    },
+    "uniquenessRatio": {
+      "@id": "agoraowl:uniquenessRatio",
+      "@type": "xsd:decimal"
+    },
+    "": "agoraowl:",
+    "Accuracy": "agoraowl:Accuracy",
+    "Completeness": "agoraowl:Completeness",
+    "Consistency": "agoraowl:Consistency",
+    "DailyAverage": "agoraowl:DailyAverage",
+    "Duplication": "agoraowl:Duplication",
+    "Equal": "agoraowl:Equal",
+    "GreaterOrEqual": "agoraowl:GreaterOrEqual",
+    "GreaterThan": "agoraowl:GreaterThan",
+    "Instantaneous": "agoraowl:Instantaneous",
+    "LessOrEqual": "agoraowl:LessOrEqual",
+    "LessThan": "agoraowl:LessThan",
+    "Mandatory": "agoraowl:Mandatory",
+    "Maximum": "agoraowl:Maximum",
+    "Minimum": "agoraowl:Minimum",
+    "Preferred": "agoraowl:Preferred",
+    "Timeliness": "agoraowl:Timeliness",
+    "Uniqueness": "agoraowl:Uniqueness",
+    "metric-types": "agoraowl:metric-types",
+    "obsprop": "https://w3id.org/AgoraOWL/vocabularies/observed-properties#"
+  }
+}
