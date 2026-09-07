@@ -1,0 +1,11 @@
+# MUST FAIL: SHACL. A FieldMapping without mapsField binds semantics to nothing.
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix agrovoc:  <http://aims.fao.org/aos/agrovoc/> .
+@prefix ex:       <http://example.org/> .
+
+ex:Mapping a agoraowl:FieldMapping ;
+    agoraowl:mapsToSpecification ex:Spec .
+
+ex:Spec a agoraowl:DataSpecification ;
+    agoraowl:hasFeatureOfInterest agrovoc:c_7550 ;
+    agoraowl:hasObservableProperty agrovoc:c_44ae766c .

@@ -1,0 +1,34 @@
+# path	accept	user-agent	expected Location (GH = https://khaosresearch.github.io/AgoraOWL)	note
+/AgoraOWL/	text/html,application/xhtml+xml	Mozilla/5.0	GH/latest/index-en.html	base, browser
+/AgoraOWL/	text/turtle	curl/8	GH/latest/ontology.ttl	base, turtle
+/AgoraOWL/	application/rdf+xml	curl/8	GH/latest/ontology.owl	base, rdf-xml
+/AgoraOWL/	application/n-triples	curl/8	GH/latest/ontology.nt	base, n-triples
+/AgoraOWL/	application/ld+json	curl/8	GH/latest/ontology.jsonld	base, json-ld
+/AgoraOWL/	*/*	curl/8	GH/latest/ontology.ttl	base, fallback
+/AgoraOWL/latest	text/turtle	curl/8	GH/latest/ontology.ttl	latest alias
+/AgoraOWL/1.3.0	text/html	Mozilla/5.0	GH/1.3.0/index-en.html	versioned docs
+/AgoraOWL/1.3.0	text/turtle	curl/8	GH/1.3.0/ontology.ttl	versioned turtle
+/AgoraOWL/1.2.1	text/turtle	curl/8	GH/1.2.1/ontology.ttl	REGRESSION older version still resolves
+/AgoraOWL/DataApp	text/html,application/xhtml+xml	Mozilla/5.0	GH/latest/index-en.html#DataApp	term, browser
+/AgoraOWL/DataApp	text/turtle	curl/8	GH/latest/ontology.ttl	NEW term, turtle (404 today)
+/AgoraOWL/DataApp	application/rdf+xml	curl/8	GH/latest/ontology.owl	NEW term, rdf-xml (404 today)
+/AgoraOWL/hasFieldMapping	application/ld+json	curl/8	GH/latest/ontology.jsonld	NEW term, json-ld (404 today)
+/AgoraOWL/context.jsonld	application/ld+json	curl/8	GH/latest/context.jsonld	NEW EDC fetches this
+/AgoraOWL/context.jsonld	*/*	curl/8	GH/latest/context.jsonld	NEW no accept header
+/AgoraOWL/context.jsonld	text/html	Mozilla/5.0	GH/latest/context.jsonld	NEW browser gets the file too
+/AgoraOWL/1.3.0/context.jsonld	application/ld+json	curl/8	GH/1.3.0/context.jsonld	NEW versioned context
+/AgoraOWL/alignment.ttl	text/turtle	curl/8	GH/latest/alignment.ttl	NEW alignment module
+/AgoraOWL/1.3.0/alignment.ttl	text/turtle	curl/8	GH/1.3.0/alignment.ttl	NEW versioned alignment
+/AgoraOWL/vocabularies/observed-properties	text/html,application/xhtml+xml	Mozilla/5.0	GH/latest/vocabularies/observed-properties.html	NEW unversioned, browser gets anchors
+/AgoraOWL/vocabularies/observed-properties	text/turtle	curl/8	GH/latest/vocabularies/observed-properties.ttl	NEW unversioned, turtle
+/AgoraOWL/vocabularies/observed-properties	*/*	curl/8	GH/latest/vocabularies/observed-properties.ttl	NEW unversioned, fallback
+/AgoraOWL/vocabularies/siex	text/html	Mozilla/5.0	GH/latest/vocabularies/siex.html	NEW unversioned siex
+/AgoraOWL/vocabularies/observed-properties.ttl	*/*	curl/8	GH/latest/vocabularies/observed-properties.ttl	NEW explicit extension
+/AgoraOWL/vocabularies/observed-properties.html	*/*	curl/8	GH/latest/vocabularies/observed-properties.html	NEW explicit extension
+/AgoraOWL/1.3.0/vocabularies/observed-properties	text/html	Mozilla/5.0	GH/1.3.0/vocabularies/observed-properties.html	CHANGED browser now gets HTML
+/AgoraOWL/1.3.0/vocabularies/observed-properties	text/turtle	curl/8	GH/1.3.0/vocabularies/observed-properties.ttl	REGRESSION tools still get turtle
+/AgoraOWL/1.2.1/vocabularies/observed-properties	text/turtle	curl/8	GH/1.2.1/vocabularies/observed-properties.ttl	REGRESSION old version still resolves
+/AgoraOWL/latest/vocabularies/siex	*/*	curl/8	GH/latest/vocabularies/siex.ttl	REGRESSION latest vocab turtle
+/AgoraOWL/1.3.0/vocabularies/siex.ttl	*/*	curl/8	GH/1.3.0/vocabularies/siex.ttl	NEW versioned explicit extension
+/AgoraOWL/vocabularies	text/html	Mozilla/5.0	GH/latest/vocabularies/index.html	NEW vocabulary index
+/AgoraOWL/1.3.0/vocabularies/	text/html	Mozilla/5.0	GH/1.3.0/vocabularies/index.html	NEW versioned index

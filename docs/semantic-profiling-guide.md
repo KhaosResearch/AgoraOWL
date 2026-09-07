@@ -1,6 +1,6 @@
-# Guía de Perfilado Semántico: Dataset Real y Matchmaking (v1.2.1)
+# Guía de Perfilado Semántico: Dataset Real y Matchmaking (v1.3.0)
 
-En la versión **v1.2.1** de AgoraOWL, hemos evolucionado la arquitectura para permitir un perfilado simétrico. La clave es la **separación en 4 capas**:
+AgoraOWL organiza el perfilado simétrico en una **separación en 4 capas**, consolidada desde la v1.2.0 y sin cambios estructurales en v1.3.0:
 
 1.  **Capa 1: Semántica (¿Qué es?):** `DataSpecification`. Define el fenómeno físico (ej. Humedad) y el sujeto (ej. Suelo). Es pura y reutilizable.
 2.  **Capa 2: Puente (¿Cómo viene?):** `FieldMapping`. Une la especificación semántica con una columna física, definiendo la **Unidad**, el **Tipo de Dato** y la **Métrica de Observación**.
@@ -25,7 +25,7 @@ Este CSV ofrece datos sobre 2 variables semánticas:
 
 ---
 
-## 2. Modelando con AgoraOWL v1.2.1 (Turtle)
+## 2. Modelando con AgoraOWL v1.3.0 (Turtle)
 
 ### 2.1 Especificaciones Semánticas (Librería Reutilizable)
 
@@ -100,7 +100,7 @@ Aquí es donde vinculamos la semántica con la realidad física del archivo.
 
 ## 3. Matchmaking: ¿Cómo una App pide lo que necesita?
 
-En v1.2.1, las aplicaciones no solo piden "Humedad", sino que pueden exigir requisitos técnicos específicos (como el `xsd:float`) mediante **Constraints**.
+Las aplicaciones no solo piden "Humedad", sino que pueden exigir requisitos técnicos específicos (como el `xsd:float`) mediante **Constraints**.
 
 ### 3.1 La DataApp y su perfil de entrada (Demand)
 
@@ -124,7 +124,13 @@ En v1.2.1, las aplicaciones no solo piden "Humedad", sino que pueden exigir requ
             a :DataConstraint ;
             :requiresUnit qudt:PERCENT ;
             :requiresDataType xsd:float ;
-            :requiresMetric :DailyAverage
+            :requiresMetric :DailyAverage ;
+            # v1.3.0: si además exijo un umbral de calidad, declaro qué hacer
+            # cuando el candidato no publique esa evidencia (ver §3.3 más abajo).
+            :constraintMetricType :Accuracy ;
+            :constraintOperator :GreaterOrEqual ;
+            :constraintValue "0.90"^^xsd:decimal ;
+            :constraintEnforcement :Mandatory
         ]
     ] ;
 
@@ -140,6 +146,41 @@ En v1.2.1, las aplicaciones no solo piden "Humedad", sino que pueden exigir requ
 1.  **Flexibilidad:** Si otro Dataset tiene la humedad en una escala de 0 a 1 (unit:UNITLESS), el `FieldMapping` de ese dataset lo declarará así. La App, al ver que no coincide con su `requiresUnit: PERCENT`, sabrá que necesita una conversión previa.
 2.  **Precisión:** Una App de climatología podría pedir "Temperatura" pero con la constraint `requiresMetric: DailyMax` para detectar olas de calor, descartando datasets que solo den la media.
 3.  **Simplicidad en la Búsqueda:** El motor de búsqueda solo tiene que comparar URIs de `DataSpecification`. Si coinciden, luego verifica las `DataConstraint`.
+
+---
+
+## 3.3 Restricciones que no se pueden evaluar (v1.3.0)
+
+El ejemplo de arriba pide `Accuracy >= 0.90`. ¿Qué pasa si el `FieldMapping`
+candidato no publica ninguna `:Metric` de tipo `:Accuracy`? Hasta v1.2.1 esto no
+estaba definido — de hecho, el ejemplo de referencia de la propia ontología
+(`eo-instances.ttl`) caía exactamente en este caso, y dos implementaciones de
+matchmaking conformes podían devolver respuestas opuestas para el mismo par.
+
+`:constraintEnforcement` lo cierra:
+
+- **`:Mandatory`**: si el candidato no publica evidencia para la restricción, el
+  emparejamiento se **rechaza**. Úsalo cuando el umbral es un requisito real, no
+  una preferencia.
+- **`:Preferred`** (valor por defecto si se omite `:constraintEnforcement`): si no
+  hay evidencia, el emparejamiento se **acepta**, pero el candidato debe quedar
+  peor clasificado que cualquiera que sí satisfaga la restricción explícitamente.
+
+```turtle
+:hasConstraint [
+    a :DataConstraint ;
+    :constraintMetricType :Accuracy ;
+    :constraintOperator :GreaterOrEqual ;
+    :constraintValue "0.90"^^xsd:decimal ;
+    :constraintEnforcement :Mandatory   # ausente = :Preferred
+]
+```
+
+Y la escala importa: `:metricValue` de `:Accuracy`, `:Completeness`,
+`:Uniqueness`, `:Consistency` y `:Duplication` **debe** ser un decimal en `[0,1]`.
+Un conector que calcule estas cifras como porcentaje (`93` en vez de `0.93`) hace
+que `93 >= 0.90` se cumpla siempre de forma silenciosa — es una fuente real de
+falsos emparejamientos, y `shapes/edc-connector-shapes.ttl` lo rechaza.
 
 ---
 
@@ -169,7 +210,7 @@ Las métricas de calidad (precisión, completitud) se asocian ahora al `FieldMap
 
 ---
 
-## Resumen: Regla de Oro v1.2.1
+## Resumen: Regla de Oro v1.3.0
 
 - **DataSpecification:** Es el "Fenómeno Puro" (ej. Precipitación). No cambia nunca.
 - **FieldMapping:** Es el "Cómo se entrega" (ej. en la columna 'rain_mm' como float en Milímetros).

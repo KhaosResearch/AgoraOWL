@@ -31,6 +31,14 @@ jobs:
           java-version: "17"
           distribution: "temurin"
 
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install --quiet rdflib
+
       - name: Download Widoco
         run: wget -O widoco.jar https://github.com/dgarijo/Widoco/releases/download/v1.4.25/widoco-1.4.25-jar-with-dependencies_JDK-17.jar
 
@@ -103,6 +111,16 @@ jobs:
             sed -i -E "s|(href=\")https://w3id.org/AgoraOWL(/([0-9]+\.[0-9]+\.[0-9]+))?/vocabularies/([A-Za-z0-9._-]+)\"|\\1https://w3id.org/AgoraOWL/${V}/vocabularies/\\4\"|g" "$f"
           done
 
+      - name: Generate vocabulary documentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          V="${{ steps.get_version.outputs.VERSION_NO_V }}"
+          # A fragment such as .../vocabularies/observed-properties#ndvi is never
+          # sent to the server, so a redirect cannot resolve it. These pages carry
+          # one anchor per concept (or a sharded lookup for SIEX's 82k concepts).
+          python3 scripts/generate_vocab_docs.py --version "$V" --out build/vocab-docs
+
       - name: Prepare files for deployment
         id: prep
         shell: bash
@@ -124,10 +142,27 @@ jobs:
             cp -f "src/$DEST_VERSION/AgoraOWL.ttl" "deploy/$DEST_VERSION/AgoraOWL.ttl"
           fi
 
+          # v1.3.0: the optional third-party alignment module and the JSON-LD
+          # context are first-class published artefacts. The context in
+          # particular is what Eclipse EDC 0.18+ fetches when a dataspace
+          # registers AgoraOWL via edc.dataspace.profiles.*.jsonld.context.urls,
+          # so it MUST be reachable at https://w3id.org/AgoraOWL/context.jsonld.
+          for artefact in alignment.ttl context.jsonld; do
+            if [ -f "src/$DEST_VERSION/$artefact" ]; then
+              echo "Copying $artefact..."
+              cp -f "src/$DEST_VERSION/$artefact" "deploy/$DEST_VERSION/$artefact"
+            fi
+          done
+
           echo "Copying vocabularies..."
           mkdir -p deploy/$DEST_VERSION/vocabularies
           if [ -n "$(ls src/$DEST_VERSION/vocabularies/*.ttl 2>/dev/null)" ]; then
             cp src/$DEST_VERSION/vocabularies/*.ttl deploy/$DEST_VERSION/vocabularies/
+          fi
+
+          echo "Copying generated vocabulary documentation..."
+          if [ -d build/vocab-docs ]; then
+            cp -r build/vocab-docs/. "deploy/$DEST_VERSION/vocabularies/"
           fi
 
           echo "Copying shapes..."

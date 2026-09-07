@@ -214,16 +214,51 @@ By reusing the same semantic variable (`DataSpecification`) across supply (Datas
 
 #### 6. Matchmaking Specification (Normative Steps)
 
-To ensure full semantic interoperability, agents MUST follow these validation steps:
+To ensure full semantic interoperability, agents MUST follow these validation steps.
 
-| Step                     | Rule                                                                                                                | Validation Mechanism     |
-| :----------------------- | :------------------------------------------------------------------------------------------------------------------ | :----------------------- |
-| **1. Semantic Match**    | `InputProfile` and `DataProfile` (or `FieldMapping`) MUST share the same `DataSpecification` URI.                   | RDF Graph Query (SPARQL) |
-| **2. Technical Match**   | The `requiresDataType` (in constraints) MUST match the `hasDataType` in the mapping.                                | Exact Match (XSD IRI)    |
-| **3. Unit Matching**     | The `requiresUnit` in the constraint MUST match the `hasUnit` in the mapping.                                       | Exact Match (QUDT IRI)   |
-| **4. Metric Scope**      | The `requiresMetric` (e.g., Daily Average) MUST match the `hasObservationMetric` of the field.                      | SKOS Broader/Exact Match |
-| **5. Quality Threshold** | If present, `constraintOperator` and `expectedValue` MUST be validated against the distribution’s DQV measurements. | SHACL / Logic Validation |
-| **6. Technical Form**    | The distribution MUST conform to the `dct:format` required by the app.                                              | Metadata Check           |
+> **Changed in v1.3.0.** The v1.2.x table referenced two things that did not exist:
+> a property named `expectedValue` (the ontology declares `:constraintValue`) and a
+> required `dct:format` for which no property existed at all. It also left the most
+> important case undefined: what happens when a constraint **cannot be evaluated**
+> because the candidate publishes no corresponding evidence. AgoraOWL's own reference
+> example hit exactly that case - `SmartIrrigatorApp` requires `Accuracy >= 0.90` and
+> the only matching `FieldMapping` in `eo-instances.ttl` carries no `:Metric` at all -
+> so two conformant implementations could return opposite answers for the same pair.
+> `:constraintEnforcement`, `:requiresFormat` and `:requiresMediaType` close the gap.
+
+| Step | Rule | Validation mechanism |
+| :--- | :--- | :--- |
+| **1. Semantic match** | The app's `InputProfile` and the candidate's `FieldMapping` MUST share the same `DataSpecification` IRI. | SPARQL over the catalogue graph |
+| **2. Data type** | If the constraint declares `:requiresDataType`, it MUST equal the mapping's `:hasDataType`. | Exact IRI match (XSD datatype IRIs) |
+| **3. Unit** | If the constraint declares `:requiresUnit`, it MUST equal the mapping's `:hasUnit`. | Exact IRI match. Units MUST use the canonical `http://qudt.org/vocab/unit/` namespace; the `www.` variant is a different IRI and silently breaks every match. |
+| **4. Observation metric** | If the constraint declares `:requiresMetric`, it MUST match the mapping's `:hasObservationMetric`. | SKOS `broader` / exact match |
+| **5. Quality threshold** | If the constraint declares `:constraintValue`, it MUST also declare `:constraintOperator`, and the comparison is made against the `:metricValue` of the mapping's `:Metric` whose `:metricType` equals `:constraintMetricType`. Values of `:Accuracy`, `:Completeness`, `:Uniqueness`, `:Consistency` and `:Duplication` are on the closed unit interval `[0,1]`. | SHACL + SPARQL |
+| **6. Format** | If the constraint declares `:requiresFormat` or `:requiresMediaType`, it MUST match `dct:format` / `dcat:mediaType` of the candidate `Distribution`. | Exact IRI match |
+
+##### 6.1 Unevaluable constraints (normative)
+
+A constraint is **unevaluable** against a candidate when the candidate publishes no
+evidence for it - typically a quality threshold with no corresponding `:Metric`, or a
+`:requiresMetric` with no `:hasObservationMetric`.
+
+* A constraint carrying `:constraintEnforcement :Mandatory` that is unevaluable MUST
+  cause the match to be **rejected**.
+* A constraint carrying `:constraintEnforcement :Preferred`, or **no**
+  `:constraintEnforcement` at all, that is unevaluable MUST **not** reject the match,
+  but the candidate MUST be ranked below any candidate that satisfies it explicitly.
+
+The default is `:Preferred`. This is a deliberate open-world reading: absence of a
+published metric is absence of evidence, not evidence of failure. Publishers who need
+the stricter reading declare it per constraint.
+
+##### 6.2 Scale (normative)
+
+`:metricValue` for any `:UnitIntervalMetric` MUST be a decimal in `[0,1]`. Connectors
+that compute these figures as percentages MUST divide by 100 before publishing.
+Comparing `93` against a `0.90` threshold succeeds silently and is a known source of
+false matches; `shapes/edc-connector-shapes.ttl` rejects it.
+
+---
 
 ## 🏛 Strategic Design Principles
 
@@ -267,42 +302,123 @@ Together, these layers provide a coherent view from real assets and services, th
 
 ---
 
+## 🔒 OWL 2 DL Conformance & Third-Party Alignment (v1.3.0)
+
+Up to v1.2.1, `AgoraOWL.ttl` asserted ~110 `rdfs:domain` / `rdfs:range` axioms over
+properties it does not own — DCAT, DCMI Terms, ODRL, FOAF. Sixteen of them
+contradicted the source vocabulary (e.g. `odrl:permission`, `odrl:prohibition` and
+`odrl:obligation` all shared range `odrl:Rule`, collapsing a distinction policy
+engines depend on), and the ontology itself failed the OWL 2 DL profile (13
+violations: annotation/data-property punning on `dct:modified`, and `rdfs:Resource`
+/ `rdfs:Datatype` used as classes).
+
+**As of v1.3.0:**
+
+- The core ontology asserts **no logical axiom** over a third-party property.
+  `robot validate-profile --profile DL` passes with zero violations.
+- Corrected third-party axioms live in `alignment.ttl`, an **optional, opt-in**
+  module — not imported by the core, so merging AgoraOWL with the real DCAT / ODRL
+  / FOAF graphs no longer changes what those vocabularies mean.
+- The OWL layer gained discriminating power it never had: `owl:AllDisjointClasses`
+  across the structural layers (`DataSpecification`, `FieldMapping`, `DataProfile`,
+  `DataConstraint`, `Metric`) and across `{DataAsset, DataApp}`, plus ten
+  `owl:FunctionalProperty` declarations. Up to v1.2.1 there was not a single
+  disjointness or functional axiom, so a reasoner could not detect a modelling
+  error in any input graph — `robot reason` was a smoke test that could not fail.
+
+SHACL remains the normative validation layer; OWL reasoning is a schema-coherence
+check, not a data-validation mechanism. See `src/1.3.0/README.md` for the full
+list of corrected axioms and `src/1.3.0/examples/negative/` for the fixtures that
+now make the reasoner and the SHACL shapes fail on purpose.
+
+---
+
+## 🔌 Eclipse EDC Connector Profile (v1.3.0)
+
+An asset stored in an [Eclipse EDC](https://projects.eclipse.org/projects/technology.edc)
+connector and the `dcat:Dataset` a partner receives over the Dataspace Protocol are
+**not the same graph**: EDC lifts every `edc:properties` entry to a direct
+predicate of the dataset node it publishes. Validating the Management API
+representation therefore says nothing about what partners actually see.
+
+- **`context.jsonld`**: the JSON-LD context AgoraOWL publishes, consumed by EDC
+  0.18+ via `edc.dataspace.profiles.*.jsonld.context.urls` to compact outgoing DSP
+  messages.
+- **`shapes/edc-connector-shapes.ttl`**: a self-contained SHACL profile that
+  validates the graph a connector actually publishes — including a guard against
+  copying `FieldMapping`/`DataSpecification` properties up to the dataset node for
+  search faceting, which types the dataset as both at once and violates the new
+  disjointness axioms.
+- **`scripts/edc_catalog_projection.py`**: projects a Management API asset payload
+  onto the DSP catalogue graph, reproducing EDC's loss of `@language`/`@type` on
+  scalar asset properties (nested node objects survive intact).
+
+See `src/1.3.0/examples/edc/` for a reference payload and its projection, and
+`src/1.3.0/README.md` for how this was verified against Eclipse EDC Connector
+v0.18.0.
+
+---
+
 ## 📁 Repository Structure & Branching Model
 
-This repository uses a `dev` -> `main` -> `gh-pages` git flow.
+This repository uses a `feat/*` -> `main` -> `gh-pages` git flow, automated by
+[release-please](https://github.com/googleapis/release-please) for versioning
+and changelog generation.
 
-> [!CAUTION]
-> **Do NOT commit directly in `main` branch.** All changes must come from the `dev` branch via a Pull Request.
+> [!NOTE]
+> An earlier revision of this document described a `dev` -> `main` -> `gh-pages`
+> flow with a mandatory `dev` staging branch. That branch exists but has been
+> stale since before the EDAAnOWL → AgoraOWL rename and is not part of the live
+> workflow — every recent release (v0.7.0 through v1.2.1) merged a feature
+> branch directly into `main` via Pull Request. The description below matches
+> what actually happens.
 
 > [!CAUTION]
 > **`gh-pages` branch is AUTO-GENERATED. DO NOT EDIT MANUALLY.**
 
-- **`main` branch**:
-  - **Purpose**: This branch represents the most recent _stable, released_ version of the ontology.
-  - Creating a "Release" from this branch triggers the `gh-pages` deployment.
+1. **Feature branches** (e.g. `feat/v1.3.0-...`, `fix/...`): all new work,
+   including new ontology versions. Commit messages MUST follow
+   [Conventional Commits](https://www.conventionalcommits.org/) — release-please
+   parses them to decide the next version number and to write the changelog.
+   A commit under `src/<version>/` for a version folder that does not yet exist
+   on `main` is what introduces a new ontology release; bumping requires at
+   least one `feat:` commit (minor) or a `!`/`BREAKING CHANGE:` marker (major).
 
-  - **Structure**:
-    - `/src/`
-      - `1.2.1/` (Latest stable ontology and vocabularies)
-    - `/.github/workflows/` (The CI/CD workflow)
+2. **Pull Request into `main`**: opened from the feature branch, targeting
+   `main` directly. `.github/workflows/validate.yml` runs RDF syntax, the OWL 2
+   DL profile, SHACL, and the conformance suite (`scripts/conformance_suite.py`)
+   on every PR that touches `src/` or `scripts/`.
 
-- **`dev` branch**:
-  - **Purpose**: This is the main **development branch**. All new features, fixes, and preparations for the _next_ version happen here.
-  - All Pull Requests should be targeted at `dev`.
-  - **Structure**:
-    - Same as `main`, but may contain the _next_ unreleased version folder (e.g., `src/0.7.0/`) while it is in progress.
+3. **Merge into `main`** (a real merge commit, not squash — release-please
+   needs each individual conventional commit, not one collapsed PR commit):
+   `main` always represents the most recently merged state. The push triggers
+   `.github/workflows/release-please.yml`, which opens or updates a
+   `chore(main): release X.Y.Z` Pull Request carrying the computed version bump
+   and the generated `CHANGELOG.md` entry — it does **not** publish anything by
+   itself.
 
-- **`gh-pages` branch**:
-  - **Purpose**: This branch contains the static output of the `deploy-docs.yml` workflow. It hosts the public-facing documentation and RDF files served by GitHub Pages.
+   - **Structure of `main`**:
+     - `/src/`
+       - `1.3.0/` (Latest stable ontology and vocabularies)
+       - `1.2.1/`, `1.2.0/`, ... (Previously released versions, kept immutable)
+     - `/.github/workflows/` (The CI/CD workflows)
 
-  - **Structure**:
-    - `/latest/` (A mirror of the most recent version)
-    - `/0.6.0/`
-    - `/0.7.0/`
-    - `.nojekyll` (Disables Jekyll on GitHub Pages)
+4. **Merging the release-please PR** is what actually cuts the release: it
+   bumps `.github/.release-please-manifest.json`, updates `CHANGELOG.md`,
+   creates the git tag (e.g. `v1.3.0`), and publishes a GitHub Release. Only
+   *this* merge is irreversible in the way a public release is — review its
+   generated CHANGELOG before merging it.
 
-- **Feature Branches (e.g., `feat/my-fix`)**:
-  - **Purpose**: Temporary branches for new work. They should be based on `dev` and merged back into `dev` via a Pull Request.
+5. **`gh-pages` branch**: the GitHub Release (step 4) triggers
+   `.github/workflows/deploy-docs.yml` (`on: release: types: [created]`), which
+   builds the Widoco documentation, the vocabulary docs
+   (`scripts/generate_vocab_docs.py`), and publishes everything to `gh-pages` —
+   the branch served at <https://khaosresearch.github.io/AgoraOWL/>.
+
+   - **Structure**:
+     - `/latest/` (A mirror of the most recent version)
+     - `/1.3.0/`, `/1.2.1/`, `/1.2.0/`, ... (One folder per released version)
+     - `.nojekyll` (Disables Jekyll on GitHub Pages)
 
 ---
 
@@ -407,7 +523,7 @@ From the repository root:
 
 ## 🔗 Resolvability (PID)
 
-This repository manages the _source code_. The Persistent Identifiers (PIDs) (e.g., `https://w3id.org/AgoraOWL/...`) are resolved by the `.htaccess` file located in the [w3id.org repository](https://github.com/perma-id/w3id.org/tree/master/AgoraOWL).
+This repository manages the _source code_. The Persistent Identifiers (PIDs) (e.g., `https://w3id.org/AgoraOWL/...`) are resolved by the `.htaccess` file located in the [w3id.org repository](https://github.com/perma-id/w3id.org/tree/master/ids/AgoraOWL).
 
 That `.htaccess` file points all requests to the documentation and files automatically built and published by our CI/CD workflow to the `gh-pages` branch, which is hosted at:
 

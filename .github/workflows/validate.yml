@@ -1,0 +1,103 @@
+name: Validate ontology
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "scripts/**"
+      - ".github/workflows/validate.yml"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ROBOT_VERSION: v1.9.6
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Python dependencies
+        run: pip install --quiet rdflib pyshacl
+
+      - name: Cache ROBOT
+        id: robot-cache
+        uses: actions/cache@v4
+        with:
+          path: robot.jar
+          key: robot-${{ env.ROBOT_VERSION }}
+
+      - name: Download ROBOT
+        if: steps.robot-cache.outputs.cache-hit != 'true'
+        run: wget -q -O robot.jar "https://github.com/ontodev/robot/releases/download/${ROBOT_VERSION}/robot.jar"
+
+      - name: Resolve latest version folder
+        id: version
+        run: |
+          version=$(ls -d src/*/ | xargs -n1 basename | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n1)
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Validating src/$version"
+
+      # 1. Syntax
+      - name: RDF syntax
+        run: python3 scripts/check_rdf.py
+
+      # 2. OWL 2 DL profile. The core must never assert an axiom that takes it
+      #    out of DL, and neither must the optional alignment module.
+      - name: OWL 2 DL profile (core)
+        run: java -jar robot.jar validate-profile --profile DL --input "src/${{ steps.version.outputs.version }}/AgoraOWL.ttl" --output /tmp/dl-core.txt
+
+      - name: OWL 2 DL profile (core + alignment)
+        run: |
+          java -jar robot.jar merge \
+            --input "src/${{ steps.version.outputs.version }}/AgoraOWL.ttl" \
+            --input "src/${{ steps.version.outputs.version }}/alignment.ttl" \
+            validate-profile --profile DL --output /tmp/dl-merged.txt
+
+      # 3. SHACL
+      - name: SHACL validation
+        run: python3 scripts/validate_shacl.py
+
+      # 4. Conformance suite: positives conform AND negatives are rejected.
+      #    Without the negative half a validator that accepts everything looks
+      #    healthy, which is exactly how this repository looked before v1.3.0.
+      - name: Conformance suite
+        env:
+          AGORAOWL_ROBOT_JAR: ${{ github.workspace }}/robot.jar
+        run: python3 scripts/conformance_suite.py
+
+      # 5. The EDC projection must stay in sync with its source payload.
+      - name: EDC catalogue projection is up to date
+        run: python3 scripts/check_projection_sync.py
+
+      # 6. The vocabulary documentation generator runs at release time, so a
+      #    breakage here would block a release. Catch it on the PR instead.
+      - name: Vocabulary documentation builds
+        run: |
+          python3 scripts/generate_vocab_docs.py --out /tmp/vocab-docs
+          test -f /tmp/vocab-docs/index.html
+
+      - name: Upload validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-reports
+          path: |
+            validation_reports/
+            /tmp/dl-*.txt
+          if-no-files-found: ignore

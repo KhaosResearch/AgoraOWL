@@ -1,0 +1,389 @@
+# AgoraOWL 1.3.0 - Third-party vocabulary alignment module (OPTIONAL, NOT imported)
+#
+# Up to v1.2.1 these rdfs:domain / rdfs:range axioms over FOREIGN properties lived
+# inside AgoraOWL.ttl. Any consumer merging AgoraOWL with the real DCAT / DCMI /
+# ODRL / FOAF graphs silently inherited them. From v1.3.0 the core ontology asserts
+# no logical axiom over a third-party property, and this module is opt-in.
+#
+# Every axiom was diffed against the authoritative documents (www.w3.org/ns/dcat.ttl,
+# dublin_core_terms.ttl, ODRL22.ttl, foaf/spec/index.rdf).
+#
+# Corrected in v1.3.0 (v1.2.1 contradicted the source vocabulary):
+#   odrl:permission   range  odrl:Rule             -> odrl:Permission
+#   odrl:prohibition  range  odrl:Rule             -> odrl:Prohibition
+#   odrl:obligation   range  odrl:Rule             -> odrl:Duty
+#   odrl:action       range  rdfs:Resource         -> odrl:Action
+#   odrl:leftOperand  range  rdfs:Resource         -> odrl:LeftOperand
+#   odrl:operator     range  rdfs:Resource         -> odrl:Operator
+#   odrl:assigner     range  foaf:Agent            -> odrl:Party
+#   dcat:mediaType    range  dct:MediaTypeOrExtent -> dct:MediaType
+#
+# Dropped entirely (the source vocabulary refutes them); expressed as SHACL instead:
+#   dct:format             domain dcat:Distribution   (DCMI declares no domain)
+#   foaf:name              domain foaf:Agent          (FOAF declares owl:Thing)
+#   dct:accrualPeriodicity domain dcat:Dataset        (DCMI declares dcmitype:Collection)
+#   dcat:accessURL / dcat:endpointURL range rdfs:Resource (reserved vocabulary, not OWL 2 DL)
+#   odrl:rightOperand      range  rdfs:Literal        (ODRL declares a union; narrowing it
+#                                                      breaks policy engines)
+#
+# Declarations for every referenced term are included so OWL tooling never has to guess
+# entity types. Verified: core alone and core+alignment are both OWL 2 DL conformant.
+
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcatap: <http://data.europa.eu/r5r/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ids: <https://w3id.org/idsa/core/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dcatap:applicableLegislation a owl:ObjectProperty ;
+    rdfs:range dcatap:LegalResource .
+
+dct:accessRights a owl:ObjectProperty ;
+    rdfs:range dct:RightsStatement .
+
+dct:accrualPeriodicity a owl:ObjectProperty ;
+    rdfs:range dct:Frequency .
+
+dct:creator a owl:ObjectProperty ;
+    rdfs:range foaf:Agent .
+
+dct:description a owl:DatatypeProperty ;
+    rdfs:range rdfs:Literal .
+
+dct:format a owl:ObjectProperty ;
+    rdfs:range dct:MediaTypeOrExtent .
+
+dct:identifier a owl:DatatypeProperty ;
+    rdfs:range rdfs:Literal .
+
+dct:issued a owl:DatatypeProperty ;
+    rdfs:range rdfs:Literal .
+
+dct:language a owl:ObjectProperty ;
+    rdfs:range dct:LinguisticSystem .
+
+dct:license a owl:ObjectProperty ;
+    rdfs:range dct:LicenseDocument .
+
+dct:publisher a owl:ObjectProperty ;
+    rdfs:range foaf:Agent .
+
+dct:rights a owl:ObjectProperty ;
+    rdfs:range dct:RightsStatement .
+
+dct:spatial a owl:ObjectProperty ;
+    rdfs:range dct:Location .
+
+dct:temporal a owl:ObjectProperty ;
+    rdfs:range dct:PeriodOfTime .
+
+dct:title a owl:DatatypeProperty ;
+    rdfs:range rdfs:Literal .
+
+dct:type a owl:ObjectProperty ;
+    rdfs:range skos:Concept .
+
+adms:status a owl:ObjectProperty ;
+    rdfs:range skos:Concept .
+
+adms:versionNotes a owl:DatatypeProperty ;
+    rdfs:range rdfs:Literal .
+
+dcat:accessURL a owl:ObjectProperty ;
+    rdfs:domain dcat:Distribution .
+
+dcat:byteSize a owl:DatatypeProperty ;
+    rdfs:domain dcat:Distribution ;
+    rdfs:range xsd:nonNegativeInteger .
+
+dcat:dataset a owl:ObjectProperty ;
+    rdfs:domain dcat:Catalog ;
+    rdfs:range dcat:Dataset .
+
+dcat:distribution a owl:ObjectProperty ;
+    rdfs:domain dcat:Dataset ;
+    rdfs:range dcat:Distribution .
+
+dcat:endpointURL a owl:ObjectProperty ;
+    rdfs:domain dcat:DataService .
+
+dcat:inSeries a owl:ObjectProperty ;
+    rdfs:domain dcat:Dataset ;
+    rdfs:range dcat:DatasetSeries .
+
+dcat:keyword a owl:DatatypeProperty ;
+    rdfs:range rdfs:Literal .
+
+dcat:landingPage a owl:ObjectProperty ;
+    rdfs:range foaf:Document .
+
+dcat:mediaType a owl:ObjectProperty ;
+    rdfs:domain dcat:Distribution ;
+    rdfs:range dct:MediaType .
+
+dcat:servesDataset a owl:ObjectProperty ;
+    rdfs:domain dcat:DataService ;
+    rdfs:range dcat:Dataset .
+
+dcat:service a owl:ObjectProperty ;
+    rdfs:domain dcat:Catalog ;
+    rdfs:range dcat:DataService .
+
+dcat:spatialResolutionInDegrees a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal .
+
+dcat:spatialResolutionInMeters a owl:DatatypeProperty ;
+    rdfs:range xsd:decimal .
+
+dcat:temporalResolution a owl:DatatypeProperty ;
+    rdfs:range xsd:duration .
+
+dqv:computedOn a owl:ObjectProperty ;
+    rdfs:range ids:Resource .
+
+dqv:hasQualityMeasurement a owl:ObjectProperty ;
+    rdfs:range dqv:QualityMeasurement .
+
+dqv:hasQualityMetadata a owl:ObjectProperty ;
+    rdfs:range dqv:QualityMetadata .
+
+odrl:action a owl:ObjectProperty ;
+    rdfs:domain odrl:Rule ;
+    rdfs:range odrl:Action .
+
+odrl:assigner a owl:ObjectProperty ;
+    rdfs:range odrl:Party .
+
+odrl:constraint a owl:ObjectProperty ;
+    rdfs:domain odrl:Rule ;
+    rdfs:range odrl:Constraint .
+
+odrl:hasPolicy a owl:ObjectProperty ;
+    rdfs:range odrl:Policy .
+
+odrl:leftOperand a owl:ObjectProperty ;
+    rdfs:domain odrl:Constraint ;
+    rdfs:range odrl:LeftOperand .
+
+odrl:obligation a owl:ObjectProperty ;
+    rdfs:domain odrl:Policy ;
+    rdfs:range odrl:Duty .
+
+odrl:operator a owl:ObjectProperty ;
+    rdfs:domain odrl:Constraint ;
+    rdfs:range odrl:Operator .
+
+odrl:permission a owl:ObjectProperty ;
+    rdfs:domain odrl:Policy ;
+    rdfs:range odrl:Permission .
+
+odrl:prohibition a owl:ObjectProperty ;
+    rdfs:domain odrl:Policy ;
+    rdfs:range odrl:Prohibition .
+
+odrl:target a owl:ObjectProperty ;
+    rdfs:domain odrl:Rule ;
+    rdfs:range odrl:Asset .
+
+foaf:name a owl:DatatypeProperty ;
+    rdfs:range rdfs:Literal .
+
+schema:thumbnailUrl a owl:DatatypeProperty ;
+    rdfs:domain ids:Resource ;
+    rdfs:range xsd:anyURI .
+
+<https://w3id.org/AgoraOWL/alignment/> a owl:Ontology ;
+    rdfs:label "AgoraOWL third-party alignment module"@en,
+        "Módulo de alineamiento de AgoraOWL con vocabularios de terceros"@es ;
+    dct:isPartOf agoraowl: ;
+    rdfs:comment "Optional module restating rdfs:domain/rdfs:range axioms of third-party properties used by AgoraOWL. NOT imported by the core ontology."@en,
+        "Módulo opcional que reformula los axiomas rdfs:domain/rdfs:range de propiedades de terceros usadas por AgoraOWL. La ontología núcleo NO lo importa."@es ;
+    owl:versionIRI <https://w3id.org/AgoraOWL/alignment/1.3.0> ;
+    owl:versionInfo "1.3.0" .
+
+ids:accessURL a owl:DatatypeProperty ;
+    rdfs:domain ids:Endpoint ;
+    rdfs:range xsd:anyURI .
+
+ids:appDocumentation a owl:DatatypeProperty ;
+    rdfs:domain ids:DataApp ;
+    rdfs:range xsd:string .
+
+ids:appEndpoint a owl:ObjectProperty ;
+    rdfs:domain ids:DataApp ;
+    rdfs:range ids:AppEndpoint .
+
+ids:appEndpointPort a owl:DatatypeProperty ;
+    rdfs:domain ids:AppEndpoint ;
+    rdfs:range xsd:integer .
+
+ids:appEndpointProtocol a owl:DatatypeProperty ;
+    rdfs:domain ids:AppEndpoint ;
+    rdfs:range xsd:anyURI .
+
+ids:appEnvironmentVariables a owl:DatatypeProperty ;
+    rdfs:domain ids:DataApp ;
+    rdfs:range xsd:string .
+
+ids:appStorageConfiguration a owl:DatatypeProperty ;
+    rdfs:domain ids:DataApp ;
+    rdfs:range xsd:string .
+
+ids:checkSum a owl:DatatypeProperty ;
+    rdfs:domain ids:Artifact ;
+    rdfs:range xsd:string .
+
+ids:contractOffer a owl:ObjectProperty ;
+    rdfs:domain ids:Resource ;
+    rdfs:range ids:ContractOffer .
+
+ids:dataAppDistributionService a owl:DatatypeProperty ;
+    rdfs:domain ids:AppRepresentation ;
+    rdfs:range xsd:anyURI .
+
+ids:dataAppInformation a owl:ObjectProperty ;
+    rdfs:domain ids:AppRepresentation ;
+    rdfs:range ids:DataApp .
+
+ids:dataTypeSchema a owl:ObjectProperty ;
+    rdfs:domain agoraowl:DataRepresentation ;
+    rdfs:range ids:Resource .
+
+ids:defaultRepresentation a owl:ObjectProperty ;
+    rdfs:domain ids:DigitalContent ;
+    rdfs:range dcat:Distribution .
+
+ids:endpointArtifact a owl:ObjectProperty ;
+    rdfs:domain ids:ConnectorEndpoint ;
+    rdfs:range ids:Artifact .
+
+ids:endpointURI a owl:DatatypeProperty ;
+    rdfs:range xsd:anyURI .
+
+ids:fileName a owl:DatatypeProperty ;
+    rdfs:domain ids:Artifact ;
+    rdfs:range xsd:string .
+
+ids:instance a owl:ObjectProperty ;
+    rdfs:domain dcat:Distribution ;
+    rdfs:range ids:RepresentationInstance .
+
+ids:listedAppResource a owl:ObjectProperty ;
+    rdfs:domain ids:AppResourceCatalog ;
+    rdfs:range ids:AppResource .
+
+ids:representation a owl:ObjectProperty ;
+    rdfs:domain ids:Resource ;
+    rdfs:range dcat:Distribution .
+
+ids:requiredDataApp a owl:ObjectProperty ;
+    rdfs:domain ids:RouteStep ;
+    rdfs:range ids:AppRepresentation .
+
+ids:resourceEndpoint a owl:ObjectProperty ;
+    rdfs:domain ids:Resource ;
+    rdfs:range ids:ConnectorEndpoint .
+
+ids:supportedUsagePolicies a owl:ObjectProperty ;
+    rdfs:domain ids:DataApp ;
+    rdfs:range ids:UsagePolicyClass .
+
+dcatap:LegalResource a owl:Class .
+
+dct:Frequency a owl:Class .
+
+dct:LicenseDocument a owl:Class .
+
+dct:LinguisticSystem a owl:Class .
+
+dct:Location a owl:Class .
+
+dct:MediaType a owl:Class .
+
+dct:MediaTypeOrExtent a owl:Class .
+
+dct:PeriodOfTime a owl:Class .
+
+dcat:DatasetSeries a owl:Class .
+
+dqv:QualityMeasurement a owl:Class .
+
+dqv:QualityMetadata a owl:Class .
+
+odrl:Action a owl:Class .
+
+odrl:Asset a owl:Class .
+
+odrl:Duty a owl:Class .
+
+odrl:LeftOperand a owl:Class .
+
+odrl:Operator a owl:Class .
+
+odrl:Party a owl:Class .
+
+odrl:Permission a owl:Class .
+
+odrl:Prohibition a owl:Class .
+
+foaf:Document a owl:Class .
+
+agoraowl:DataRepresentation a owl:Class .
+
+ids:AppResource a owl:Class .
+
+ids:AppResourceCatalog a owl:Class .
+
+ids:ContractOffer a owl:Class .
+
+ids:DigitalContent a owl:Class .
+
+ids:Endpoint a owl:Class .
+
+ids:RepresentationInstance a owl:Class .
+
+ids:RouteStep a owl:Class .
+
+ids:UsagePolicyClass a owl:Class .
+
+dct:RightsStatement a owl:Class .
+
+skos:Concept a owl:Class .
+
+dcat:Catalog a owl:Class .
+
+foaf:Agent a owl:Class .
+
+ids:ConnectorEndpoint a owl:Class .
+
+dcat:DataService a owl:Class .
+
+odrl:Constraint a owl:Class .
+
+odrl:Rule a owl:Class .
+
+ids:AppEndpoint a owl:Class .
+
+ids:AppRepresentation a owl:Class .
+
+ids:Artifact a owl:Class .
+
+dcat:Dataset a owl:Class .
+
+odrl:Policy a owl:Class .
+
+ids:DataApp a owl:Class .
+
+ids:Resource a owl:Class .
+
+dcat:Distribution a owl:Class .
+
