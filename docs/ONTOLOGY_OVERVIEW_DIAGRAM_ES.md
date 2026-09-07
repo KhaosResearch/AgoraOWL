@@ -1,6 +1,14 @@
-# AgoraOWL v1.2.1 - Diagramas de Arquitectura y Capas
+# AgoraOWL - Diagramas de Arquitectura y Capas
 
-Este documento presenta los diagramas actualizados que reflejan la arquitectura **simétrica de 4 capas** adoptada en la versión 1.2.1.
+Este documento presenta los diagramas que reflejan la arquitectura **simétrica de 4 capas** adoptada en la versión 1.2.1.
+
+> **Vigencia (v1.3.0):** esta arquitectura de 4 capas no ha cambiado en v1.3.0. La
+> v1.3.0 añade conformidad OWL 2 DL, axiomas de disyunción y propiedades
+> funcionales a nivel OWL, separa el alineamiento con terceros en un módulo
+> opcional, y cierra la especificación de matchmaking con una política de
+> exigencia de restricciones — ninguno de estos cambios afecta a los diagramas de
+> abajo. Ver [ARCHITECTURE.md](ARCHITECTURE.md#-owl-2-dl-conformance--third-party-alignment-v130)
+> y la [guía de perfilado semántico](semantic-profiling-guide.md#33-restricciones-que-no-se-pueden-evaluar-v130).
 
 ---
 

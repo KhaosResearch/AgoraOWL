@@ -1,0 +1,9 @@
+# MUST FAIL: SHACL. A threshold with no comparison operator is not evaluable, so
+# no two matchmakers can agree on what it means.
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix ex:       <http://example.org/> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Constraint a agoraowl:DataConstraint ;
+    agoraowl:constraintMetricType agoraowl:Accuracy ;
+    agoraowl:constraintValue "0.90"^^xsd:decimal .

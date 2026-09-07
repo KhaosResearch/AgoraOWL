@@ -1,0 +1,11 @@
+# MUST FAIL: OWL reasoning. A node cannot be both a DataSpecification and a
+# FieldMapping - v1.3.0 declares the structural layers pairwise disjoint.
+@prefix :     <https://w3id.org/AgoraOWL/> .
+@prefix ex:   <http://example.org/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://example.org/negative/disjoint-layers> rdf:type owl:Ontology ;
+    owl:imports <https://w3id.org/AgoraOWL/> .
+
+ex:Confused rdf:type :DataSpecification , :FieldMapping .

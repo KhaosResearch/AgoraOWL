@@ -1,0 +1,61 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ns1: <https://w3id.org/AgoraOWL/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:dataset:input-yield-predict> a dcat:Dataset,
+        ns1:DataAsset ;
+    dcterms:accessRights <http://publications.europa.eu/resource/authority/access-right/NORMAL> ;
+    dcterms:creator <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcterms:description "Tabular dataset of agricultural yield prediction with precipitation, crop and net-yield variables." ;
+    dcterms:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcterms:identifier "urn:dataset:input-yield-predict" ;
+    dcterms:language <http://publications.europa.eu/resource/authority/language/SPA> ;
+    dcterms:license <http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> ;
+    dcterms:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dcterms:spatial <http://publications.europa.eu/resource/authority/country/ESP> ;
+    dcterms:title "Input Yield Predict" ;
+    dcterms:type <http://publications.europa.eu/resource/authority/dataset-type/STATISTICAL> ;
+    dcat:distribution <urn:dataset:input-yield-predict/distribution> ;
+    dcat:keyword "agriculture",
+        "precipitation",
+        "yield" ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/csv> ;
+    dcat:theme <http://publications.europa.eu/resource/authority/data-theme/AGRI> ;
+    dcat:version "1.0.0" ;
+    ns1:declaresDataClass <https://w3id.org/BIGOWLData/TabularDataSet> ;
+    ns1:hasFieldMapping <urn:dataset:input-yield-predict/field-mapping/0>,
+        <urn:dataset:input-yield-predict/field-mapping/1> .
+
+<urn:dataset:input-yield-predict/distribution> a dcat:Distribution ;
+    dcterms:format <http://publications.europa.eu/resource/authority/file-type/CSV> ;
+    dcterms:license <http://publications.europa.eu/resource/authority/licence/CC_BY_4_0> ;
+    dcat:accessURL <https://data.example.org/downloads/input-yield-predict.csv> ;
+    dcat:mediaType <https://www.iana.org/assignments/media-types/text/csv> .
+
+<urn:dataset:input-yield-predict/field-mapping/0> a ns1:FieldMapping ;
+    ns1:hasDataType xsd:decimal ;
+    ns1:hasMetric [ a ns1:Metric ;
+            ns1:metricType ns1:Completeness ;
+            ns1:metricValue 0.93 ],
+        [ a ns1:Metric ;
+            ns1:metricType ns1:Uniqueness ;
+            ns1:metricValue 1.0 ] ;
+    ns1:hasUnit <http://qudt.org/vocab/unit/KiloGM> ;
+    ns1:mapsField "PesoNetoArticulo" ;
+    ns1:mapsToSpecification <urn:dataset:input-yield-predict/specification/0> .
+
+<urn:dataset:input-yield-predict/field-mapping/1> a ns1:FieldMapping ;
+    ns1:hasDataType xsd:decimal ;
+    ns1:hasUnit <http://qudt.org/vocab/unit/M2> ;
+    ns1:mapsField "SuperficieCultivableFinca" ;
+    ns1:mapsToSpecification <urn:dataset:input-yield-predict/specification/1> .
+
+<urn:dataset:input-yield-predict/specification/0> a ns1:DataSpecification ;
+    ns1:hasFeatureOfInterest <http://aims.fao.org/aos/agrovoc/c_7550> ;
+    ns1:hasObservableProperty <http://aims.fao.org/aos/agrovoc/c_44ae766c> .
+
+<urn:dataset:input-yield-predict/specification/1> a ns1:DataSpecification ;
+    ns1:hasFeatureOfInterest <http://aims.fao.org/aos/agrovoc/c_294> ;
+    ns1:hasObservableProperty <http://aims.fao.org/aos/agrovoc/c_330588> .
+

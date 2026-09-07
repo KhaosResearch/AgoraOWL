@@ -1,0 +1,67 @@
+@prefix : <https://w3id.org/AgoraOWL/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix theme: <http://publications.europa.eu/resource/authority/data-theme/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+
+# Demonstrating Cross-Sectoral Semantic Neutrality (Energy Domain)
+
+<https://example.org/energy/SpecActivePower> a :DataSpecification ;
+    rdfs:label "Active Power Specification"@en , "Especificación de Potencia Activa"@es ;
+    :hasObservableProperty <http://purl.oclc.org/NET/ssnext/qu#ActivePower> ;
+    :hasFeatureOfInterest <http://purl.org/energy/ontology#PowerPlant> .
+
+<http://purl.oclc.org/NET/ssnext/qu#ActivePower> a skos:Concept, :ObservableProperty ;
+    skos:prefLabel "Active Power"@en , "Potencia Activa"@es .
+
+<http://purl.org/energy/ontology#PowerPlant> a skos:Concept, :FeatureOfInterest ;
+    skos:prefLabel "Power Plant"@en , "Central Eléctrica"@es .
+
+<https://example.org/energy/PowerPlant_Malaga_2026> a :DataAsset, dcat:Dataset ;
+    dct:title "Málaga PV Plant Generation (2026)"@en , "Generación Planta Fotovoltaica Málaga (2026)"@es ;
+    dct:description "Real-time active power generation from PV plant."@en , "Generación de potencia activa en tiempo real de planta fotovoltaica."@es ;
+    dct:publisher <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> ;
+    dct:issued "2026-01-01T00:00:00Z"^^xsd:dateTime ;
+    dct:modified "2026-03-26T09:00:00Z"^^xsd:dateTime ;
+    dct:language <http://publications.europa.eu/resource/authority/language/SPA> , <http://publications.europa.eu/resource/authority/language/ENG> ;
+    dct:accrualPeriodicity <http://publications.europa.eu/resource/authority/frequency/UPDATE_CONT> ;
+    dcat:theme theme:ENER , <http://datos.gob.es/kos/sector-publico/sector/energia> ;
+    dcat:keyword "Energy"@en, "Power"@en, "Renewable"@en , "Energía"@es , "Potencia"@es ;
+    
+    dcat:contactPoint [ 
+        a vcard:Organization ;
+        vcard:fn "Khaos Research Group"@en , "Grupo de Investigación Khaos"@es ;
+        vcard:organization-name "Khaos Research Group"@en , "Grupo de Investigación Khaos"@es ;
+        vcard:hasEmail <mailto:contact@khaos.uma.es> ;
+        vcard:hasURL <https://khaos.uma.es> ;
+        vcard:hasTelephone <tel:+34952131000> ;
+        vcard:hasUID <http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001id/U01100001>
+    ] ;
+    
+    dcat:distribution [
+        a :DataRepresentation, dcat:Distribution ;
+        dct:title "PV Generation JSON Stream"@en , "Stream JSON de Generación FV"@es ;
+        dct:description "JSON distribution for active power metrics."@en , "Distribución JSON para métricas de potencia activa."@es ;
+        dct:format <http://publications.europa.eu/resource/authority/file-type/JSON> ;
+        dcat:accessURL <https://example.org/api/energy/stream> ;
+        :hasFieldMapping [
+            a :FieldMapping ;
+            :mapsToSpecification <https://example.org/energy/SpecActivePower> ;
+            :mapsField "p_kw" ;
+            :hasUnit qudt:KiloW ;
+            :hasDataType xsd:float 
+        ]
+    ] .
+
+<http://datos.gob.es/recurso/sector-publico/org/Organismo/U01100001> a foaf:Agent ;
+    foaf:name "Universidad de Málaga - Khaos Research Group"@en , "Universidad de Málaga - Grupo de Investigación Khaos"@es ;
+    dct:identifier "U01100001" ;
+    dct:type <http://purl.org/adms/publishertype/AcademicInstitution> .
+
+theme:ENER a skos:Concept ; skos:prefLabel "Energy"@en .
+<http://datos.gob.es/kos/sector-publico/sector/energia> a skos:Concept ; skos:prefLabel "Energía"@es .

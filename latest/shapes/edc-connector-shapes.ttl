@@ -1,0 +1,221 @@
+@prefix :        <https://w3id.org/AgoraOWL/edc-profile/> .
+@prefix agoraowl:<https://w3id.org/AgoraOWL/> .
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix dcat:    <http://www.w3.org/ns/dcat#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix vcard:   <http://www.w3.org/2006/vcard/ns#> .
+
+#################################################################
+#
+#   AgoraOWL 1.3.0 — EDC connector profile
+#
+#   Validates the dcat:Dataset that an Eclipse Dataspace Components connector
+#   publishes over the Dataspace Protocol, NOT the Management API asset.
+#
+#   The two are different graphs. In the DSP catalog, EDC types the node
+#   dcat:Dataset and lifts every edc:properties entry to a direct predicate of
+#   it (JsonObjectFromDatasetTransformer + DatasetResolverImpl). Shapes that
+#   target dcat:Dataset therefore never fire on a Management API payload, where
+#   everything hangs under edc:properties. Use
+#   scripts/edc_catalog_projection.py to obtain the graph these shapes expect.
+#
+#   Verified against Eclipse EDC Connector v0.18.0.
+#
+#################################################################
+
+<https://w3id.org/AgoraOWL/edc-profile/> rdf:type owl:Ontology ;
+    owl:versionInfo "1.3.0" ;
+    sh:declare [ sh:prefix "agoraowl" ; sh:namespace "https://w3id.org/AgoraOWL/"^^xsd:anyURI ] ;
+    sh:declare [ sh:prefix "dcat" ; sh:namespace "http://www.w3.org/ns/dcat#"^^xsd:anyURI ] ;
+    sh:declare [ sh:prefix "dct" ; sh:namespace "http://purl.org/dc/terms/"^^xsd:anyURI ] ;
+    sh:declare [ sh:prefix "xsd" ; sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ] ;
+    rdfs:label "AgoraOWL EDC connector profile shapes"@en ,
+               "Shapes del perfil de conector EDC de AgoraOWL"@es ;
+    dct:isPartOf <https://w3id.org/AgoraOWL/> .
+
+
+#################################################################
+#   A published dataset must be identifiable and reachable
+#################################################################
+
+:PublishedDatasetShape a sh:NodeShape ;
+    sh:targetClass dcat:Dataset ;
+    rdfs:label "Published dataset shape"@en ;
+
+    sh:property [
+        sh:path dct:identifier ;
+        sh:minCount 1 ;
+        sh:message "A published dataset MUST carry dct:identifier."@en ;
+    ] ;
+    sh:property [
+        sh:path dct:title ;
+        sh:minCount 1 ;
+        sh:message "A published dataset MUST carry dct:title."@en ;
+    ] ;
+    sh:property [
+        sh:path dct:description ;
+        sh:minCount 1 ;
+        sh:message "A published dataset MUST carry dct:description."@en ;
+    ] ;
+    sh:property [
+        sh:path dct:publisher ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "A published dataset MUST carry dct:publisher as an IRI (use the authoritative DIR3 organisation IRI, not an anonymous foaf:Agent node)."@en ;
+    ] ;
+    sh:property [
+        sh:path dcat:distribution ;
+        sh:minCount 1 ;
+        sh:class dcat:Distribution ;
+        sh:message "A published dataset MUST expose at least one dcat:Distribution. The EDC dataAddress is internal and never reaches the catalogue."@en ;
+    ] ;
+    sh:property [
+        sh:path dcat:mediaType ;
+        sh:nodeKind sh:IRI ;
+        sh:pattern "^https://www\\.iana\\.org/assignments/media-types/" ;
+        sh:message "dcat:mediaType MUST be an IANA media-type IRI, not a string such as \"text/csv\"."@en ;
+    ] .
+
+:PublishedDistributionShape a sh:NodeShape ;
+    sh:targetClass dcat:Distribution ;
+    rdfs:label "Published distribution shape"@en ;
+    sh:property [
+        sh:path dcat:accessURL ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "A dcat:Distribution MUST expose a dcat:accessURL."@en ;
+    ] .
+
+
+#################################################################
+#   Semantic annotation is what makes the asset matchable
+#################################################################
+
+:SemanticallyAnnotatedShape a sh:NodeShape ;
+    sh:targetClass agoraowl:DataAsset ;
+    rdfs:label "Semantic annotation shape"@en ;
+    sh:property [
+        sh:path agoraowl:hasFieldMapping ;
+        sh:minCount 1 ;
+        sh:class agoraowl:FieldMapping ;
+        sh:message "A DataAsset with no :hasFieldMapping carries no semantics and can never be matched against an app InputProfile."@en ;
+        sh:severity sh:Warning ;
+    ] .
+
+# The atomic-semantics rules, restated at the connector boundary so a partner
+# can validate an incoming catalogue without loading the whole ontology.
+:PublishedFieldMappingShape a sh:NodeShape ;
+    sh:targetClass agoraowl:FieldMapping ;
+    rdfs:label "Published field mapping shape"@en ;
+    sh:property [
+        sh:path agoraowl:mapsField ;
+        sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "A FieldMapping MUST name exactly one physical field (:mapsField)."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:mapsToSpecification ;
+        sh:minCount 1 ; sh:maxCount 1 ; sh:class agoraowl:DataSpecification ;
+        sh:message "A FieldMapping MUST map to exactly one atomic DataSpecification."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:hasUnit ;
+        sh:maxCount 1 ; sh:nodeKind sh:IRI ;
+        sh:pattern "^http://qudt\\.org/vocab/unit/" ;
+        sh:message "A unit MUST be a canonical QUDT unit IRI (http://qudt.org/vocab/unit/...). Matchmaking compares unit IRIs for exact equality, so variants such as http://www.qudt.org/... silently break every match."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:hasDataType ;
+        sh:maxCount 1 ; sh:nodeKind sh:IRI ;
+        sh:pattern "^http://www\\.w3\\.org/2001/XMLSchema#" ;
+        sh:message ":hasDataType MUST be an XSD datatype IRI."@en ;
+    ] .
+
+:PublishedSpecificationShape a sh:NodeShape ;
+    sh:targetClass agoraowl:DataSpecification ;
+    rdfs:label "Published specification shape"@en ;
+    sh:property [
+        sh:path agoraowl:hasObservableProperty ;
+        sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ;
+        sh:message "An atomic DataSpecification MUST declare exactly one Observable Property. A specification carrying only a Feature of Interest states what is being observed but not what is measured, so it cannot participate in matchmaking."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:hasFeatureOfInterest ;
+        sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ;
+        sh:message "An atomic DataSpecification MUST declare exactly one Feature of Interest."@en ;
+    ] .
+
+
+#################################################################
+#   Denormalisation guard
+#
+#   Connector front-ends copy the semantic values up to the asset level for
+#   faceted search. Reusing the AgoraOWL properties to do it makes an RDFS
+#   reasoner infer that the dataset IS a FieldMapping and IS a
+#   DataSpecification at the same time — which, from AgoraOWL 1.3.0 on, is a
+#   disjointness violation. Use your own index namespace for that instead.
+#################################################################
+
+:NoDenormalisedSemanticsShape a sh:NodeShape ;
+    sh:targetClass dcat:Dataset ;
+    rdfs:label "Denormalisation guard"@en ;
+    sh:property [
+        sh:path agoraowl:mapsField ;
+        sh:maxCount 0 ;
+        sh:message ":mapsField belongs to a FieldMapping, not to the dataset. Copying it up to the asset for search faceting types the dataset as a FieldMapping. Use an index-specific property instead."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:hasObservableProperty ;
+        sh:maxCount 0 ;
+        sh:message ":hasObservableProperty belongs to a DataSpecification, not to the dataset."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:hasFeatureOfInterest ;
+        sh:maxCount 0 ;
+        sh:message ":hasFeatureOfInterest belongs to a DataSpecification, not to the dataset."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:hasUnit ;
+        sh:maxCount 0 ;
+        sh:message ":hasUnit belongs to a FieldMapping, not to the dataset."@en ;
+    ] .
+
+
+#################################################################
+#   Quality evidence on the wire
+#
+#   These rules are duplicated from edaan-shapes.ttl on purpose: the connector
+#   profile MUST be usable stand-alone by a partner who receives a catalogue
+#   and does not load the AgoraOWL authoring shapes.
+#################################################################
+
+:PublishedMetricShape a sh:NodeShape ;
+    sh:targetClass agoraowl:Metric ;
+    rdfs:label "Published metric shape"@en ;
+    sh:property [
+        sh:path agoraowl:metricType ;
+        sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ;
+        sh:message "A Metric MUST declare exactly one :metricType."@en ;
+    ] ;
+    sh:property [
+        sh:path agoraowl:metricValue ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "A Metric MUST carry exactly one :metricValue."@en ;
+    ] ;
+    sh:sparql [
+        sh:message "A quality metric published on the wire MUST be a decimal in [0,1]. Connectors computing percentages (0..100) MUST divide by 100: comparing 93 against a 0.90 threshold succeeds silently and produces false matches."@en ;
+        sh:prefixes <https://w3id.org/AgoraOWL/edc-profile/> ;
+        sh:select """
+            SELECT $this ?value WHERE {
+                $this agoraowl:metricType ?type .
+                FILTER( ?type IN ( agoraowl:Accuracy, agoraowl:Completeness, agoraowl:Uniqueness,
+                                   agoraowl:Consistency, agoraowl:Duplication ) )
+                $this agoraowl:metricValue ?value .
+                FILTER( xsd:decimal(?value) < 0 || xsd:decimal(?value) > 1 )
+            }
+        """ ;
+    ] .

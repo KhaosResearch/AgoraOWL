@@ -1,0 +1,15 @@
+# MUST FAIL: SHACL. Matchmaking compares unit IRIs for exact equality, so the
+# "www." variant of the QUDT namespace breaks every match without any error.
+@prefix agoraowl: <https://w3id.org/AgoraOWL/> .
+@prefix agrovoc:  <http://aims.fao.org/aos/agrovoc/> .
+@prefix ex:       <http://example.org/> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Mapping a agoraowl:FieldMapping ;
+    agoraowl:mapsField "temp_c" ;
+    agoraowl:hasUnit <http://www.qudt.org/vocab/unit/DEG_C> ;
+    agoraowl:mapsToSpecification ex:Spec .
+
+ex:Spec a agoraowl:DataSpecification ;
+    agoraowl:hasFeatureOfInterest agrovoc:c_7550 ;
+    agoraowl:hasObservableProperty agrovoc:c_7657 .
