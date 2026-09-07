@@ -19,6 +19,20 @@ docker_run python3 /app/scripts/check_rdf.py
 echo -e "\n--- 🚀 Running SHACL validation (scripts/validate_shacl.py) ---"
 docker_run python3 /app/scripts/validate_shacl.py
 
+echo -e "\n--- 🚀 Running OWL 2 DL profile validation (ROBOT) ---"
+LATEST_DL=$(ls -d "$ROOT_DIR/src"/*/ 2>/dev/null | xargs -n 1 basename | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
+docker_run java -jar /opt/robot/robot.jar validate-profile --profile DL \
+        --input "/app/src/$LATEST_DL/AgoraOWL.ttl" --output /tmp/dl-core.txt
+if [ -f "$ROOT_DIR/src/$LATEST_DL/alignment.ttl" ]; then
+  docker_run java -jar /opt/robot/robot.jar merge \
+        --input "/app/src/$LATEST_DL/AgoraOWL.ttl" \
+        --input "/app/src/$LATEST_DL/alignment.ttl" \
+        validate-profile --profile DL --output /tmp/dl-merged.txt
+fi
+
+echo -e "\n--- 🚀 Running conformance suite (positives AND negatives) ---"
+docker_run env AGORAOWL_ROBOT_JAR=/opt/robot/robot.jar python3 /app/scripts/conformance_suite.py
+
 echo -e "\n--- 🚀 Running OWL consistency validation (ROBOT) ---"
 # Find latest version folder for ROBOT (which still needs the manual catalog for now)
 LATEST_VERSION=$(ls -d "$ROOT_DIR/src"/*/ 2>/dev/null | xargs -n 1 basename | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
