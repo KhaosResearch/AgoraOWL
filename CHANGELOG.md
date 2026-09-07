@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0](https://github.com/KhaosResearch/AgoraOWL/compare/v1.2.1...v1.3.0) (2026-09-07)
+
+
+### Added
+
+* **ci:** publish alignment module, JSON-LD context, and vocabulary docs ([88d1cd6](https://github.com/KhaosResearch/AgoraOWL/commit/88d1cd6d0635e9e54a6221a212b9433f6a359878))
+* **ontology:** release v1.3.0 with OWL 2 DL conformance and executable matchmaking ([18b284f](https://github.com/KhaosResearch/AgoraOWL/commit/18b284f9f853b96fd736146e7721ad897310862e))
+* **tooling:** add conformance suite, EDC projection, and vocabulary docs generator ([0b7a671](https://github.com/KhaosResearch/AgoraOWL/commit/0b7a6717c0f8fa38b1995f0d385806f81e22a257))
+* **w3id:** add PID resolution rules and redirection verification harness ([fff48fd](https://github.com/KhaosResearch/AgoraOWL/commit/fff48fdd984c620df1a00ed375f7a33be1878ea2))
+
+
+### Fixed
+
+* **compat:** correct stale file paths in ISA testbed config ([4fcf4ea](https://github.com/KhaosResearch/AgoraOWL/commit/4fcf4ea5cb6c9b2494069b39e31cb8e01bd8ecd7))
+
+
+### Changed
+
+* **architecture:** correct the branching model to match actual practice ([daaaad4](https://github.com/KhaosResearch/AgoraOWL/commit/daaaad47f6c076fb93793c647a391d1d42d44d57))
+* update architecture, guides, citation and landing page for v1.3.0 ([ee701b1](https://github.com/KhaosResearch/AgoraOWL/commit/ee701b1c45d29fa10edf65a2c66103460d632adc))
+* validate OWL 2 DL profile, SHACL, and conformance suite on every PR ([c253f00](https://github.com/KhaosResearch/AgoraOWL/commit/c253f00cbc602925fdd1f5c1ff6c37b9ff6753a1))
+
 ## [1.2.1](https://github.com/KhaosResearch/AgoraOWL/compare/v1.2.0...v1.2.1) (2026-07-28)
 
 
