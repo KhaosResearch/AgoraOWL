@@ -1,6 +1,6 @@
-# Ejemplos de Interoperabilidad Semántica y Polimorfismo (v1.2.1)
+# Ejemplos de Interoperabilidad Semántica y Polimorfismo (v1.3.0)
 
-Este documento ilustra cómo la arquitectura de 4 capas de AgoraOWL v1.2.1 permite que un único activo de datos sirva a múltiples aplicaciones de distintos dominios.
+Este documento ilustra cómo la arquitectura de 4 capas de AgoraOWL v1.3.0 permite que un único activo de datos sirva a múltiples aplicaciones de distintos dominios.
 
 ---
 
@@ -134,7 +134,7 @@ ex:AppTrafficControl a agoraowl:DataApp ;
 
 ---
 
-## 3. Beneficios de la Arquitectura v1.2.1
+## 3. Beneficios de la Arquitectura v1.3.0
 
 1.  **Sin Redundancia:** No hace falta crear perfiles específicos para cada combinación de columnas. El `FieldMapping` es granular (por columna).
 2.  **Matchmaking Desacoplado:** Las aplicaciones no necesitan conocer el nombre de la columna (`air_temp` vs `temperature`). Solo buscan por la URI de la `DataSpecification`.

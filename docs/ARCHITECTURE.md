@@ -214,16 +214,51 @@ By reusing the same semantic variable (`DataSpecification`) across supply (Datas
 
 #### 6. Matchmaking Specification (Normative Steps)
 
-To ensure full semantic interoperability, agents MUST follow these validation steps:
+To ensure full semantic interoperability, agents MUST follow these validation steps.
 
-| Step                     | Rule                                                                                                                | Validation Mechanism     |
-| :----------------------- | :------------------------------------------------------------------------------------------------------------------ | :----------------------- |
-| **1. Semantic Match**    | `InputProfile` and `DataProfile` (or `FieldMapping`) MUST share the same `DataSpecification` URI.                   | RDF Graph Query (SPARQL) |
-| **2. Technical Match**   | The `requiresDataType` (in constraints) MUST match the `hasDataType` in the mapping.                                | Exact Match (XSD IRI)    |
-| **3. Unit Matching**     | The `requiresUnit` in the constraint MUST match the `hasUnit` in the mapping.                                       | Exact Match (QUDT IRI)   |
-| **4. Metric Scope**      | The `requiresMetric` (e.g., Daily Average) MUST match the `hasObservationMetric` of the field.                      | SKOS Broader/Exact Match |
-| **5. Quality Threshold** | If present, `constraintOperator` and `expectedValue` MUST be validated against the distribution’s DQV measurements. | SHACL / Logic Validation |
-| **6. Technical Form**    | The distribution MUST conform to the `dct:format` required by the app.                                              | Metadata Check           |
+> **Changed in v1.3.0.** The v1.2.x table referenced two things that did not exist:
+> a property named `expectedValue` (the ontology declares `:constraintValue`) and a
+> required `dct:format` for which no property existed at all. It also left the most
+> important case undefined: what happens when a constraint **cannot be evaluated**
+> because the candidate publishes no corresponding evidence. AgoraOWL's own reference
+> example hit exactly that case - `SmartIrrigatorApp` requires `Accuracy >= 0.90` and
+> the only matching `FieldMapping` in `eo-instances.ttl` carries no `:Metric` at all -
+> so two conformant implementations could return opposite answers for the same pair.
+> `:constraintEnforcement`, `:requiresFormat` and `:requiresMediaType` close the gap.
+
+| Step | Rule | Validation mechanism |
+| :--- | :--- | :--- |
+| **1. Semantic match** | The app's `InputProfile` and the candidate's `FieldMapping` MUST share the same `DataSpecification` IRI. | SPARQL over the catalogue graph |
+| **2. Data type** | If the constraint declares `:requiresDataType`, it MUST equal the mapping's `:hasDataType`. | Exact IRI match (XSD datatype IRIs) |
+| **3. Unit** | If the constraint declares `:requiresUnit`, it MUST equal the mapping's `:hasUnit`. | Exact IRI match. Units MUST use the canonical `http://qudt.org/vocab/unit/` namespace; the `www.` variant is a different IRI and silently breaks every match. |
+| **4. Observation metric** | If the constraint declares `:requiresMetric`, it MUST match the mapping's `:hasObservationMetric`. | SKOS `broader` / exact match |
+| **5. Quality threshold** | If the constraint declares `:constraintValue`, it MUST also declare `:constraintOperator`, and the comparison is made against the `:metricValue` of the mapping's `:Metric` whose `:metricType` equals `:constraintMetricType`. Values of `:Accuracy`, `:Completeness`, `:Uniqueness`, `:Consistency` and `:Duplication` are on the closed unit interval `[0,1]`. | SHACL + SPARQL |
+| **6. Format** | If the constraint declares `:requiresFormat` or `:requiresMediaType`, it MUST match `dct:format` / `dcat:mediaType` of the candidate `Distribution`. | Exact IRI match |
+
+##### 6.1 Unevaluable constraints (normative)
+
+A constraint is **unevaluable** against a candidate when the candidate publishes no
+evidence for it - typically a quality threshold with no corresponding `:Metric`, or a
+`:requiresMetric` with no `:hasObservationMetric`.
+
+* A constraint carrying `:constraintEnforcement :Mandatory` that is unevaluable MUST
+  cause the match to be **rejected**.
+* A constraint carrying `:constraintEnforcement :Preferred`, or **no**
+  `:constraintEnforcement` at all, that is unevaluable MUST **not** reject the match,
+  but the candidate MUST be ranked below any candidate that satisfies it explicitly.
+
+The default is `:Preferred`. This is a deliberate open-world reading: absence of a
+published metric is absence of evidence, not evidence of failure. Publishers who need
+the stricter reading declare it per constraint.
+
+##### 6.2 Scale (normative)
+
+`:metricValue` for any `:UnitIntervalMetric` MUST be a decimal in `[0,1]`. Connectors
+that compute these figures as percentages MUST divide by 100 before publishing.
+Comparing `93` against a `0.90` threshold succeeds silently and is a known source of
+false matches; `shapes/edc-connector-shapes.ttl` rejects it.
+
+---
 
 ## 🏛 Strategic Design Principles
 
@@ -267,6 +302,63 @@ Together, these layers provide a coherent view from real assets and services, th
 
 ---
 
+## 🔒 OWL 2 DL Conformance & Third-Party Alignment (v1.3.0)
+
+Up to v1.2.1, `AgoraOWL.ttl` asserted ~110 `rdfs:domain` / `rdfs:range` axioms over
+properties it does not own — DCAT, DCMI Terms, ODRL, FOAF. Sixteen of them
+contradicted the source vocabulary (e.g. `odrl:permission`, `odrl:prohibition` and
+`odrl:obligation` all shared range `odrl:Rule`, collapsing a distinction policy
+engines depend on), and the ontology itself failed the OWL 2 DL profile (13
+violations: annotation/data-property punning on `dct:modified`, and `rdfs:Resource`
+/ `rdfs:Datatype` used as classes).
+
+**As of v1.3.0:**
+
+- The core ontology asserts **no logical axiom** over a third-party property.
+  `robot validate-profile --profile DL` passes with zero violations.
+- Corrected third-party axioms live in `alignment.ttl`, an **optional, opt-in**
+  module — not imported by the core, so merging AgoraOWL with the real DCAT / ODRL
+  / FOAF graphs no longer changes what those vocabularies mean.
+- The OWL layer gained discriminating power it never had: `owl:AllDisjointClasses`
+  across the structural layers (`DataSpecification`, `FieldMapping`, `DataProfile`,
+  `DataConstraint`, `Metric`) and across `{DataAsset, DataApp}`, plus ten
+  `owl:FunctionalProperty` declarations. Up to v1.2.1 there was not a single
+  disjointness or functional axiom, so a reasoner could not detect a modelling
+  error in any input graph — `robot reason` was a smoke test that could not fail.
+
+SHACL remains the normative validation layer; OWL reasoning is a schema-coherence
+check, not a data-validation mechanism. See `src/1.3.0/README.md` for the full
+list of corrected axioms and `src/1.3.0/examples/negative/` for the fixtures that
+now make the reasoner and the SHACL shapes fail on purpose.
+
+---
+
+## 🔌 Eclipse EDC Connector Profile (v1.3.0)
+
+An asset stored in an [Eclipse EDC](https://projects.eclipse.org/projects/technology.edc)
+connector and the `dcat:Dataset` a partner receives over the Dataspace Protocol are
+**not the same graph**: EDC lifts every `edc:properties` entry to a direct
+predicate of the dataset node it publishes. Validating the Management API
+representation therefore says nothing about what partners actually see.
+
+- **`context.jsonld`**: the JSON-LD context AgoraOWL publishes, consumed by EDC
+  0.18+ via `edc.dataspace.profiles.*.jsonld.context.urls` to compact outgoing DSP
+  messages.
+- **`shapes/edc-connector-shapes.ttl`**: a self-contained SHACL profile that
+  validates the graph a connector actually publishes — including a guard against
+  copying `FieldMapping`/`DataSpecification` properties up to the dataset node for
+  search faceting, which types the dataset as both at once and violates the new
+  disjointness axioms.
+- **`scripts/edc_catalog_projection.py`**: projects a Management API asset payload
+  onto the DSP catalogue graph, reproducing EDC's loss of `@language`/`@type` on
+  scalar asset properties (nested node objects survive intact).
+
+See `src/1.3.0/examples/edc/` for a reference payload and its projection, and
+`src/1.3.0/README.md` for how this was verified against Eclipse EDC Connector
+v0.18.0.
+
+---
+
 ## 📁 Repository Structure & Branching Model
 
 This repository uses a `dev` -> `main` -> `gh-pages` git flow.
@@ -283,7 +375,8 @@ This repository uses a `dev` -> `main` -> `gh-pages` git flow.
 
   - **Structure**:
     - `/src/`
-      - `1.2.1/` (Latest stable ontology and vocabularies)
+      - `1.3.0/` (Latest stable ontology and vocabularies)
+      - `1.2.1/`, `1.2.0/`, ... (Previously released versions, kept immutable)
     - `/.github/workflows/` (The CI/CD workflow)
 
 - **`dev` branch**:
@@ -407,7 +500,7 @@ From the repository root:
 
 ## 🔗 Resolvability (PID)
 
-This repository manages the _source code_. The Persistent Identifiers (PIDs) (e.g., `https://w3id.org/AgoraOWL/...`) are resolved by the `.htaccess` file located in the [w3id.org repository](https://github.com/perma-id/w3id.org/tree/master/AgoraOWL).
+This repository manages the _source code_. The Persistent Identifiers (PIDs) (e.g., `https://w3id.org/AgoraOWL/...`) are resolved by the `.htaccess` file located in the [w3id.org repository](https://github.com/perma-id/w3id.org/tree/master/ids/AgoraOWL).
 
 That `.htaccess` file points all requests to the documentation and files automatically built and published by our CI/CD workflow to the `gh-pages` branch, which is hosted at:
 

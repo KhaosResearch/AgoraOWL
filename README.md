@@ -3,10 +3,11 @@
 [![Deploy Ontology to GitHub Pages](https://github.com/KhaosResearch/AgoraOWL/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/KhaosResearch/AgoraOWL/actions/workflows/deploy-docs.yml)
 [![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-1f6feb)](https://khaosresearch.github.io/AgoraOWL/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
-[![Ontology Version](https://img.shields.io/badge/stable-1.2.1-blue.svg)](src/1.2.1/)
+[![Ontology Version](https://img.shields.io/badge/stable-1.3.0-blue.svg)](src/1.3.0/)
 [![PURL](https://img.shields.io/badge/purl-w3id.org-blue)](https://w3id.org/AgoraOWL/)
-[![SHACL Validation](https://img.shields.io/badge/SHACL-Conformant-success)](src/1.2.1/shapes/edaan-shapes.ttl)
+[![SHACL Validation](https://img.shields.io/badge/SHACL-Conformant-success)](src/1.3.0/shapes/edaan-shapes.ttl)
 [![DCAT-AP-ES Alignment](https://img.shields.io/badge/DCAT--AP--ES-Alignment-brightgreen.svg)](https://github.com/datosgobes/DCAT-AP-ES)
+[![OWL 2 DL](https://img.shields.io/badge/OWL_2-DL_conformant-blueviolet.svg)](src/1.3.0/AgoraOWL.ttl)
 
 > **Sectoral Semantic Interoperability for Data Spaces**: Decoupling domain logic from technical schemas to enable automated matchmaking.
 
@@ -19,7 +20,9 @@
 - **DCAT-AP-ES 1.0.0 & DCAT 3.0 Alignment**: Standardized metadata and local SHACL shapes for validating the supported profile.
 - **Symmetric App Profiling**: Formalized Input and Output ports for DataApps, enabling automated pipeline chaining.
 - **Decoupled Architecture**: Semantic `DataSpecification` is linked to physical `Distribution` through `FieldMappings`, preventing schema leakage.
-- **Technical Matchmaking**: Support for unit-aware, quality-aware, and data-type-aware constraints for formal interoperability.
+- **Technical Matchmaking**: Support for unit-aware, quality-aware, and data-type-aware constraints for formal interoperability, with an explicit enforcement policy for constraints that cannot be evaluated.
+- **OWL 2 DL Conformant**: The core ontology asserts no logical axiom over third-party vocabulary properties; that alignment lives in an optional, opt-in module (`alignment.ttl`).
+- **Eclipse EDC Connector Profile**: A published JSON-LD context and dedicated SHACL shapes validate the `dcat:Dataset` graph an EDC connector actually publishes over the Dataspace Protocol.
 
 ---
 
@@ -79,10 +82,12 @@ AgoraOWL reinforces the **[Marco de Interoperabilidad Técnico (MIT)](https://cr
 
 ## 📘 Documentation
 
-- **[Architecture Guide](docs/ARCHITECTURE.md)**: High-level view of the 4-layer model.
-- **[Semantic Profiling Guide](docs/semantic-profiling-guide.md)**: Detailed matchmaking rules.
+- **[Architecture Guide](docs/ARCHITECTURE.md)**: High-level view of the 4-layer model, OWL 2 DL conformance, and the EDC connector profile.
+- **[Ontology Overview Diagrams (ES)](docs/ONTOLOGY_OVERVIEW_DIAGRAM_ES.md)**: Visual reference for the 4-layer symmetric architecture.
+- **[Semantic Profiling Guide](docs/semantic-profiling-guide.md)**: Detailed matchmaking rules, including constraint enforcement.
 - **[Interoperability Examples (ES)](docs/INTEROPERABILITY_EXAMPLES_ES.md)**: Real-world Spanish scenarios.
-- **[Interactive Documentation (WIDOCO)](https://khaosresearch.github.io/AgoraOWL/v1.2.1/index.html)**.
+- **[Interactive Documentation (WIDOCO)](https://khaosresearch.github.io/AgoraOWL/latest/index-en.html)**.
+- **[Version-specific README (v1.3.0)](src/1.3.0/README.md)**: What changed, why, and how it was verified.
 
 ---
 
