@@ -1,7 +1,4 @@
 # AgoraOWL
-#
-# Ontology for data spaces, aligned with the IDSA Information Model and
-# connected to BIGOWL. Redirects to https://khaosresearch.github.io/AgoraOWL/
 
 Options -MultiViews
 
@@ -96,4 +93,7 @@ RewriteCond %{HTTP_ACCEPT} application/ld\+json
 RewriteRule ^([A-Za-z][A-Za-z0-9_-]*)$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.jsonld [R=303,L]
 
 RewriteCond %{HTTP_ACCEPT} text/turtle
+RewriteRule ^([A-Za-z][A-Za-z0-9_-]*)$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.ttl [R=303,L]
+
+RewriteCond %{REQUEST_URI} !^/(latest|([0-9]+\.[0-9]+\.[0-9]+)|vocabularies)/?$
 RewriteRule ^([A-Za-z][A-Za-z0-9_-]*)$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.ttl [R=303,L]
