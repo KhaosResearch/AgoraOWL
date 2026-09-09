@@ -2,13 +2,6 @@
 #
 # Ontology for data spaces, aligned with the IDSA Information Model and
 # connected to BIGOWL. Redirects to https://khaosresearch.github.io/AgoraOWL/
-#
-# ## Contact
-# This space is administered by:
-#
-# Martin J. Salvachua
-# martinjs@uma.es
-# GitHub username: MartinM10
 
 Options -MultiViews
 
