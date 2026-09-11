@@ -334,7 +334,6 @@
       "@id": "agoraowl:uniquenessRatio",
       "@type": "xsd:decimal"
     },
-    "": "agoraowl:",
     "Accuracy": "agoraowl:Accuracy",
     "Completeness": "agoraowl:Completeness",
     "Consistency": "agoraowl:Consistency",

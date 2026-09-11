@@ -3,7 +3,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix : <> .
 <https://w3id.org/AgoraOWL/1.3.0> a prov:Entity;
-	 dc:title "AgoraOWL Ontology";
+	 dc:title "Ontología AgoraOWL";
 	 prov:wasAttributedTo :agent0;
 	 prov:wasAttributedTo :agent1;
 	 prov:wasAttributedTo :agent2;
@@ -12,5 +12,5 @@
 	 prov:wasGeneratedAt "2025-10-10";
 .
 :agent0 a prov:Agent; foaf:name "https://khaos.uma.es/".
-:agent1 a prov:Agent; foaf:name "https://github.com/MartinM10".
-:agent2 a prov:Agent; foaf:name "https://www.linkedin.com/in/martin-jeronimo-salvachua/".
+:agent1 a prov:Agent; foaf:name "https://www.linkedin.com/in/martin-jeronimo-salvachua/".
+:agent2 a prov:Agent; foaf:name "https://github.com/MartinM10".

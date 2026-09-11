@@ -10,16 +10,16 @@
       "es" : "AgoraOWL"
     },
     "other" : {
-      "image" : [ {
-        "identifier" : "image",
-        "language" : "undefined",
-        "value" : "https://raw.githubusercontent.com/KhaosResearch/AgoraOWL/refs/heads/main/images/eda-an-architecture-en.svg",
-        "type" : "iri"
-      } ],
       "priorVersion" : [ {
         "identifier" : "priorVersion",
         "language" : "undefined",
         "value" : "https://w3id.org/AgoraOWL/1.2.1",
+        "type" : "iri"
+      } ],
+      "image" : [ {
+        "identifier" : "image",
+        "language" : "undefined",
+        "value" : "https://raw.githubusercontent.com/KhaosResearch/AgoraOWL/refs/heads/main/images/eda-an-architecture-en.svg",
         "type" : "iri"
       } ],
       "created" : [ {
@@ -40,10 +40,21 @@
         "value" : "2026-09-07",
         "type" : "label"
       } ],
-      "codeRepository" : [ {
-        "identifier" : "codeRepository",
+      "abstract" : [ {
+        "identifier" : "abstract",
+        "language" : "en",
+        "value" : "Lightweight ontology for data spaces. Version 1.3.0 makes the core OWL 2 DL conformant, adds the disjointness and functional-property axioms that let a reasoner actually detect a modelling error, moves every axiom over third-party properties into an optional alignment module so merging AgoraOWL with DCAT, DCMI, ODRL or FOAF no longer changes their meaning, and closes the matchmaking specification with an explicit enforcement policy for constraints that cannot be evaluated. The modeling follows alignment with DCAT-AP-ES, the CRED model, and the IDSA Information Model to ensure cross-domain semantic interoperability.",
+        "type" : "label"
+      }, {
+        "identifier" : "abstract",
+        "language" : "es",
+        "value" : "Ontología ligera para espacios de datos. La versión 1.3.0 lleva el núcleo al perfil OWL 2 DL, añade los axiomas de disyunción y de propiedades funcionales que permiten a un razonador detectar realmente un error de modelado, traslada todo axioma sobre propiedades de terceros a un módulo de alineamiento opcional para que fusionar AgoraOWL con DCAT, DCMI, ODRL o FOAF no altere su significado, y cierra la especificación de emparejamiento con una política explícita para las restricciones que no se pueden evaluar. El modelado se ha diseñado siguiendo el alineamiento con DCAT-AP-ES, el modelo CRED y el Information Model de IDSA para asegurar la interoperabilidad semántica entre dominios.",
+        "type" : "label"
+      } ],
+      "availability" : [ {
+        "identifier" : "availability",
         "language" : "undefined",
-        "value" : "https://github.com/KhaosResearch/AgoraOWL",
+        "value" : "http://publications.europa.eu/resource/authority/planned-availability/AVAILABLE",
         "type" : "iri"
       } ],
       "bibliographicCitation" : [ {
@@ -52,15 +63,10 @@
         "value" : "Salvachúa Galimberti, M. J.; Khaos Research. (2026). AgoraOWL: An ontology for annotating data-space assets aligned with IDSA and BIGOWL. Version 1.3.0.",
         "type" : "label"
       } ],
-      "abstract" : [ {
-        "identifier" : "abstract",
-        "language" : "es",
-        "value" : "Ontología ligera para espacios de datos. La versión 1.3.0 lleva el núcleo al perfil OWL 2 DL, añade los axiomas de disyunción y de propiedades funcionales que permiten a un razonador detectar realmente un error de modelado, traslada todo axioma sobre propiedades de terceros a un módulo de alineamiento opcional para que fusionar AgoraOWL con DCAT, DCMI, ODRL o FOAF no altere su significado, y cierra la especificación de emparejamiento con una política explícita para las restricciones que no se pueden evaluar. El modelado se ha diseñado siguiendo el alineamiento con DCAT-AP-ES, el modelo CRED y el Information Model de IDSA para asegurar la interoperabilidad semántica entre dominios.",
-        "type" : "label"
-      }, {
-        "identifier" : "abstract",
-        "language" : "en",
-        "value" : "Lightweight ontology for data spaces. Version 1.3.0 makes the core OWL 2 DL conformant, adds the disjointness and functional-property axioms that let a reasoner actually detect a modelling error, moves every axiom over third-party properties into an optional alignment module so merging AgoraOWL with DCAT, DCMI, ODRL or FOAF no longer changes their meaning, and closes the matchmaking specification with an explicit enforcement policy for constraints that cannot be evaluated. The modeling follows alignment with DCAT-AP-ES, the CRED model, and the IDSA Information Model to ensure cross-domain semantic interoperability.",
+      "versionInfo" : [ {
+        "identifier" : "versionInfo",
+        "language" : "undefined",
+        "value" : "1.3.0",
         "type" : "label"
       } ],
       "preferredNamespaceUri" : [ {
@@ -69,16 +75,10 @@
         "value" : "https://w3id.org/AgoraOWL/",
         "type" : "label"
       } ],
-      "versionInfo" : [ {
-        "identifier" : "versionInfo",
+      "codeRepository" : [ {
+        "identifier" : "codeRepository",
         "language" : "undefined",
-        "value" : "1.3.0",
-        "type" : "label"
-      } ],
-      "availability" : [ {
-        "identifier" : "availability",
-        "language" : "undefined",
-        "value" : "http://publications.europa.eu/resource/authority/planned-availability/AVAILABLE",
+        "value" : "https://github.com/KhaosResearch/AgoraOWL",
         "type" : "iri"
       } ],
       "introduction" : [ {
@@ -153,10 +153,10 @@
     "id" : "85",
     "type" : "owl:Class"
   }, {
-    "id" : "122",
+    "id" : "123",
     "type" : "owl:Class"
   }, {
-    "id" : "70",
+    "id" : "69",
     "type" : "owl:Class"
   }, {
     "id" : "136",
@@ -177,7 +177,7 @@
     "id" : "24",
     "type" : "owl:Class"
   }, {
-    "id" : "183",
+    "id" : "185",
     "type" : "owl:Class"
   }, {
     "id" : "153",
@@ -198,7 +198,7 @@
     "id" : "203",
     "type" : "owl:unionOf"
   }, {
-    "id" : "124",
+    "id" : "125",
     "type" : "owl:Class"
   }, {
     "id" : "139",
@@ -210,10 +210,10 @@
     "id" : "209",
     "type" : "owl:unionOf"
   }, {
-    "id" : "42",
+    "id" : "1",
     "type" : "owl:Class"
   }, {
-    "id" : "1",
+    "id" : "42",
     "type" : "owl:Class"
   }, {
     "id" : "149",
@@ -225,61 +225,61 @@
     "id" : "28",
     "type" : "owl:Class"
   }, {
-    "id" : "241",
+    "id" : "237",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "242",
+    "id" : "241",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "187",
     "type" : "owl:unionOf"
   }, {
-    "id" : "248",
+    "id" : "247",
     "type" : "owl:unionOf"
   }, {
     "id" : "188",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "249",
+    "id" : "248",
     "type" : "owl:Class"
   }, {
-    "id" : "251",
+    "id" : "250",
     "type" : "owl:Class"
   }, {
     "id" : "43",
     "type" : "owl:Class"
   }, {
-    "id" : "254",
+    "id" : "253",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "255",
+    "id" : "254",
     "type" : "owl:unionOf"
   }, {
     "id" : "94",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "257",
+    "id" : "256",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "197",
     "type" : "owl:unionOf"
   }, {
-    "id" : "258",
+    "id" : "257",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "247",
+    "id" : "246",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "198",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "259",
+    "id" : "258",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "8",
     "type" : "owl:Class"
   }, {
-    "id" : "260",
+    "id" : "259",
     "type" : "rdfs:Literal"
   }, {
     "id" : "108",
@@ -288,52 +288,52 @@
     "id" : "207",
     "type" : "rdfs:Datatype"
   }, {
+    "id" : "263",
+    "type" : "owl:unionOf"
+  }, {
     "id" : "264",
     "type" : "owl:unionOf"
   }, {
-    "id" : "265",
-    "type" : "owl:unionOf"
-  }, {
-    "id" : "268",
+    "id" : "267",
     "type" : "owl:unionOf"
   }, {
     "id" : "167",
     "type" : "owl:unionOf"
   }, {
-    "id" : "269",
+    "id" : "268",
     "type" : "owl:unionOf"
   }, {
-    "id" : "270",
+    "id" : "269",
     "type" : "owl:unionOf"
   }, {
     "id" : "72",
     "type" : "owl:Class"
   }, {
-    "id" : "69",
+    "id" : "68",
+    "type" : "owl:unionOf"
+  }, {
+    "id" : "270",
     "type" : "owl:unionOf"
   }, {
     "id" : "271",
-    "type" : "owl:unionOf"
+    "type" : "rdfs:Datatype"
   }, {
     "id" : "272",
-    "type" : "rdfs:Datatype"
-  }, {
-    "id" : "273",
     "type" : "owl:unionOf"
   }, {
-    "id" : "274",
+    "id" : "273",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "277",
+    "id" : "276",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "278",
+    "id" : "277",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "103",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "276",
+    "id" : "275",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "83",
@@ -345,67 +345,67 @@
     "id" : "32",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "287",
+    "id" : "286",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "245",
+    "id" : "244",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "29",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "288",
+    "id" : "287",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "289",
+    "id" : "288",
     "type" : "owl:unionOf"
   }, {
-    "id" : "291",
+    "id" : "290",
     "type" : "owl:Class"
   }, {
-    "id" : "297",
+    "id" : "296",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "92",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "300",
+    "id" : "299",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "231",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "300",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "301",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "302",
-    "type" : "rdfs:Datatype"
-  }, {
-    "id" : "303",
     "type" : "owl:unionOf"
   }, {
-    "id" : "304",
+    "id" : "303",
     "type" : "owl:Thing"
   }, {
     "id" : "170",
     "type" : "owl:Class"
   }, {
-    "id" : "201",
+    "id" : "202",
     "type" : "owl:Thing"
   }, {
-    "id" : "211",
+    "id" : "213",
     "type" : "rdfs:Literal"
   }, {
     "id" : "205",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "306",
+    "id" : "305",
     "type" : "rdfs:Literal"
   }, {
     "id" : "194",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "307",
+    "id" : "306",
     "type" : "rdfs:Literal"
   }, {
     "id" : "39",
@@ -420,37 +420,37 @@
     "id" : "88",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "312",
+    "id" : "311",
     "type" : "owl:Class"
   }, {
-    "id" : "316",
+    "id" : "315",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "317",
+    "id" : "316",
     "type" : "rdfs:Literal"
   }, {
     "id" : "75",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "318",
+    "id" : "317",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "319",
+    "id" : "318",
     "type" : "rdfs:Literal"
   }, {
     "id" : "77",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "320",
+    "id" : "319",
     "type" : "rdfs:Literal"
   }, {
     "id" : "57",
     "type" : "rdfs:Literal"
   }, {
-    "id" : "16",
+    "id" : "217",
     "type" : "owl:Class"
   }, {
-    "id" : "217",
+    "id" : "16",
     "type" : "owl:Class"
   }, {
     "id" : "11",
@@ -459,13 +459,13 @@
     "id" : "52",
     "type" : "owl:Thing"
   }, {
-    "id" : "267",
+    "id" : "266",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "323",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "324",
-    "type" : "rdfs:Datatype"
-  }, {
-    "id" : "325",
     "type" : "rdfs:Literal"
   }, {
     "id" : "56",
@@ -480,10 +480,10 @@
     "id" : "228",
     "type" : "owl:Thing"
   }, {
-    "id" : "213",
+    "id" : "211",
     "type" : "owl:Thing"
   }, {
-    "id" : "337",
+    "id" : "336",
     "type" : "rdfs:Literal"
   }, {
     "id" : "141",
@@ -501,10 +501,10 @@
     "id" : "192",
     "type" : "owl:Class"
   }, {
-    "id" : "343",
+    "id" : "342",
     "type" : "owl:Class"
   }, {
-    "id" : "351",
+    "id" : "350",
     "type" : "owl:Class"
   }, {
     "id" : "34",
@@ -513,13 +513,13 @@
     "id" : "40",
     "type" : "owl:Class"
   }, {
+    "id" : "360",
+    "type" : "owl:Class"
+  }, {
     "id" : "361",
     "type" : "owl:Class"
   }, {
-    "id" : "362",
-    "type" : "owl:Class"
-  }, {
-    "id" : "333",
+    "id" : "332",
     "type" : "owl:Class"
   }, {
     "id" : "23",
@@ -528,16 +528,16 @@
     "id" : "86",
     "type" : "owl:Class"
   }, {
-    "id" : "294",
+    "id" : "293",
     "type" : "owl:Class"
   }, {
     "id" : "37",
     "type" : "owl:Class"
   }, {
-    "id" : "375",
+    "id" : "374",
     "type" : "owl:Class"
   }, {
-    "id" : "377",
+    "id" : "376",
     "type" : "owl:Class"
   }, {
     "id" : "45",
@@ -549,10 +549,10 @@
     "id" : "121",
     "type" : "owl:Class"
   }, {
-    "id" : "123",
+    "id" : "124",
     "type" : "owl:Class"
   }, {
-    "id" : "238",
+    "id" : "377",
     "type" : "owl:Class"
   }, {
     "id" : "117",
@@ -609,7 +609,7 @@
     "id" : "404",
     "type" : "rdfs:Datatype"
   }, {
-    "id" : "407",
+    "id" : "408",
     "type" : "rdfs:Datatype"
   }, {
     "id" : "6",
@@ -674,13 +674,13 @@
       "annotations" : {
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Duplicidad",
+          "language" : "en",
+          "value" : "Duplication",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Duplication",
+          "language" : "es",
+          "value" : "Duplicidad",
           "type" : "label"
         } ]
       },
@@ -767,13 +767,13 @@
         } ],
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Unicidad",
+          "language" : "en",
+          "value" : "Uniqueness",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Uniqueness",
+          "language" : "es",
+          "value" : "Unicidad",
           "type" : "label"
         } ]
       },
@@ -792,13 +792,13 @@
       "annotations" : {
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Consistency",
+          "language" : "es",
+          "value" : "Consistencia",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Consistencia",
+          "language" : "en",
+          "value" : "Consistency",
           "type" : "label"
         } ]
       },
@@ -969,13 +969,13 @@
       "en" : "Data Asset",
       "es" : "Activo de Datos"
     },
-    "subClasses" : [ "124" ],
+    "subClasses" : [ "125" ],
     "comment" : {
       "en" : "Specialises ids:DataResource to add the AgoraOWL domain-specific semantic layer. Profiles are linked via ids:representation → dcat:Distribution → hasFieldMapping → mapsToSpecification. Can be linked to the DataApp that generated it using prov:wasGeneratedBy.",
       "es" : "Especializa ids:DataResource para añadir la capa semántica específica de AgoraOWL. Los perfiles se vinculan mediante ids:representation → dcat:Distribution → hasFieldMapping → mapsToSpecification. Puede vincularse a la DataApp que lo generó usando prov:wasGeneratedBy."
     },
-    "id" : "122",
-    "superClasses" : [ "123" ]
+    "id" : "123",
+    "superClasses" : [ "124" ]
   }, {
     "iri" : "http://www.w3.org/ns/org#Organization",
     "baseIri" : "http://www.w3.org/ns/org",
@@ -984,7 +984,7 @@
       "IRI-based" : "Organization"
     },
     "attributes" : [ "external" ],
-    "id" : "70"
+    "id" : "69"
   }, {
     "iri" : "http://purl.org/dc/terms/MediaTypeOrExtent",
     "baseIri" : "http://purl.org/dc/terms",
@@ -1068,7 +1068,7 @@
     "label" : {
       "IRI-based" : "Resource"
     },
-    "subClasses" : [ "170", "123" ],
+    "subClasses" : [ "170", "124" ],
     "attributes" : [ "external" ],
     "id" : "24",
     "superClasses" : [ "101", "129", "158", "22" ]
@@ -1086,7 +1086,7 @@
       "es" : "Una descripción de la extensión de una duración temporal usando términos de calendario/reloj (OWL-Time)."
     },
     "attributes" : [ "external" ],
-    "id" : "183"
+    "id" : "185"
   }, {
     "iri" : "https://w3id.org/idsa/core/RepresentationInstance",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -1127,13 +1127,13 @@
       "annotations" : {
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Duplicidad",
+          "language" : "en",
+          "value" : "Duplication",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Duplication",
+          "language" : "es",
+          "value" : "Duplicidad",
           "type" : "label"
         } ]
       },
@@ -1230,49 +1230,18 @@
         "es" : "Completitud"
       }
     }, {
-      "iri" : "https://w3id.org/AgoraOWL/Uniqueness",
-      "baseIri" : "https://w3id.org/AgoraOWL",
-      "annotations" : {
-        "inScheme" : [ {
-          "identifier" : "inScheme",
-          "language" : "undefined",
-          "value" : "https://w3id.org/AgoraOWL/metric-types",
-          "type" : "iri"
-        } ],
-        "prefLabel" : [ {
-          "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Unicidad",
-          "type" : "label"
-        }, {
-          "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Uniqueness",
-          "type" : "label"
-        } ]
-      },
-      "comment" : {
-        "en" : "Metric representing the degree to which data values are unique.",
-        "es" : "Métrica que representa el grado en que los valores de los datos son únicos."
-      },
-      "labels" : {
-        "IRI-based" : "Uniqueness",
-        "en" : "Uniqueness",
-        "es" : "Unicidad"
-      }
-    }, {
       "iri" : "https://w3id.org/AgoraOWL/Consistency",
       "baseIri" : "https://w3id.org/AgoraOWL",
       "annotations" : {
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Consistency",
+          "language" : "es",
+          "value" : "Consistencia",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Consistencia",
+          "language" : "en",
+          "value" : "Consistency",
           "type" : "label"
         } ]
       },
@@ -1284,6 +1253,37 @@
         "IRI-based" : "Consistency",
         "en" : "Consistency",
         "es" : "Consistencia"
+      }
+    }, {
+      "iri" : "https://w3id.org/AgoraOWL/Uniqueness",
+      "baseIri" : "https://w3id.org/AgoraOWL",
+      "annotations" : {
+        "inScheme" : [ {
+          "identifier" : "inScheme",
+          "language" : "undefined",
+          "value" : "https://w3id.org/AgoraOWL/metric-types",
+          "type" : "iri"
+        } ],
+        "prefLabel" : [ {
+          "identifier" : "prefLabel",
+          "language" : "en",
+          "value" : "Uniqueness",
+          "type" : "label"
+        }, {
+          "identifier" : "prefLabel",
+          "language" : "es",
+          "value" : "Unicidad",
+          "type" : "label"
+        } ]
+      },
+      "comment" : {
+        "en" : "Metric representing the degree to which data values are unique.",
+        "es" : "Métrica que representa el grado en que los valores de los datos son únicos."
+      },
+      "labels" : {
+        "IRI-based" : "Uniqueness",
+        "en" : "Uniqueness",
+        "es" : "Unicidad"
       }
     } ],
     "subClasses" : [ "155", "25" ],
@@ -1336,8 +1336,8 @@
       "en" : "Subclass of DataAsset for data with spatial and temporal coverage, such as Earth Observation data.",
       "es" : "Subclase de DataAsset para datos con cobertura espacial y temporal, como datos de Observación de la Tierra."
     },
-    "id" : "124",
-    "superClasses" : [ "122" ]
+    "id" : "125",
+    "superClasses" : [ "123" ]
   }, {
     "iri" : "http://www.w3.org/ns/dqv#Metric",
     "baseIri" : "http://www.w3.org/ns/dqv",
@@ -1357,12 +1357,27 @@
     },
     "attributes" : [ "external" ],
     "id" : "152",
-    "superClasses" : [ "158", "23", "153" ]
+    "superClasses" : [ "23", "158", "153" ]
   }, {
     "instances" : 0,
     "union" : [ "24", "42", "4" ],
     "attributes" : [ "anonymous", "union" ],
     "id" : "209"
+  }, {
+    "iri" : "https://w3id.org/AgoraOWL/OutputProfile",
+    "baseIri" : "https://w3id.org/AgoraOWL",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "OutputProfile",
+      "en" : "Output Profile",
+      "es" : "Perfil de Salida"
+    },
+    "comment" : {
+      "en" : "Subclass of DataProfile. Defines a structured declaration for a DataApp output port, specifying exactly which DataSpecifications it produces.",
+      "es" : "Subclase de DataProfile. Define una declaración estructurada para un puerto de salida de DataApp, especificando exactamente qué DataSpecifications produce."
+    },
+    "id" : "1",
+    "superClasses" : [ "2" ]
   }, {
     "iri" : "https://w3id.org/AgoraOWL/DataApp",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -1379,21 +1394,6 @@
     },
     "id" : "42",
     "superClasses" : [ "85" ]
-  }, {
-    "iri" : "https://w3id.org/AgoraOWL/OutputProfile",
-    "baseIri" : "https://w3id.org/AgoraOWL",
-    "instances" : 0,
-    "label" : {
-      "IRI-based" : "OutputProfile",
-      "en" : "Output Profile",
-      "es" : "Perfil de Salida"
-    },
-    "comment" : {
-      "en" : "Subclass of DataProfile. Defines a structured declaration for a DataApp output port, specifying exactly which DataSpecifications it produces.",
-      "es" : "Subclase de DataProfile. Define una declaración estructurada para un puerto de salida de DataApp, especificando exactamente qué DataSpecifications produce."
-    },
-    "id" : "1",
-    "superClasses" : [ "2" ]
   }, {
     "instances" : 0,
     "union" : [ "24", "42", "4" ],
@@ -1427,14 +1427,14 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "241",
+    "id" : "237",
     "label" : {
       "IRI-based" : "decimal"
     }
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#duration",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "242",
+    "id" : "241",
     "label" : {
       "IRI-based" : "duration"
     }
@@ -1447,7 +1447,7 @@
     "instances" : 0,
     "union" : [ "24", "42" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "248"
+    "id" : "247"
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#boolean",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
@@ -1463,7 +1463,7 @@
       "IRI-based" : "Geometry"
     },
     "attributes" : [ "external" ],
-    "id" : "249"
+    "id" : "248"
   }, {
     "iri" : "http://purl.org/dc/terms/Location",
     "baseIri" : "http://purl.org/dc/terms",
@@ -1478,7 +1478,7 @@
       "es" : "Una región espacial o lugar con nombre. Usado para la cobertura dct:spatial de datasets (DCAT-AP 3.0)."
     },
     "attributes" : [ "external" ],
-    "id" : "251"
+    "id" : "250"
   }, {
     "iri" : "http://www.opmw.org/ontology/WorkflowTemplate",
     "baseIri" : "http://www.opmw.org/ontology",
@@ -1491,7 +1491,7 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "254",
+    "id" : "253",
     "label" : {
       "IRI-based" : "string"
     }
@@ -1499,7 +1499,7 @@
     "instances" : 0,
     "union" : [ "24", "42" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "255"
+    "id" : "254"
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
     "baseIri" : "http://www.w3.org/2000/01/rdf-schema",
@@ -1511,7 +1511,7 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "257",
+    "id" : "256",
     "label" : {
       "IRI-based" : "dateTime"
     }
@@ -1523,14 +1523,14 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "258",
+    "id" : "257",
     "label" : {
       "IRI-based" : "string"
     }
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "247",
+    "id" : "246",
     "label" : {
       "IRI-based" : "string"
     }
@@ -1544,7 +1544,7 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "259",
+    "id" : "258",
     "label" : {
       "IRI-based" : "string"
     }
@@ -1567,7 +1567,7 @@
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
     "baseIri" : "http://www.w3.org/2000/01/rdf-schema",
-    "id" : "260",
+    "id" : "259",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -1599,17 +1599,17 @@
     "instances" : 0,
     "union" : [ "24", "42" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "264"
+    "id" : "263"
   }, {
     "instances" : 0,
     "union" : [ "42", "6" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "265"
+    "id" : "264"
   }, {
     "instances" : 0,
     "union" : [ "4", "28" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "268"
+    "id" : "267"
   }, {
     "instances" : 0,
     "union" : [ "24", "42" ],
@@ -1617,14 +1617,14 @@
     "id" : "167"
   }, {
     "instances" : 0,
-    "union" : [ "122", "14", "34", "4" ],
+    "union" : [ "123", "14", "34", "4" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "269"
+    "id" : "268"
   }, {
     "instances" : 0,
     "union" : [ "24", "42" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "270"
+    "id" : "269"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/ConstraintEnforcement",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -1668,16 +1668,16 @@
     "instances" : 0,
     "union" : [ "31", "137" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "69"
+    "id" : "68"
   }, {
     "instances" : 0,
     "union" : [ "24", "42" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "271"
+    "id" : "270"
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#dateTime",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "272",
+    "id" : "271",
     "label" : {
       "IRI-based" : "dateTime"
     }
@@ -1685,18 +1685,18 @@
     "instances" : 0,
     "union" : [ "31", "137" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "273"
+    "id" : "272"
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "274",
+    "id" : "273",
     "label" : {
       "IRI-based" : "string"
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
     "baseIri" : "http://www.w3.org/2000/01/rdf-schema",
-    "id" : "277",
+    "id" : "276",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -1704,7 +1704,7 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "278",
+    "id" : "277",
     "label" : {
       "IRI-based" : "string"
     }
@@ -1718,7 +1718,7 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#integer",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "276",
+    "id" : "275",
     "label" : {
       "IRI-based" : "integer"
     }
@@ -1746,14 +1746,14 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#duration",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "287",
+    "id" : "286",
     "label" : {
       "IRI-based" : "duration"
     }
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "245",
+    "id" : "244",
     "label" : {
       "IRI-based" : "decimal"
     }
@@ -1768,7 +1768,7 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "288",
+    "id" : "287",
     "label" : {
       "IRI-based" : "string"
     }
@@ -1776,7 +1776,7 @@
     "instances" : 0,
     "union" : [ "24", "42" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "289"
+    "id" : "288"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/Rule",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
@@ -1791,11 +1791,11 @@
       "es" : "Un concepto abstracto para un Permiso, Prohibición u Obligación (ODRL 2.2)."
     },
     "attributes" : [ "external" ],
-    "id" : "291"
+    "id" : "290"
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "297",
+    "id" : "296",
     "label" : {
       "IRI-based" : "string"
     }
@@ -1809,7 +1809,7 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "300",
+    "id" : "299",
     "label" : {
       "IRI-based" : "string"
     }
@@ -1823,14 +1823,14 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#boolean",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "301",
+    "id" : "300",
     "label" : {
       "IRI-based" : "boolean"
     }
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "302",
+    "id" : "301",
     "label" : {
       "IRI-based" : "string"
     }
@@ -1838,11 +1838,11 @@
     "instances" : 0,
     "union" : [ "24", "42" ],
     "attributes" : [ "anonymous", "union" ],
-    "id" : "303"
+    "id" : "302"
   }, {
     "iri" : "http://www.w3.org/2002/07/owl#Thing",
     "baseIri" : "http://owl2vowl.de",
-    "id" : "304",
+    "id" : "303",
     "label" : {
       "undefined" : "Thing"
     }
@@ -1859,13 +1859,13 @@
   }, {
     "iri" : "http://www.w3.org/2002/07/owl#Thing",
     "baseIri" : "http://owl2vowl.de",
-    "id" : "201",
+    "id" : "202",
     "label" : {
       "undefined" : "Thing"
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "211",
+    "id" : "213",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -1879,7 +1879,7 @@
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "306",
+    "id" : "305",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -1893,7 +1893,7 @@
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "307",
+    "id" : "306",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -1945,17 +1945,17 @@
       "IRI-based" : "Kind"
     },
     "attributes" : [ "external" ],
-    "id" : "312"
+    "id" : "311"
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "316",
+    "id" : "315",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "317",
+    "id" : "316",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -1969,14 +1969,14 @@
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "318",
+    "id" : "317",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "319",
+    "id" : "318",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -1990,7 +1990,7 @@
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "320",
+    "id" : "319",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -2003,6 +2003,15 @@
       "undefined" : "Literal"
     }
   }, {
+    "iri" : "http://xmlns.com/foaf/0.1/Document",
+    "baseIri" : "http://xmlns.com/foaf/0.1",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Document"
+    },
+    "attributes" : [ "external" ],
+    "id" : "217"
+  }, {
     "iri" : "https://w3id.org/idsa/core/SoftwareRepresentation",
     "baseIri" : "https://w3id.org/idsa/core",
     "instances" : 0,
@@ -2013,15 +2022,6 @@
     "attributes" : [ "external" ],
     "id" : "16",
     "superClasses" : [ "14" ]
-  }, {
-    "iri" : "http://xmlns.com/foaf/0.1/Document",
-    "baseIri" : "http://xmlns.com/foaf/0.1",
-    "instances" : 0,
-    "label" : {
-      "IRI-based" : "Document"
-    },
-    "attributes" : [ "external" ],
-    "id" : "217"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#Dataset",
     "baseIri" : "http://www.w3.org/ns/dcat",
@@ -2043,20 +2043,20 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "267",
+    "id" : "266",
     "label" : {
       "IRI-based" : "decimal"
     }
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#string",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "324",
+    "id" : "323",
     "label" : {
       "IRI-based" : "string"
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "325",
+    "id" : "324",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -2104,13 +2104,13 @@
   }, {
     "iri" : "http://www.w3.org/2002/07/owl#Thing",
     "baseIri" : "http://owl2vowl.de",
-    "id" : "213",
+    "id" : "211",
     "label" : {
       "undefined" : "Thing"
     }
   }, {
     "iri" : "http://www.w3.org/2000/01/rdf-schema#Literal",
-    "id" : "337",
+    "id" : "336",
     "label" : {
       "IRI-based" : "Literal",
       "undefined" : "Literal"
@@ -2227,13 +2227,13 @@
       "annotations" : {
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Media Diaria",
+          "language" : "en",
+          "value" : "Daily Average",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Daily Average",
+          "language" : "es",
+          "value" : "Media Diaria",
           "type" : "label"
         } ]
       },
@@ -2272,7 +2272,7 @@
       "en" : "Statistical or aggregation metric of the observation (e.g., DailyAverage, Maximum, Instantaneous).",
       "es" : "Métrica estadística o de agregación de la observación (p. ej., MediaDiaria, Máximo, Instantáneo)."
     },
-    "id" : "343"
+    "id" : "342"
   }, {
     "iri" : "http://purl.org/dc/terms/Frequency",
     "baseIri" : "http://purl.org/dc/terms",
@@ -2287,7 +2287,7 @@
       "es" : "Una tasa a la que algo se repite. Usado para dct:accrualPeriodicity (DCAT-AP 3.0)."
     },
     "attributes" : [ "external" ],
-    "id" : "351"
+    "id" : "350"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/FieldMapping",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -2315,13 +2315,13 @@
       "annotations" : {
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Igual",
+          "language" : "en",
+          "value" : "Equal",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Equal",
+          "language" : "es",
+          "value" : "Igual",
           "type" : "label"
         } ]
       },
@@ -2378,13 +2378,13 @@
       "annotations" : {
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Menor que",
+          "language" : "en",
+          "value" : "Less Than",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Less Than",
+          "language" : "es",
+          "value" : "Menor que",
           "type" : "label"
         } ]
       },
@@ -2399,13 +2399,13 @@
       "annotations" : {
         "prefLabel" : [ {
           "identifier" : "prefLabel",
-          "language" : "en",
-          "value" : "Greater Than",
+          "language" : "es",
+          "value" : "Mayor que",
           "type" : "label"
         }, {
           "identifier" : "prefLabel",
-          "language" : "es",
-          "value" : "Mayor que",
+          "language" : "en",
+          "value" : "Greater Than",
           "type" : "label"
         } ]
       },
@@ -2437,7 +2437,7 @@
       }
     } ],
     "attributes" : [ "external" ],
-    "id" : "361"
+    "id" : "360"
   }, {
     "iri" : "http://www.w3.org/ns/dqv#QualityMetadata",
     "baseIri" : "http://www.w3.org/ns/dqv",
@@ -2446,7 +2446,7 @@
       "IRI-based" : "QualityMetadata"
     },
     "attributes" : [ "external" ],
-    "id" : "362"
+    "id" : "361"
   }, {
     "iri" : "http://purl.org/dc/terms/MediaType",
     "baseIri" : "http://purl.org/dc/terms",
@@ -2455,7 +2455,7 @@
       "IRI-based" : "MediaType"
     },
     "attributes" : [ "external" ],
-    "id" : "333"
+    "id" : "332"
   }, {
     "iri" : "https://w3id.org/idsa/core/Described",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -2485,7 +2485,7 @@
       "IRI-based" : "Interval"
     },
     "attributes" : [ "external" ],
-    "id" : "294"
+    "id" : "293"
   }, {
     "iri" : "http://www.w3.org/2004/02/skos/core#Concept",
     "baseIri" : "http://www.w3.org/2004/02/skos/core",
@@ -2530,7 +2530,7 @@
       "es" : "Un agente (persona, organización, o software) asociado con un recurso como editor, creador o contacto (FOAF / DCAT-AP 3.0)."
     },
     "attributes" : [ "external" ],
-    "id" : "375"
+    "id" : "374"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/Constraint",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
@@ -2545,7 +2545,7 @@
       "es" : "Una expresión booleana que refina la semántica de una Regla ODRL (ODRL 2.2)."
     },
     "attributes" : [ "external" ],
-    "id" : "377"
+    "id" : "376"
   }, {
     "iri" : "https://w3id.org/idsa/core/AppResourceCatalog",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -2589,9 +2589,9 @@
     "label" : {
       "IRI-based" : "DataResource"
     },
-    "subClasses" : [ "122" ],
+    "subClasses" : [ "123" ],
     "attributes" : [ "external" ],
-    "id" : "123",
+    "id" : "124",
     "superClasses" : [ "24" ]
   }, {
     "iri" : "https://w3id.org/BIGOWLData/Data",
@@ -2601,7 +2601,7 @@
       "IRI-based" : "Data"
     },
     "attributes" : [ "external" ],
-    "id" : "238"
+    "id" : "377"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/VerifiableDataSpecification",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -2825,7 +2825,7 @@
   }, {
     "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
     "baseIri" : "http://www.w3.org/2001/XMLSchema",
-    "id" : "407",
+    "id" : "408",
     "label" : {
       "IRI-based" : "decimal"
     }
@@ -2978,7 +2978,7 @@
     "id" : "67",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "68",
+    "id" : "70",
     "type" : "owl:objectProperty"
   }, {
     "id" : "71",
@@ -3050,7 +3050,7 @@
     "id" : "119",
     "type" : "rdfs:SubClassOf"
   }, {
-    "id" : "125",
+    "id" : "122",
     "type" : "owl:objectProperty"
   }, {
     "id" : "126",
@@ -3164,7 +3164,7 @@
     "id" : "182",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "184",
+    "id" : "183",
     "type" : "owl:objectProperty"
   }, {
     "id" : "186",
@@ -3188,7 +3188,7 @@
     "id" : "200",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "202",
+    "id" : "201",
     "type" : "owl:objectProperty"
   }, {
     "id" : "204",
@@ -3201,13 +3201,13 @@
     "type" : "owl:objectProperty"
   }, {
     "id" : "210",
-    "type" : "owl:datatypeProperty"
+    "type" : "owl:objectProperty"
   }, {
     "id" : "168",
     "type" : "owl:objectProperty"
   }, {
     "id" : "212",
-    "type" : "owl:objectProperty"
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "215",
     "type" : "owl:allValuesFrom"
@@ -3219,10 +3219,10 @@
     "type" : "owl:disjointWith"
   }, {
     "id" : "219",
-    "type" : "owl:allValuesFrom"
+    "type" : "owl:disjointWith"
   }, {
     "id" : "220",
-    "type" : "owl:disjointWith"
+    "type" : "owl:allValuesFrom"
   }, {
     "id" : "221",
     "type" : "owl:disjointWith"
@@ -3266,34 +3266,37 @@
     "id" : "236",
     "type" : "owl:disjointWith"
   }, {
-    "id" : "237",
-    "type" : "owl:allValuesFrom"
+    "id" : "238",
+    "type" : "owl:disjointWith"
   }, {
     "id" : "239",
     "type" : "owl:disjointWith"
   }, {
     "id" : "240",
-    "type" : "owl:disjointWith"
-  }, {
-    "id" : "243",
     "type" : "owl:allValuesFrom"
   }, {
-    "id" : "244",
+    "id" : "242",
+    "type" : "owl:allValuesFrom"
+  }, {
+    "id" : "243",
     "type" : "owl:datatypeProperty"
   }, {
-    "id" : "246",
+    "id" : "245",
     "type" : "owl:datatypeProperty"
   }, {
-    "id" : "250",
+    "id" : "249",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "251",
     "type" : "owl:objectProperty"
   }, {
     "id" : "252",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "253",
+    "id" : "255",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "256",
+    "id" : "260",
     "type" : "owl:objectProperty"
   }, {
     "id" : "261",
@@ -3302,17 +3305,17 @@
     "id" : "262",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "263",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "266",
+    "id" : "265",
     "type" : "owl:datatypeProperty"
   }, {
-    "id" : "275",
+    "id" : "274",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "278",
     "type" : "owl:datatypeProperty"
   }, {
     "id" : "279",
-    "type" : "owl:datatypeProperty"
+    "type" : "owl:objectProperty"
   }, {
     "id" : "280",
     "type" : "owl:objectProperty"
@@ -3330,121 +3333,121 @@
     "type" : "owl:objectProperty"
   }, {
     "id" : "285",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "286",
     "type" : "owl:datatypeProperty"
   }, {
-    "id" : "290",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "292",
+    "id" : "289",
     "type" : "owl:objectProperty"
   }, {
     "id" : "135",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "293",
+    "id" : "291",
     "type" : "owl:objectProperty"
+  }, {
+    "id" : "292",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "294",
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "295",
-    "type" : "owl:datatypeProperty"
-  }, {
-    "id" : "296",
     "type" : "owl:objectProperty"
+  }, {
+    "id" : "297",
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "298",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "304",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "307",
     "type" : "owl:datatypeProperty"
-  }, {
-    "id" : "299",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "305",
-    "type" : "owl:objectProperty"
   }, {
     "id" : "308",
     "type" : "owl:datatypeProperty"
   }, {
     "id" : "309",
-    "type" : "owl:datatypeProperty"
+    "type" : "owl:objectProperty"
   }, {
     "id" : "310",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "311",
+    "id" : "313",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "314",
-    "type" : "owl:objectProperty"
+    "id" : "320",
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "321",
     "type" : "owl:datatypeProperty"
   }, {
     "id" : "322",
-    "type" : "owl:datatypeProperty"
+    "type" : "owl:objectProperty"
   }, {
-    "id" : "323",
+    "id" : "325",
     "type" : "owl:objectProperty"
   }, {
     "id" : "326",
-    "type" : "owl:objectProperty"
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "327",
-    "type" : "owl:datatypeProperty"
+    "type" : "owl:objectProperty"
   }, {
     "id" : "328",
-    "type" : "owl:objectProperty"
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "329",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "331",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "333",
     "type" : "owl:datatypeProperty"
-  }, {
-    "id" : "330",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "332",
-    "type" : "owl:objectProperty"
   }, {
     "id" : "334",
-    "type" : "owl:datatypeProperty"
-  }, {
-    "id" : "335",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "336",
+    "id" : "335",
     "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "337",
+    "type" : "owl:objectProperty"
   }, {
     "id" : "338",
     "type" : "owl:objectProperty"
   }, {
     "id" : "339",
-    "type" : "owl:objectProperty"
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "340",
-    "type" : "owl:datatypeProperty"
+    "type" : "owl:objectProperty"
   }, {
     "id" : "341",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "342",
     "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "343",
+    "type" : "owl:objectProperty"
   }, {
     "id" : "344",
-    "type" : "owl:objectProperty"
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "345",
-    "type" : "owl:datatypeProperty"
+    "type" : "owl:objectProperty"
   }, {
     "id" : "346",
-    "type" : "owl:objectProperty"
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "347",
-    "type" : "owl:datatypeProperty"
-  }, {
-    "id" : "348",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "350",
+    "id" : "349",
     "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "351",
+    "type" : "owl:objectProperty"
   }, {
     "id" : "352",
     "type" : "owl:objectProperty"
@@ -3461,25 +3464,25 @@
     "id" : "356",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "357",
+    "id" : "358",
     "type" : "owl:objectProperty"
   }, {
     "id" : "359",
-    "type" : "owl:objectProperty"
+    "type" : "owl:datatypeProperty"
   }, {
-    "id" : "360",
+    "id" : "362",
     "type" : "owl:datatypeProperty"
   }, {
     "id" : "363",
-    "type" : "owl:datatypeProperty"
-  }, {
-    "id" : "364",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "365",
+    "id" : "364",
     "type" : "owl:datatypeProperty"
   }, {
-    "id" : "313",
+    "id" : "312",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "366",
     "type" : "owl:objectProperty"
   }, {
     "id" : "367",
@@ -3489,39 +3492,36 @@
     "type" : "owl:objectProperty"
   }, {
     "id" : "369",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "370",
     "type" : "owl:datatypeProperty"
   }, {
+    "id" : "370",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "348",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "184",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "314",
+    "type" : "owl:objectProperty"
+  }, {
     "id" : "371",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "185",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "349",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "315",
     "type" : "owl:objectProperty"
   }, {
     "id" : "372",
     "type" : "owl:objectProperty"
   }, {
     "id" : "373",
-    "type" : "owl:objectProperty"
-  }, {
-    "id" : "374",
     "type" : "owl:datatypeProperty"
   }, {
-    "id" : "358",
+    "id" : "357",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "366",
+    "id" : "365",
     "type" : "owl:objectProperty"
   }, {
-    "id" : "376",
+    "id" : "375",
     "type" : "owl:datatypeProperty"
   }, {
     "id" : "378",
@@ -3599,11 +3599,11 @@
     "id" : "406",
     "type" : "owl:allValuesFrom"
   }, {
-    "id" : "408",
-    "type" : "owl:objectProperty"
+    "id" : "407",
+    "type" : "owl:allValuesFrom"
   }, {
     "id" : "409",
-    "type" : "owl:allValuesFrom"
+    "type" : "owl:objectProperty"
   }, {
     "id" : "410",
     "type" : "owl:allValuesFrom"
@@ -3611,7 +3611,7 @@
     "id" : "412",
     "type" : "owl:datatypeProperty"
   }, {
-    "id" : "331",
+    "id" : "330",
     "type" : "owl:objectProperty"
   }, {
     "id" : "413",
@@ -3621,10 +3621,10 @@
     "type" : "owl:datatypeProperty"
   }, {
     "id" : "415",
-    "type" : "owl:datatypeProperty"
+    "type" : "owl:objectProperty"
   }, {
     "id" : "416",
-    "type" : "owl:objectProperty"
+    "type" : "owl:datatypeProperty"
   }, {
     "id" : "417",
     "type" : "owl:objectProperty"
@@ -3635,7 +3635,7 @@
   "propertyAttribute" : [ {
     "range" : "2",
     "domain" : "1",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "0"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasDataSpecification",
@@ -3656,37 +3656,37 @@
   }, {
     "range" : "2",
     "domain" : "6",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "5"
   }, {
     "range" : "9",
     "domain" : "8",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "7"
   }, {
     "range" : "9",
     "domain" : "11",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "10"
   }, {
     "range" : "14",
     "domain" : "13",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "12"
   }, {
     "range" : "14",
     "domain" : "16",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "15"
   }, {
     "range" : "19",
     "domain" : "18",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "17"
   }, {
     "range" : "19",
     "domain" : "21",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "20"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/metricValue",
@@ -3788,12 +3788,12 @@
   }, {
     "range" : "46",
     "domain" : "45",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "44"
   }, {
     "range" : "22",
     "domain" : "24",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "47"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasCRS",
@@ -3854,6 +3854,22 @@
     "attributes" : [ "object", "external" ],
     "id" : "65"
   }, {
+    "iri" : "https://w3id.org/AgoraOWL/reportingEntity",
+    "baseIri" : "https://w3id.org/AgoraOWL",
+    "range" : "69",
+    "label" : {
+      "IRI-based" : "reportingEntity",
+      "en" : "reporting entity",
+      "es" : "entidad reportadora"
+    },
+    "domain" : "68",
+    "comment" : {
+      "en" : "The organization that issued the quality or certification report.",
+      "es" : "La organización que emitió el informe de calidad o certificación."
+    },
+    "attributes" : [ "object" ],
+    "id" : "67"
+  }, {
     "iri" : "http://purl.org/dc/terms/language",
     "baseIri" : "http://purl.org/dc/terms",
     "range" : "56",
@@ -3868,23 +3884,7 @@
       "es" : "El idioma del recurso (DCAT-AP 3.0). Usar EU Authority Tables: http://publications.europa.eu/resource/authority/language"
     },
     "attributes" : [ "object", "external" ],
-    "id" : "67"
-  }, {
-    "iri" : "https://w3id.org/AgoraOWL/reportingEntity",
-    "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "70",
-    "label" : {
-      "IRI-based" : "reportingEntity",
-      "en" : "reporting entity",
-      "es" : "entidad reportadora"
-    },
-    "domain" : "69",
-    "comment" : {
-      "en" : "The organization that issued the quality or certification report.",
-      "es" : "La organización que emitió el informe de calidad o certificación."
-    },
-    "attributes" : [ "object" ],
-    "id" : "68"
+    "id" : "70"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/constraintEnforcement",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4038,22 +4038,22 @@
   }, {
     "range" : "11",
     "domain" : "96",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "95"
   }, {
     "range" : "11",
     "domain" : "22",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "97"
   }, {
     "range" : "11",
     "domain" : "99",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "98"
   }, {
     "range" : "101",
     "domain" : "24",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "100"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/recommendedUse",
@@ -4086,37 +4086,37 @@
   }, {
     "range" : "108",
     "domain" : "107",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "106"
   }, {
     "range" : "111",
     "domain" : "110",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "109"
   }, {
     "range" : "13",
     "domain" : "64",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "112"
   }, {
     "range" : "115",
     "domain" : "114",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "113"
   }, {
     "range" : "4",
     "domain" : "117",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "116"
   }, {
     "range" : "16",
     "domain" : "81",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "118"
   }, {
     "range" : "121",
     "domain" : "120",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "119"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/externalQualityReport",
@@ -4133,21 +4133,21 @@
       "es" : "Vincula un recurso con un objeto estructurado que describe un informe de calidad externo."
     },
     "attributes" : [ "object" ],
-    "id" : "125"
+    "id" : "122"
   }, {
-    "range" : "123",
-    "domain" : "122",
-    "attributes" : [ "object", "anonymous" ],
+    "range" : "124",
+    "domain" : "123",
+    "attributes" : [ "anonymous", "object" ],
     "id" : "126"
   }, {
     "range" : "99",
     "domain" : "45",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "127"
   }, {
     "range" : "129",
     "domain" : "24",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "128"
   }, {
     "iri" : "http://www.w3.org/ns/dqv#hasQualityMetadata",
@@ -4168,7 +4168,7 @@
   }, {
     "range" : "132",
     "domain" : "28",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "131"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasOutputProfile",
@@ -4206,27 +4206,27 @@
   }, {
     "range" : "139",
     "domain" : "26",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "138"
   }, {
     "range" : "42",
     "domain" : "141",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "140"
   }, {
     "range" : "42",
     "domain" : "143",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "142"
   }, {
     "range" : "42",
     "domain" : "145",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "144"
   }, {
     "range" : "28",
     "domain" : "78",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "147"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasCertification",
@@ -4247,27 +4247,27 @@
   }, {
     "range" : "86",
     "domain" : "145",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "150"
   }, {
     "range" : "153",
     "domain" : "152",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "151"
   }, {
     "range" : "26",
     "domain" : "155",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "154"
   }, {
     "range" : "26",
     "domain" : "25",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "156"
   }, {
     "range" : "158",
     "domain" : "24",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "157"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#servesDataset",
@@ -4288,7 +4288,7 @@
   }, {
     "range" : "158",
     "domain" : "152",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "162"
   }, {
     "iri" : "https://w3id.org/idsa/core/instance",
@@ -4352,57 +4352,57 @@
   }, {
     "range" : "24",
     "domain" : "170",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "169"
   }, {
     "range" : "24",
-    "domain" : "123",
-    "attributes" : [ "object", "anonymous" ],
+    "domain" : "124",
+    "attributes" : [ "anonymous", "object" ],
     "id" : "171"
   }, {
     "range" : "86",
     "domain" : "141",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "172"
   }, {
     "range" : "86",
     "domain" : "143",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "173"
   }, {
-    "range" : "122",
-    "domain" : "124",
-    "attributes" : [ "object", "anonymous" ],
+    "range" : "123",
+    "domain" : "125",
+    "attributes" : [ "anonymous", "object" ],
     "id" : "174"
   }, {
     "range" : "159",
     "domain" : "160",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "175"
   }, {
     "range" : "23",
     "domain" : "159",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "176"
   }, {
     "range" : "23",
     "domain" : "129",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "177"
   }, {
     "range" : "23",
     "domain" : "22",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "178"
   }, {
     "range" : "23",
     "domain" : "45",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "179"
   }, {
     "range" : "23",
     "domain" : "152",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "180"
   }, {
     "iri" : "http://purl.org/dc/terms/format",
@@ -4445,14 +4445,14 @@
       "en" : "has performance metric",
       "es" : "tiene métrica de rendimiento"
     },
-    "superproperty" : [ "185" ],
+    "superproperty" : [ "184" ],
     "domain" : "42",
     "comment" : {
       "en" : "Links a DataApp to a specific performance metric (e.g., accuracy, execution time).",
       "es" : "Vincula una DataApp con una métrica de rendimiento específica (p. ej., precisión, tiempo de ejecución)."
     },
     "attributes" : [ "object" ],
-    "id" : "184"
+    "id" : "183"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/containsPersonalData",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4472,7 +4472,7 @@
   }, {
     "range" : "192",
     "domain" : "155",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "191"
   }, {
     "iri" : "https://w3id.org/idsa/core/checkSum",
@@ -4487,7 +4487,7 @@
   }, {
     "range" : "85",
     "domain" : "86",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "195"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/auditLogAvailable",
@@ -4508,24 +4508,8 @@
   }, {
     "range" : "85",
     "domain" : "42",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "199"
-  }, {
-    "iri" : "https://w3id.org/AgoraOWL/hasFeatureOfInterest",
-    "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "114",
-    "label" : {
-      "IRI-based" : "hasFeatureOfInterest",
-      "en" : "has feature of interest",
-      "es" : "tiene característica de interés"
-    },
-    "domain" : "201",
-    "comment" : {
-      "en" : "Links a DataAsset, Metric, or DataSpecification to the entity or phenomenon it concerns (e.g., a specific crop or product). Used to define atomic semantic specifications.",
-      "es" : "Vincula un activo de datos, métrica o Perfil de Datos con la entidad o fenómeno sobre el que versa (p. ej., un cultivo específico). Se usa para definir especificaciones semánticas atómicas."
-    },
-    "attributes" : [ "functional", "object" ],
-    "id" : "200"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/producesProfile",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4541,7 +4525,23 @@
       "es" : "OBSOLETO: Use :hasOutputProfile y :hasDataSpecification en su lugar. Vincula una DataApp con un DataSpecification que produce como salida."
     },
     "attributes" : [ "object", "deprecated" ],
-    "id" : "202"
+    "id" : "200"
+  }, {
+    "iri" : "https://w3id.org/AgoraOWL/hasFeatureOfInterest",
+    "baseIri" : "https://w3id.org/AgoraOWL",
+    "range" : "114",
+    "label" : {
+      "IRI-based" : "hasFeatureOfInterest",
+      "en" : "has feature of interest",
+      "es" : "tiene característica de interés"
+    },
+    "domain" : "202",
+    "comment" : {
+      "en" : "Links a DataAsset, Metric, or DataSpecification to the entity or phenomenon it concerns (e.g., a specific crop or product). Used to define atomic semantic specifications.",
+      "es" : "Vincula un activo de datos, métrica o Perfil de Datos con la entidad o fenómeno sobre el que versa (p. ej., un cultivo específico). Se usa para definir especificaciones semánticas atómicas."
+    },
+    "attributes" : [ "functional", "object" ],
+    "id" : "201"
   }, {
     "iri" : "https://w3id.org/idsa/core/endpointURI",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -4585,14 +4585,20 @@
     "attributes" : [ "object" ],
     "id" : "208"
   }, {
-    "iri" : "https://w3id.org/idsa/core/appStorageConfiguration",
-    "baseIri" : "https://w3id.org/idsa/core",
+    "iri" : "https://w3id.org/AgoraOWL/hasMetricUnit",
+    "baseIri" : "https://w3id.org/AgoraOWL",
     "range" : "211",
     "label" : {
-      "IRI-based" : "appStorageConfiguration"
+      "IRI-based" : "hasMetricUnit",
+      "en" : "has metric unit (deprecated)",
+      "es" : "tiene unidad de métrica (obsoleto)"
     },
-    "domain" : "56",
-    "attributes" : [ "datatype", "external" ],
+    "domain" : "28",
+    "comment" : {
+      "en" : "DEPRECATED: Use :hasMetricStandard instead. The unit of measurement for the metric value referencing a URI (e.g., qudt:KiloGM, unit:PERCENT).",
+      "es" : "OBSOLETO: Use :hasMetricStandard en su lugar. La unidad de medida para el valor de la métrica referenciando una URI (p. ej., qudt:KiloGM, unit:PERCENT)."
+    },
+    "attributes" : [ "object", "deprecated" ],
     "id" : "210"
   }, {
     "iri" : "http://purl.org/dc/terms/subject",
@@ -4606,20 +4612,14 @@
     "attributes" : [ "object", "external" ],
     "id" : "168"
   }, {
-    "iri" : "https://w3id.org/AgoraOWL/hasMetricUnit",
-    "baseIri" : "https://w3id.org/AgoraOWL",
+    "iri" : "https://w3id.org/idsa/core/appStorageConfiguration",
+    "baseIri" : "https://w3id.org/idsa/core",
     "range" : "213",
     "label" : {
-      "IRI-based" : "hasMetricUnit",
-      "en" : "has metric unit (deprecated)",
-      "es" : "tiene unidad de métrica (obsoleto)"
+      "IRI-based" : "appStorageConfiguration"
     },
-    "domain" : "28",
-    "comment" : {
-      "en" : "DEPRECATED: Use :hasMetricStandard instead. The unit of measurement for the metric value referencing a URI (e.g., qudt:KiloGM, unit:PERCENT).",
-      "es" : "OBSOLETO: Use :hasMetricStandard en su lugar. La unidad de medida para el valor de la métrica referenciando una URI (p. ej., qudt:KiloGM, unit:PERCENT)."
-    },
-    "attributes" : [ "object", "deprecated" ],
+    "domain" : "56",
+    "attributes" : [ "datatype", "external" ],
     "id" : "212"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasMetric",
@@ -4631,7 +4631,7 @@
       "es" : "tiene métrica"
     },
     "domain" : "34",
-    "subproperty" : [ "184" ],
+    "subproperty" : [ "183" ],
     "comment" : {
       "en" : "Links a FieldMapping, DataSpecification, DataAsset, or Distribution to a quality, performance, or descriptive metric.",
       "es" : "Vincula un FieldMapping, DataSpecification, DataAsset o Distribution con una métrica de calidad, rendimiento o descriptiva."
@@ -4657,8 +4657,13 @@
   }, {
     "range" : "28",
     "domain" : "34",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "218"
+  }, {
+    "range" : "1",
+    "domain" : "6",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "219"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasConstraint",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4675,26 +4680,21 @@
       "es" : "Vincula un requisito de entrada con una restricción técnica o de calidad específica que deben cumplir los datos."
     },
     "attributes" : [ "object", "allValues" ],
-    "id" : "219"
-  }, {
-    "range" : "1",
-    "domain" : "6",
-    "attributes" : [ "object", "anonymous" ],
     "id" : "220"
   }, {
     "range" : "28",
     "domain" : "2",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "221"
   }, {
     "range" : "34",
     "domain" : "2",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "222"
   }, {
     "range" : "28",
     "domain" : "4",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "223"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/permission",
@@ -4715,7 +4715,7 @@
   }, {
     "range" : "34",
     "domain" : "4",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "225"
   }, {
     "iri" : "http://purl.org/dc/terms/license",
@@ -4800,53 +4800,37 @@
   }, {
     "range" : "28",
     "domain" : "39",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "233"
   }, {
     "range" : "34",
     "domain" : "39",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "234"
   }, {
     "range" : "4",
     "domain" : "2",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "235"
   }, {
-    "range" : "122",
+    "range" : "123",
     "domain" : "42",
-    "attributes" : [ "object", "anonymous" ],
+    "attributes" : [ "anonymous", "object" ],
     "id" : "236"
-  }, {
-    "iri" : "https://w3id.org/AgoraOWL/declaresDataClass",
-    "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "238",
-    "label" : {
-      "IRI-based" : "declaresDataClass",
-      "en" : "declares data class",
-      "es" : "declara clase de datos"
-    },
-    "domain" : "14",
-    "comment" : {
-      "en" : "Links a DataSpecification to a BIGOWL Data class (e.g., bigdat:TabularDataSet, bigdat:Image).",
-      "es" : "Vincula un DataSpecification con una clase de Datos BIGOWL (p. ej., bigdat:TabularDataSet, bigdat:Image)."
-    },
-    "attributes" : [ "object", "allValues" ],
-    "id" : "237"
   }, {
     "range" : "4",
     "domain" : "39",
-    "attributes" : [ "object", "anonymous" ],
-    "id" : "239"
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "238"
   }, {
     "range" : "2",
     "domain" : "39",
-    "attributes" : [ "object", "anonymous" ],
-    "id" : "240"
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "239"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#temporalResolution",
     "baseIri" : "http://www.w3.org/ns/dcat",
-    "range" : "242",
+    "range" : "241",
     "label" : {
       "IRI-based" : "temporalResolution",
       "en" : "temporal resolution",
@@ -4857,12 +4841,28 @@
       "en" : "The minimum time period to distinguish between two events (DCAT 3).",
       "es" : "El periodo de tiempo mínimo para distinguir entre dos eventos (DCAT 3)."
     },
-    "attributes" : [ "datatype", "allValues", "external" ],
-    "id" : "243"
+    "attributes" : [ "datatype", "external", "allValues" ],
+    "id" : "240"
+  }, {
+    "iri" : "http://www.w3.org/ns/dcat#spatialResolutionInDegrees",
+    "baseIri" : "http://www.w3.org/ns/dcat",
+    "range" : "237",
+    "label" : {
+      "IRI-based" : "spatialResolutionInDegrees",
+      "en" : "spatial resolution (degrees)",
+      "es" : "resolución espacial (grados)"
+    },
+    "domain" : "14",
+    "comment" : {
+      "en" : "The minimum distance to distinguish two objects, measured in degrees (DCAT 3).",
+      "es" : "La distancia mínima para distinguir dos objetos, medida en grados (DCAT 3)."
+    },
+    "attributes" : [ "datatype", "external", "allValues" ],
+    "id" : "242"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/nullPercentage",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "245",
+    "range" : "244",
     "label" : {
       "IRI-based" : "nullPercentage",
       "en" : "null percentage",
@@ -4874,11 +4874,11 @@
       "es" : "El porcentaje de valores nulos en una columna (0.0 a 1.0)."
     },
     "attributes" : [ "datatype" ],
-    "id" : "244"
+    "id" : "243"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/certificationLevel",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "247",
+    "range" : "246",
     "label" : {
       "IRI-based" : "certificationLevel",
       "en" : "certification level",
@@ -4890,7 +4890,7 @@
       "es" : "El nivel de certificación alcanzado (p. ej., 'Gaia-X Label 1', 'Gold')."
     },
     "attributes" : [ "datatype" ],
-    "id" : "246"
+    "id" : "245"
   }, {
     "iri" : "http://purl.org/dc/terms/accessRights",
     "baseIri" : "http://purl.org/dc/terms",
@@ -4906,7 +4906,7 @@
       "es" : "Información sobre quién puede acceder al recurso o una indicación de su estado de seguridad (DCAT-AP 3.0)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "250"
+    "id" : "249"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasMetricStandard",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4922,7 +4922,7 @@
       "es" : "Vincula una métrica o perfil con el estándar o sistema de referencia utilizado para su valor. Puede ser una unidad de medida (QUDT) o un esquema de conceptos/vocabulario (SKOS). Unifica las propiedades anteriores hasMetricUnit y usesVocabulary."
     },
     "attributes" : [ "object" ],
-    "id" : "252"
+    "id" : "251"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/accessTypeConcept",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4938,7 +4938,7 @@
       "es" : "Vincula un recurso con un concepto SKOS que describe su modo de acceso (p. ej., 'descarga', 'cómputo-in-situ'). Reemplaza la propiedad string obsoleta :accessType."
     },
     "attributes" : [ "object" ],
-    "id" : "253"
+    "id" : "252"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/producesDataRepresentation",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4954,7 +4954,7 @@
       "es" : "Vincula un Componente BIGOWL con una DataRepresentation AgoraOWL que produce como salida. Use esto para flujos de datos."
     },
     "attributes" : [ "object" ],
-    "id" : "256"
+    "id" : "255"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/requiresDataType",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4970,7 +4970,7 @@
       "es" : "Indica un requisito técnico de un tipo de dato específico para el puerto de entrada de la aplicación."
     },
     "attributes" : [ "object" ],
-    "id" : "261"
+    "id" : "260"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/mapsToSpecification",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -4986,7 +4986,7 @@
       "es" : "Vincula un FieldMapping con el DataSpecification atómico reutilizable que instancia para un campo específico."
     },
     "attributes" : [ "functional", "object" ],
-    "id" : "262"
+    "id" : "261"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/requiresUnit",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5002,11 +5002,11 @@
       "es" : "Especifica la unidad de medida (QUDT) requerida por una DataConstraint para el emparejamiento."
     },
     "attributes" : [ "object" ],
-    "id" : "263"
+    "id" : "262"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/uniquenessRatio",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "267",
+    "range" : "266",
     "label" : {
       "IRI-based" : "uniquenessRatio",
       "en" : "uniqueness ratio",
@@ -5018,11 +5018,11 @@
       "es" : "El ratio de valores únicos frente al total de filas en una columna (0.0 a 1.0)."
     },
     "attributes" : [ "datatype" ],
-    "id" : "266"
+    "id" : "265"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/qualityScore",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "276",
+    "range" : "275",
     "label" : {
       "IRI-based" : "qualityScore",
       "en" : "quality score",
@@ -5034,11 +5034,11 @@
       "es" : "Una puntuación de calidad cuantitativa (p. ej., 0-100) asignada por el informe de calidad externo."
     },
     "attributes" : [ "datatype" ],
-    "id" : "275"
+    "id" : "274"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/sampleValue",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "277",
+    "range" : "276",
     "label" : {
       "IRI-based" : "sampleValue",
       "en" : "sample value",
@@ -5050,7 +5050,7 @@
       "es" : "Un valor de muestra representativo para una columna."
     },
     "attributes" : [ "datatype" ],
-    "id" : "279"
+    "id" : "278"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#inSeries",
     "baseIri" : "http://www.w3.org/ns/dcat",
@@ -5066,7 +5066,7 @@
       "es" : "El DatasetSeries al cual pertenece este Dataset (DCAT 3)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "280"
+    "id" : "279"
   }, {
     "iri" : "http://www.w3.org/ns/dqv#hasQualityMeasurement",
     "baseIri" : "http://www.w3.org/ns/dqv",
@@ -5082,7 +5082,7 @@
       "es" : "Vincula metadatos de calidad con una o mas mediciones de calidad (DQV)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "281"
+    "id" : "280"
   }, {
     "iri" : "https://w3id.org/idsa/core/resourceEndpoint",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5092,7 +5092,7 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "282"
+    "id" : "281"
   }, {
     "iri" : "http://purl.org/dc/terms/spatial",
     "baseIri" : "http://purl.org/dc/terms",
@@ -5108,7 +5108,7 @@
       "es" : "La región geográfica cubierta por el Dataset (DCAT-AP 3.0)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "283"
+    "id" : "282"
   }, {
     "iri" : "https://w3id.org/idsa/core/representation",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5118,7 +5118,7 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "284"
+    "id" : "283"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasCredential",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5134,7 +5134,7 @@
       "es" : "Vincula una entidad de espacio de datos con una Credencial Verificable que certifica sus propiedades, métricas de calidad o certificaciones de conformidad."
     },
     "attributes" : [ "object" ],
-    "id" : "285"
+    "id" : "284"
   }, {
     "iri" : "https://www.w3.org/2018/credentials#expirationDate",
     "baseIri" : "https://www.w3.org/2018/credentials",
@@ -5144,7 +5144,7 @@
     },
     "domain" : "56",
     "attributes" : [ "datatype", "external" ],
-    "id" : "286"
+    "id" : "285"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/prohibition",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
@@ -5160,23 +5160,7 @@
       "es" : "Una Regla que prohíbe una Acción sobre un Activo (ODRL 2.2)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "290"
-  }, {
-    "iri" : "https://w3id.org/AgoraOWL/requiresProfile",
-    "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "4",
-    "label" : {
-      "IRI-based" : "requiresProfile",
-      "en" : "requires profile (deprecated)",
-      "es" : "requiere perfil (obsoleto)"
-    },
-    "domain" : "265",
-    "comment" : {
-      "en" : "DEPRECATED: Use :hasInputProfile and :hasDataSpecification instead. Links a DataApp or InputProfile to a DataSpecification it requires as input.",
-      "es" : "OBSOLETO: Use :hasInputProfile y :hasDataSpecification en su lugar. Vincula una DataApp o InputProfile con un DataSpecification que requiere como entrada."
-    },
-    "attributes" : [ "object", "deprecated" ],
-    "id" : "292"
+    "id" : "289"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasDataConstraint",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5195,25 +5179,41 @@
     "attributes" : [ "object", "deprecated" ],
     "id" : "135"
   }, {
+    "iri" : "https://w3id.org/AgoraOWL/requiresProfile",
+    "baseIri" : "https://w3id.org/AgoraOWL",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "requiresProfile",
+      "en" : "requires profile (deprecated)",
+      "es" : "requiere perfil (obsoleto)"
+    },
+    "domain" : "264",
+    "comment" : {
+      "en" : "DEPRECATED: Use :hasInputProfile and :hasDataSpecification instead. Links a DataApp or InputProfile to a DataSpecification it requires as input.",
+      "es" : "OBSOLETO: Use :hasInputProfile y :hasDataSpecification en su lugar. Vincula una DataApp o InputProfile con un DataSpecification que requiere como entrada."
+    },
+    "attributes" : [ "object", "deprecated" ],
+    "id" : "291"
+  }, {
     "iri" : "https://w3id.org/AgoraOWL/hasTemporalCoverage",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "294",
+    "range" : "293",
     "label" : {
       "IRI-based" : "hasTemporalCoverage",
       "en" : "has temporal coverage",
       "es" : "tiene cobertura temporal"
     },
-    "domain" : "124",
+    "domain" : "125",
     "comment" : {
       "en" : "Defines the temporal coverage of the data asset required by Earth Observation CUs.",
       "es" : "Define la cobertura temporal del activo de datos requerido por las CUs de Observación de la Tierra."
     },
     "attributes" : [ "object" ],
-    "id" : "293"
+    "id" : "292"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/appliesToFeature",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "258",
+    "range" : "257",
     "label" : {
       "IRI-based" : "appliesToFeature",
       "en" : "applies to feature (deprecated)",
@@ -5225,7 +5225,7 @@
       "es" : "OBSOLETO: Use :appliesToFeatureConcept para punteros formales a esquema. Indica la característica, columna o atributo específico al que se refiere una métrica (p. ej., 'column_name', 'user.address.city', '$.user.address.city')."
     },
     "attributes" : [ "datatype", "deprecated" ],
-    "id" : "295"
+    "id" : "294"
   }, {
     "iri" : "https://w3id.org/idsa/core/contractOffer",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5235,7 +5235,7 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "296"
+    "id" : "295"
   }, {
     "iri" : "http://purl.org/dc/terms/description",
     "baseIri" : "http://purl.org/dc/terms",
@@ -5251,7 +5251,7 @@
       "es" : "Una descripción del recurso (DCAT-AP 3.0)."
     },
     "attributes" : [ "datatype", "external" ],
-    "id" : "298"
+    "id" : "297"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/assigner",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
@@ -5267,7 +5267,7 @@
       "es" : "La Parte que otorga la Regla (ODRL 2.2)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "299"
+    "id" : "298"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/producesResource",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5283,7 +5283,7 @@
       "es" : "OBSOLETO: Use producesDataRepresentation o producesAppRepresentation en su lugar. Vincula un Componente BIGOWL con una Representación IDSA que produce como salida."
     },
     "attributes" : [ "object", "deprecated" ],
-    "id" : "305"
+    "id" : "304"
   }, {
     "iri" : "https://schema.org/thumbnailUrl",
     "baseIri" : "https://schema.org",
@@ -5293,7 +5293,7 @@
     },
     "domain" : "56",
     "attributes" : [ "datatype", "external" ],
-    "id" : "308"
+    "id" : "307"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#keyword",
     "baseIri" : "http://www.w3.org/ns/dcat",
@@ -5309,7 +5309,7 @@
       "es" : "Una palabra clave o etiqueta que describe el Dataset (DCAT-AP 3.0)."
     },
     "attributes" : [ "datatype", "external" ],
-    "id" : "309"
+    "id" : "308"
   }, {
     "iri" : "http://www.w3.org/ns/adms#status",
     "baseIri" : "http://www.w3.org/ns/adms",
@@ -5325,24 +5325,24 @@
       "es" : "El estado del recurso en un flujo de aprobación/publicación (ADMS). Usar con skos:Concept del vocabulario de estados ADMS."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "310"
+    "id" : "309"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/legalContact",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "312",
+    "range" : "311",
     "label" : {
       "IRI-based" : "legalContact",
       "en" : "legal contact",
       "es" : "contacto legal"
     },
-    "superproperty" : [ "313" ],
-    "domain" : "271",
+    "superproperty" : [ "312" ],
+    "domain" : "270",
     "comment" : {
       "en" : "A specific contact point for legal inquiries about the asset or DataApp.",
       "es" : "Un punto de contacto específico para consultas legales sobre el activo o DataApp."
     },
     "attributes" : [ "object" ],
-    "id" : "311"
+    "id" : "310"
   }, {
     "iri" : "https://w3id.org/idsa/core/listedAppResource",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5351,17 +5351,17 @@
       "IRI-based" : "listedAppResource",
       "en" : "listed AppResource"
     },
-    "superproperty" : [ "315" ],
+    "superproperty" : [ "314" ],
     "domain" : "56",
     "comment" : {
       "en" : "An AppResource that is part of an AppResourceCatalog."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "314"
+    "id" : "313"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/profileTemporalResolution",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "287",
+    "range" : "286",
     "annotations" : {
       "seeAlso" : [ {
         "identifier" : "seeAlso",
@@ -5381,7 +5381,7 @@
       "es" : "Obsoleto. Use dcat:temporalResolution para la resolución temporal de conjuntos de datos/perfiles."
     },
     "attributes" : [ "datatype", "deprecated" ],
-    "id" : "321"
+    "id" : "320"
   }, {
     "iri" : "https://w3id.org/idsa/core/appEnvironmentVariables",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5391,7 +5391,7 @@
     },
     "domain" : "56",
     "attributes" : [ "datatype", "external" ],
-    "id" : "322"
+    "id" : "321"
   }, {
     "iri" : "http://purl.org/dc/terms/creator",
     "baseIri" : "http://purl.org/dc/terms",
@@ -5407,7 +5407,7 @@
       "es" : "Una entidad responsable de crear el recurso (DCAT-AP 3.0 / DCTERMS)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "323"
+    "id" : "322"
   }, {
     "iri" : "https://w3id.org/idsa/core/dataTypeSchema",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5417,11 +5417,11 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "326"
+    "id" : "325"
   }, {
     "iri" : "http://www.w3.org/ns/adms#versionNotes",
     "baseIri" : "http://www.w3.org/ns/adms",
-    "range" : "325",
+    "range" : "324",
     "label" : {
       "IRI-based" : "versionNotes",
       "en" : "version notes",
@@ -5433,7 +5433,7 @@
       "es" : "Una descripción de los cambios entre esta versión y la versión anterior (ADMS)."
     },
     "attributes" : [ "datatype", "external" ],
-    "id" : "327"
+    "id" : "326"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasFieldMapping",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5449,11 +5449,11 @@
       "es" : "Vincula una distribución con un FieldMapping, que mapea un perfil semántico atómico a un campo específico en el archivo físico."
     },
     "attributes" : [ "object" ],
-    "id" : "328"
+    "id" : "327"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/metricUnit",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "300",
+    "range" : "299",
     "label" : {
       "IRI-based" : "metricUnit",
       "en" : "metric unit (deprecated)",
@@ -5465,7 +5465,7 @@
       "es" : "OBSOLETO: Use :hasMetricStandard en su lugar. La unidad de medida para el valor de la métrica (p. ej., '%', 'kg/ha', 'ppm')."
     },
     "attributes" : [ "datatype", "deprecated" ],
-    "id" : "329"
+    "id" : "328"
   }, {
     "iri" : "http://www.w3.org/ns/dqv#isMeasurementOf",
     "baseIri" : "http://www.w3.org/ns/dqv",
@@ -5474,13 +5474,13 @@
       "IRI-based" : "isMeasurementOf"
     },
     "domain" : "56",
-    "subproperty" : [ "331" ],
+    "subproperty" : [ "330" ],
     "attributes" : [ "object", "external" ],
-    "id" : "330"
+    "id" : "329"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/requiresMediaType",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "333",
+    "range" : "332",
     "label" : {
       "IRI-based" : "requiresMediaType",
       "en" : "requires media type",
@@ -5492,17 +5492,17 @@
       "es" : "Tipo de medio IANA exigido por el puerto de entrada de la aplicación, a contrastar con dcat:mediaType de la Distribution candidata."
     },
     "attributes" : [ "object" ],
-    "id" : "332"
+    "id" : "331"
   }, {
     "iri" : "http://www.w3.org/ns/prov#generatedAtTime",
     "baseIri" : "http://www.w3.org/ns/prov",
-    "range" : "320",
+    "range" : "319",
     "label" : {
       "IRI-based" : "generatedAtTime"
     },
     "domain" : "56",
     "attributes" : [ "datatype", "external" ],
-    "id" : "334"
+    "id" : "333"
   }, {
     "iri" : "http://purl.org/dc/terms/source",
     "baseIri" : "http://purl.org/dc/terms",
@@ -5512,11 +5512,11 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "335"
+    "id" : "334"
   }, {
     "iri" : "http://xmlns.com/foaf/0.1/name",
     "baseIri" : "http://xmlns.com/foaf/0.1",
-    "range" : "318",
+    "range" : "317",
     "label" : {
       "IRI-based" : "name",
       "en" : "name",
@@ -5528,7 +5528,7 @@
       "es" : "El nombre de un Agente (persona u organización) (FOAF / DCAT-AP 3.0)."
     },
     "attributes" : [ "datatype", "external" ],
-    "id" : "336"
+    "id" : "335"
   }, {
     "iri" : "https://w3id.org/idsa/core/requiredDataApp",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5538,7 +5538,7 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "338"
+    "id" : "337"
   }, {
     "iri" : "https://w3id.org/idsa/core/appEndpoint",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5548,17 +5548,17 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "339"
+    "id" : "338"
   }, {
     "iri" : "https://w3id.org/idsa/core/fileName",
     "baseIri" : "https://w3id.org/idsa/core",
-    "range" : "319",
+    "range" : "318",
     "label" : {
       "IRI-based" : "fileName"
     },
     "domain" : "56",
     "attributes" : [ "datatype", "external" ],
-    "id" : "340"
+    "id" : "339"
   }, {
     "iri" : "https://w3id.org/idsa/core/dataAppInformation",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5568,11 +5568,11 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "341"
+    "id" : "340"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/refundPolicy",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "278",
+    "range" : "277",
     "label" : {
       "IRI-based" : "refundPolicy",
       "en" : "refund policy",
@@ -5584,7 +5584,7 @@
       "es" : "Una descripción textual de la política de reembolso aplicable al recurso."
     },
     "attributes" : [ "datatype" ],
-    "id" : "342"
+    "id" : "341"
   }, {
     "iri" : "http://www.w3.org/ns/dqv#computedOn",
     "baseIri" : "http://www.w3.org/ns/dqv",
@@ -5600,23 +5600,23 @@
       "es" : "Vincula una medicion de calidad con el recurso sobre el que fue calculada (DQV)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "344"
+    "id" : "343"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/reportDate",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "272",
+    "range" : "271",
     "label" : {
       "IRI-based" : "reportDate",
       "en" : "report date",
       "es" : "fecha del informe"
     },
-    "domain" : "273",
+    "domain" : "272",
     "comment" : {
       "en" : "The date when the report was issued.",
       "es" : "La fecha en que se emitió el informe."
     },
     "attributes" : [ "datatype" ],
-    "id" : "345"
+    "id" : "344"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/target",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
@@ -5632,11 +5632,11 @@
       "es" : "El Activo objetivo de una Regla ODRL (ODRL 2.2)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "346"
+    "id" : "345"
   }, {
     "iri" : "http://purl.org/dc/terms/issued",
     "baseIri" : "http://purl.org/dc/terms",
-    "range" : "317",
+    "range" : "316",
     "label" : {
       "IRI-based" : "issued",
       "en" : "date issued",
@@ -5648,7 +5648,7 @@
       "es" : "La fecha de publicación formal del recurso (DCAT-AP 3.0)."
     },
     "attributes" : [ "datatype", "external" ],
-    "id" : "347"
+    "id" : "346"
   }, {
     "iri" : "http://www.w3.org/ns/prov#wasDerivedFrom",
     "baseIri" : "http://www.w3.org/ns/prov",
@@ -5657,17 +5657,17 @@
       "IRI-based" : "wasDerivedFrom"
     },
     "domain" : "56",
-    "subproperty" : [ "349" ],
+    "subproperty" : [ "348" ],
     "comment" : {
       "en" : "Generic PROV-O derivation relation. Use :assetWasDerivedFrom when both entities are AgoraOWL DataAssets.",
       "es" : "Relación genérica de derivación de PROV-O. Use :assetWasDerivedFrom cuando ambas entidades sean DataAssets de AgoraOWL."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "348"
+    "id" : "347"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/computedAt",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "257",
+    "range" : "256",
     "label" : {
       "IRI-based" : "computedAt",
       "en" : "computed at",
@@ -5679,7 +5679,7 @@
       "es" : "La marca de tiempo que indica cuándo se calculó o validó el valor de la métrica. Alineada con prov:generatedAtTime para interoperabilidad de procedencia."
     },
     "attributes" : [ "datatype" ],
-    "id" : "350"
+    "id" : "349"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/appliesToFeatureConcept",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5695,23 +5695,23 @@
       "es" : "Vincula una métrica con un elemento de esquema formal (como un Concepto SKOS) que describe la característica/columna a la que aplica. Use esto cuando exista una definición de esquema formal. Para strings JSONPath simples, aún puede usarse la obsoleta :appliesToFeature (string)."
     },
     "attributes" : [ "object" ],
-    "id" : "352"
+    "id" : "351"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasSpatialCoverage",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "249",
+    "range" : "248",
     "label" : {
       "IRI-based" : "hasSpatialCoverage",
       "en" : "has spatial coverage",
       "es" : "tiene cobertura espacial"
     },
-    "domain" : "124",
+    "domain" : "125",
     "comment" : {
       "en" : "Defines the spatial coverage of the data asset required by Earth Observation CUs.",
       "es" : "Define la cobertura espacial del activo de datos requerido por las CUs de Observación de la Tierra."
     },
     "attributes" : [ "object" ],
-    "id" : "353"
+    "id" : "352"
   }, {
     "iri" : "https://w3id.org/idsa/core/defaultRepresentation",
     "baseIri" : "https://w3id.org/idsa/core",
@@ -5721,7 +5721,7 @@
     },
     "domain" : "56",
     "attributes" : [ "object", "external" ],
-    "id" : "354"
+    "id" : "353"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/requiresFormat",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5737,7 +5737,7 @@
       "es" : "Formato de fichero exigido por el puerto de entrada de la aplicación, a contrastar con dct:format de la Distribution candidata. El paso 6 de la especificación normativa de matchmaking hacía referencia a este requisito pero no existía ninguna propiedad para expresarlo antes de 1.3.0."
     },
     "attributes" : [ "object" ],
-    "id" : "355"
+    "id" : "354"
   }, {
     "iri" : "http://purl.org/dc/terms/temporal",
     "baseIri" : "http://purl.org/dc/terms",
@@ -5753,7 +5753,7 @@
       "es" : "La cobertura temporal del Dataset o Distribución (DCAT-AP 3.0)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "356"
+    "id" : "355"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#theme",
     "baseIri" : "http://www.w3.org/ns/dcat",
@@ -5762,9 +5762,9 @@
       "IRI-based" : "theme"
     },
     "domain" : "56",
-    "subproperty" : [ "358" ],
+    "subproperty" : [ "357" ],
     "attributes" : [ "object", "external" ],
-    "id" : "357"
+    "id" : "356"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/constraintMetricType",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5780,21 +5780,21 @@
       "es" : "Identifica el tipo de métrica de calidad al que se aplica una restricción."
     },
     "attributes" : [ "object" ],
-    "id" : "359"
+    "id" : "358"
   }, {
     "iri" : "https://w3id.org/idsa/core/appEndpointPort",
     "baseIri" : "https://w3id.org/idsa/core",
-    "range" : "316",
+    "range" : "315",
     "label" : {
       "IRI-based" : "appEndpointPort"
     },
     "domain" : "56",
     "attributes" : [ "datatype", "external" ],
-    "id" : "360"
+    "id" : "359"
   }, {
     "iri" : "http://purl.org/dc/terms/identifier",
     "baseIri" : "http://purl.org/dc/terms",
-    "range" : "306",
+    "range" : "305",
     "label" : {
       "IRI-based" : "identifier",
       "en" : "identifier",
@@ -5806,7 +5806,7 @@
       "es" : "Una referencia inequívoca al recurso dentro de un contexto dado (DCAT-AP 3.0)."
     },
     "attributes" : [ "datatype", "external" ],
-    "id" : "363"
+    "id" : "362"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/hasPolicy",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
@@ -5822,17 +5822,17 @@
       "es" : "Vincula un recurso (Dataset/Distribución) con una Política ODRL que gobierna su uso (modelo CRED)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "364"
+    "id" : "363"
   }, {
     "iri" : "https://w3id.org/idsa/core/appDocumentation",
     "baseIri" : "https://w3id.org/idsa/core",
-    "range" : "307",
+    "range" : "306",
     "label" : {
       "IRI-based" : "appDocumentation"
     },
     "domain" : "56",
     "attributes" : [ "datatype", "external" ],
-    "id" : "365"
+    "id" : "364"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#contactPoint",
     "baseIri" : "http://www.w3.org/ns/dcat",
@@ -5841,9 +5841,9 @@
       "IRI-based" : "contactPoint"
     },
     "domain" : "56",
-    "subproperty" : [ "366", "311" ],
+    "subproperty" : [ "365", "310" ],
     "attributes" : [ "object", "external" ],
-    "id" : "313"
+    "id" : "312"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/consumesResource",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5859,7 +5859,7 @@
       "es" : "OBSOLETO: Use consumesDataRepresentation o consumesAppRepresentation en su lugar. Vincula un Componente BIGOWL con una Representación IDSA que consume como entrada."
     },
     "attributes" : [ "object", "deprecated" ],
-    "id" : "367"
+    "id" : "366"
   }, {
     "iri" : "http://purl.org/dc/terms/rights",
     "baseIri" : "http://purl.org/dc/terms",
@@ -5875,11 +5875,11 @@
       "es" : "Una declaración sobre los derechos de propiedad intelectual sobre la Distribución (DCAT-AP 3.0)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "368"
+    "id" : "367"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasObservationMetric",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "343",
+    "range" : "342",
     "label" : {
       "IRI-based" : "hasObservationMetric",
       "en" : "has observation metric",
@@ -5891,11 +5891,11 @@
       "es" : "Vincula un FieldMapping con la métrica estadística o de agregación de la observación (p. ej., MediaDiaria, Máximo)."
     },
     "attributes" : [ "object" ],
-    "id" : "369"
+    "id" : "368"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/spatialGranularity",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "324",
+    "range" : "323",
     "label" : {
       "IRI-based" : "spatialGranularity",
       "en" : "spatial granularity",
@@ -5903,7 +5903,7 @@
     },
     "domain" : "24",
     "attributes" : [ "datatype", "deprecated" ],
-    "id" : "370"
+    "id" : "369"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/constraint",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
@@ -5919,7 +5919,24 @@
       "es" : "Una restriccion que refina una Regla ODRL (ODRL 2.2)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "371"
+    "id" : "370"
+  }, {
+    "iri" : "https://w3id.org/AgoraOWL/assetWasDerivedFrom",
+    "baseIri" : "https://w3id.org/AgoraOWL",
+    "range" : "123",
+    "label" : {
+      "IRI-based" : "assetWasDerivedFrom",
+      "en" : "asset was derived from",
+      "es" : "activo derivado de"
+    },
+    "superproperty" : [ "347" ],
+    "domain" : "123",
+    "comment" : {
+      "en" : "Links an AgoraOWL DataAsset to another DataAsset from which it was derived.",
+      "es" : "Vincula un DataAsset de AgoraOWL con otro DataAsset del que se derivó."
+    },
+    "attributes" : [ "object" ],
+    "id" : "348"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasMetric",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5929,31 +5946,14 @@
       "en" : "has metric",
       "es" : "tiene métrica"
     },
-    "domain" : "269",
-    "subproperty" : [ "184" ],
+    "domain" : "268",
+    "subproperty" : [ "183" ],
     "comment" : {
       "en" : "Links a FieldMapping, DataSpecification, DataAsset, or Distribution to a quality, performance, or descriptive metric.",
       "es" : "Vincula un FieldMapping, DataSpecification, DataAsset o Distribution con una métrica de calidad, rendimiento o descriptiva."
     },
     "attributes" : [ "object" ],
-    "id" : "185"
-  }, {
-    "iri" : "https://w3id.org/AgoraOWL/assetWasDerivedFrom",
-    "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "122",
-    "label" : {
-      "IRI-based" : "assetWasDerivedFrom",
-      "en" : "asset was derived from",
-      "es" : "activo derivado de"
-    },
-    "superproperty" : [ "348" ],
-    "domain" : "122",
-    "comment" : {
-      "en" : "Links an AgoraOWL DataAsset to another DataAsset from which it was derived.",
-      "es" : "Vincula un DataAsset de AgoraOWL con otro DataAsset del que se derivó."
-    },
-    "attributes" : [ "object" ],
-    "id" : "349"
+    "id" : "184"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#dataset",
     "baseIri" : "http://www.w3.org/ns/dcat",
@@ -5964,13 +5964,13 @@
       "es" : "conjunto de datos"
     },
     "domain" : "56",
-    "subproperty" : [ "314" ],
+    "subproperty" : [ "313" ],
     "comment" : {
       "en" : "Links a Catalog to a Dataset it contains (DCAT-AP 3.0).",
       "es" : "Vincula un Catálogo con un Dataset que contiene (DCAT-AP 3.0)."
     },
     "attributes" : [ "object", "external" ],
-    "id" : "315"
+    "id" : "314"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/consumesAppRepresentation",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -5986,11 +5986,11 @@
       "es" : "Vincula un Componente BIGOWL con una AppRepresentation IDSA que consume. Use esto para flujos de software/apps."
     },
     "attributes" : [ "object" ],
-    "id" : "372"
+    "id" : "371"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasDataType",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "304",
+    "range" : "303",
     "label" : {
       "IRI-based" : "hasDataType",
       "en" : "has data type",
@@ -6002,11 +6002,11 @@
       "es" : "Tipo de dato físico del campo en la distribución (p. ej., xsd:float, xsd:dateTime)."
     },
     "attributes" : [ "functional", "object" ],
-    "id" : "373"
+    "id" : "372"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/metricName",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "297",
+    "range" : "296",
     "label" : {
       "IRI-based" : "metricName",
       "en" : "metric name",
@@ -6019,7 +6019,7 @@
       "es" : "Un nombre o identificador legible para la métrica (p. ej., 'recordCount', 'missing_ratio')."
     },
     "attributes" : [ "datatype" ],
-    "id" : "374"
+    "id" : "373"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasDomainSector",
     "baseIri" : "https://w3id.org/AgoraOWL",
@@ -6029,47 +6029,47 @@
       "en" : "has domain sector",
       "es" : "tiene sector de dominio"
     },
-    "superproperty" : [ "357" ],
-    "domain" : "270",
+    "superproperty" : [ "356" ],
+    "domain" : "269",
     "comment" : {
       "en" : "A sub-property of dcat:theme linking a resource to its domain sector.\n\nRECOMMENDED: Use EU Publications Office Data Theme NAL (DCAT-AP 3.0.1):\n  http://publications.europa.eu/resource/authority/data-theme/AGRI  # Agriculture\n  http://publications.europa.eu/resource/authority/data-theme/ENER  # Energy\n  http://publications.europa.eu/resource/authority/data-theme/HEAL  # Health\n  http://publications.europa.eu/resource/authority/data-theme/TRAN  # Transport\n  http://publications.europa.eu/resource/authority/data-theme/ENVI  # Environment\n  http://publications.europa.eu/resource/authority/data-theme/TECH  # Science/Technology\n\nReference: http://publications.europa.eu/resource/authority/data-theme",
       "es" : "Una sub-propiedad de dcat:theme que vincula un recurso con su sector de dominio.\n\nRECOMENDADO: Usar EU Publications Office Data Theme NAL (DCAT-AP 3.0.1):\n  http://publications.europa.eu/resource/authority/data-theme/AGRI  # Agricultura\n  http://publications.europa.eu/resource/authority/data-theme/ENER  # Energía\n  http://publications.europa.eu/resource/authority/data-theme/HEAL  # Salud\n  http://publications.europa.eu/resource/authority/data-theme/TRAN  # Transporte\n\nReferencia: http://publications.europa.eu/resource/authority/data-theme"
     },
     "attributes" : [ "object" ],
-    "id" : "358"
+    "id" : "357"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/supportContact",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "312",
+    "range" : "311",
     "label" : {
       "IRI-based" : "supportContact",
       "en" : "support contact",
       "es" : "contacto de soporte"
     },
-    "superproperty" : [ "313" ],
-    "domain" : "264",
+    "superproperty" : [ "312" ],
+    "domain" : "263",
     "comment" : {
       "en" : "Standard contact point for support about the asset or DataApp, using vCard.",
       "es" : "Punto de contacto estándar para soporte sobre el activo o DataApp, usando vCard."
     },
     "attributes" : [ "object" ],
-    "id" : "366"
+    "id" : "365"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/knownLimitations",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "302",
+    "range" : "301",
     "label" : {
       "IRI-based" : "knownLimitations",
       "en" : "known limitations",
       "es" : "limitaciones conocidas"
     },
-    "domain" : "303",
+    "domain" : "302",
     "comment" : {
       "en" : "Human-readable description of any known limitations, biases, or quality issues of the asset or DataApp.",
       "es" : "Descripción legible de cualquier limitación conocida, sesgo o problema de calidad del activo o DataApp."
     },
     "attributes" : [ "datatype" ],
-    "id" : "376"
+    "id" : "375"
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/obligation",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
@@ -6089,7 +6089,7 @@
   }, {
     "iri" : "https://w3id.org/AgoraOWL/alternativeName",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "260",
+    "range" : "259",
     "label" : {
       "IRI-based" : "alternativeName",
       "en" : "alternate name",
@@ -6121,7 +6121,7 @@
   }, {
     "iri" : "http://www.w3.org/ns/odrl/2/rightOperand",
     "baseIri" : "http://www.w3.org/ns/odrl/2",
-    "range" : "337",
+    "range" : "336",
     "label" : {
       "IRI-based" : "rightOperand",
       "en" : "right operand",
@@ -6179,7 +6179,7 @@
   }, {
     "iri" : "https://w3id.org/AgoraOWL/declaresDataClass",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "238",
+    "range" : "377",
     "label" : {
       "IRI-based" : "declaresDataClass",
       "en" : "declares data class",
@@ -6211,13 +6211,13 @@
   }, {
     "iri" : "https://w3id.org/AgoraOWL/collectionMethod",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "254",
+    "range" : "253",
     "label" : {
       "IRI-based" : "collectionMethod",
       "en" : "collection method",
       "es" : "método de recolección"
     },
-    "domain" : "255",
+    "domain" : "254",
     "comment" : {
       "en" : "The method used to collect the data or the App's acquisition mode (e.g., 'sensor', 'survey', 'satellite').",
       "es" : "El método utilizado para recolectar los datos o el modo de adquisición de la App (p. ej., 'sensor', 'encuesta', 'satélite')."
@@ -6227,13 +6227,13 @@
   }, {
     "iri" : "https://w3id.org/AgoraOWL/usesVocabulary",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "361",
+    "range" : "360",
     "label" : {
       "IRI-based" : "usesVocabulary",
       "en" : "uses vocabulary (deprecated)",
       "es" : "usa vocabulario (obsoleto)"
     },
-    "domain" : "268",
+    "domain" : "267",
     "comment" : {
       "en" : "DEPRECATED: Use :hasMetricStandard instead. Links a profile or a metric to a concept scheme (controlled vocabulary) that defines the allowed values for the data (e.g., a SIEX or AGROVOC thesaurus). Useful for categorical columns.",
       "es" : "OBSOLETO: Use :hasMetricStandard en su lugar. Vincula un perfil o una métrica con un esquema de conceptos (vocabulario controlado) que define los valores permitidos para los datos (p. ej., un tesauro SIEX o AGROVOC). Útil para columnas categóricas."
@@ -6253,13 +6253,13 @@
   }, {
     "iri" : "https://w3id.org/AgoraOWL/isAlive",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "301",
+    "range" : "300",
     "label" : {
       "IRI-based" : "isAlive",
       "en" : "is alive",
       "es" : "está activo"
     },
-    "domain" : "248",
+    "domain" : "247",
     "comment" : {
       "en" : "Indicates if the asset or App is actively maintained and expects future updates.",
       "es" : "Indica si el activo o la App se mantiene activamente y espera actualizaciones futuras."
@@ -6369,20 +6369,20 @@
     "attributes" : [ "object", "external" ],
     "id" : "399"
   }, {
-    "iri" : "http://www.w3.org/ns/dcat#spatialResolutionInMeters",
+    "iri" : "http://www.w3.org/ns/dcat#spatialResolutionInDegrees",
     "baseIri" : "http://www.w3.org/ns/dcat",
     "range" : "401",
     "label" : {
-      "IRI-based" : "spatialResolutionInMeters",
-      "en" : "spatial resolution (meters)",
-      "es" : "resolución espacial (metros)"
+      "IRI-based" : "spatialResolutionInDegrees",
+      "en" : "spatial resolution (degrees)",
+      "es" : "resolución espacial (grados)"
     },
     "domain" : "11",
     "comment" : {
-      "en" : "The minimum distance to distinguish two objects, measured in meters (DCAT 3).",
-      "es" : "La distancia mínima para distinguir dos objetos, medida en metros (DCAT 3)."
+      "en" : "The minimum distance to distinguish two objects, measured in degrees (DCAT 3).",
+      "es" : "La distancia mínima para distinguir dos objetos, medida en grados (DCAT 3)."
     },
-    "attributes" : [ "datatype", "allValues", "external" ],
+    "attributes" : [ "datatype", "external", "allValues" ],
     "id" : "400"
   }, {
     "iri" : "http://www.w3.org/ns/dcat#accessURL",
@@ -6414,7 +6414,7 @@
       "en" : "The minimum time period to distinguish between two events (DCAT 3).",
       "es" : "El periodo de tiempo mínimo para distinguir entre dos eventos (DCAT 3)."
     },
-    "attributes" : [ "datatype", "allValues", "external" ],
+    "attributes" : [ "datatype", "external", "allValues" ],
     "id" : "403"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/hasMetric",
@@ -6426,7 +6426,7 @@
       "es" : "tiene métrica"
     },
     "domain" : "14",
-    "subproperty" : [ "184" ],
+    "subproperty" : [ "183" ],
     "comment" : {
       "en" : "Links a FieldMapping, DataSpecification, DataAsset, or Distribution to a quality, performance, or descriptive metric.",
       "es" : "Vincula un FieldMapping, DataSpecification, DataAsset o Distribution con una métrica de calidad, rendimiento o descriptiva."
@@ -6434,9 +6434,25 @@
     "attributes" : [ "object", "allValues" ],
     "id" : "405"
   }, {
+    "iri" : "https://w3id.org/AgoraOWL/declaresDataClass",
+    "baseIri" : "https://w3id.org/AgoraOWL",
+    "range" : "377",
+    "label" : {
+      "IRI-based" : "declaresDataClass",
+      "en" : "declares data class",
+      "es" : "declara clase de datos"
+    },
+    "domain" : "14",
+    "comment" : {
+      "en" : "Links a DataSpecification to a BIGOWL Data class (e.g., bigdat:TabularDataSet, bigdat:Image).",
+      "es" : "Vincula un DataSpecification con una clase de Datos BIGOWL (p. ej., bigdat:TabularDataSet, bigdat:Image)."
+    },
+    "attributes" : [ "object", "allValues" ],
+    "id" : "406"
+  }, {
     "iri" : "http://www.w3.org/ns/dcat#spatialResolutionInMeters",
     "baseIri" : "http://www.w3.org/ns/dcat",
-    "range" : "407",
+    "range" : "408",
     "label" : {
       "IRI-based" : "spatialResolutionInMeters",
       "en" : "spatial resolution (meters)",
@@ -6447,12 +6463,12 @@
       "en" : "The minimum distance to distinguish two objects, measured in meters (DCAT 3).",
       "es" : "La distancia mínima para distinguir dos objetos, medida en metros (DCAT 3)."
     },
-    "attributes" : [ "datatype", "allValues", "external" ],
-    "id" : "406"
+    "attributes" : [ "datatype", "external", "allValues" ],
+    "id" : "407"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/requiresMetric",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "343",
+    "range" : "342",
     "label" : {
       "IRI-based" : "requiresMetric",
       "en" : "requires metric",
@@ -6464,43 +6480,27 @@
       "es" : "Especifica la métrica de observación (p. ej., MediaDiaria) requerida por una DataConstraint para el emparejamiento."
     },
     "attributes" : [ "object" ],
-    "id" : "408"
-  }, {
-    "iri" : "http://www.w3.org/ns/dcat#spatialResolutionInDegrees",
-    "baseIri" : "http://www.w3.org/ns/dcat",
-    "range" : "241",
-    "label" : {
-      "IRI-based" : "spatialResolutionInDegrees",
-      "en" : "spatial resolution (degrees)",
-      "es" : "resolución espacial (grados)"
-    },
-    "domain" : "14",
-    "comment" : {
-      "en" : "The minimum distance to distinguish two objects, measured in degrees (DCAT 3).",
-      "es" : "La distancia mínima para distinguir dos objetos, medida en grados (DCAT 3)."
-    },
-    "attributes" : [ "datatype", "allValues", "external" ],
     "id" : "409"
   }, {
-    "iri" : "http://www.w3.org/ns/dcat#spatialResolutionInDegrees",
+    "iri" : "http://www.w3.org/ns/dcat#spatialResolutionInMeters",
     "baseIri" : "http://www.w3.org/ns/dcat",
     "range" : "411",
     "label" : {
-      "IRI-based" : "spatialResolutionInDegrees",
-      "en" : "spatial resolution (degrees)",
-      "es" : "resolución espacial (grados)"
+      "IRI-based" : "spatialResolutionInMeters",
+      "en" : "spatial resolution (meters)",
+      "es" : "resolución espacial (metros)"
     },
     "domain" : "11",
     "comment" : {
-      "en" : "The minimum distance to distinguish two objects, measured in degrees (DCAT 3).",
-      "es" : "La distancia mínima para distinguir dos objetos, medida en grados (DCAT 3)."
+      "en" : "The minimum distance to distinguish two objects, measured in meters (DCAT 3).",
+      "es" : "La distancia mínima para distinguir dos objetos, medida en metros (DCAT 3)."
     },
-    "attributes" : [ "datatype", "allValues", "external" ],
+    "attributes" : [ "datatype", "external", "allValues" ],
     "id" : "410"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/securityClassification",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "274",
+    "range" : "273",
     "label" : {
       "IRI-based" : "securityClassification",
       "en" : "security classification",
@@ -6522,18 +6522,18 @@
       "en" : "metric type",
       "es" : "tipo de métrica"
     },
-    "superproperty" : [ "330" ],
+    "superproperty" : [ "329" ],
     "domain" : "28",
     "comment" : {
       "en" : "Links a Metric measurement to a standardized MetricType definition from the controlled vocabulary. Aligned with dqv:isMeasurementOf for DQV interoperability.",
       "es" : "Vincula una medición de Métrica con una definición de MetricType estandarizada del vocabulario controlado. Alineada con dqv:isMeasurementOf para interoperabilidad DQV."
     },
     "attributes" : [ "functional", "object" ],
-    "id" : "331"
+    "id" : "330"
   }, {
     "iri" : "https://w3id.org/AgoraOWL/anonymizationTechnique",
     "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "259",
+    "range" : "258",
     "label" : {
       "IRI-based" : "anonymizationTechnique",
       "en" : "anonymization technique",
@@ -6557,22 +6557,6 @@
     "attributes" : [ "datatype", "external" ],
     "id" : "414"
   }, {
-    "iri" : "https://w3id.org/AgoraOWL/paymentModelDescription",
-    "baseIri" : "https://w3id.org/AgoraOWL",
-    "range" : "288",
-    "label" : {
-      "IRI-based" : "paymentModelDescription",
-      "en" : "payment model description",
-      "es" : "descripción del modelo de pago"
-    },
-    "domain" : "289",
-    "comment" : {
-      "en" : "A human-readable description of the pricing or payment model (e.g., 'Monthly Subscription', 'Pay-per-use') for the asset or App.",
-      "es" : "Una descripción legible del modelo de precios o pago (p. ej., 'Suscripción Mensual', 'Pago por uso') para el activo o App."
-    },
-    "attributes" : [ "datatype" ],
-    "id" : "415"
-  }, {
     "iri" : "https://w3id.org/AgoraOWL/consumesDataRepresentation",
     "baseIri" : "https://w3id.org/AgoraOWL",
     "range" : "64",
@@ -6587,6 +6571,22 @@
       "es" : "Vincula un Componente BIGOWL con una DataRepresentation AgoraOWL que consume como entrada. Use esto para flujos de datos."
     },
     "attributes" : [ "object" ],
+    "id" : "415"
+  }, {
+    "iri" : "https://w3id.org/AgoraOWL/paymentModelDescription",
+    "baseIri" : "https://w3id.org/AgoraOWL",
+    "range" : "287",
+    "label" : {
+      "IRI-based" : "paymentModelDescription",
+      "en" : "payment model description",
+      "es" : "descripción del modelo de pago"
+    },
+    "domain" : "288",
+    "comment" : {
+      "en" : "A human-readable description of the pricing or payment model (e.g., 'Monthly Subscription', 'Pay-per-use') for the asset or App.",
+      "es" : "Una descripción legible del modelo de precios o pago (p. ej., 'Suscripción Mensual', 'Pago por uso') para el activo o App."
+    },
+    "attributes" : [ "datatype" ],
     "id" : "416"
   }, {
     "iri" : "http://purl.org/dc/terms/type",
