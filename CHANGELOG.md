@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1](https://github.com/KhaosResearch/AgoraOWL/compare/v1.3.0...v1.3.1) (2026-09-11)
+
+
+### Fixed
+
+* **context:** remove the invalid empty-string term definition ([55fd54b](https://github.com/KhaosResearch/AgoraOWL/commit/55fd54b695cd2346418fd677bf9da0e0e2ae454e))
+
+
+### Changed
+
+* **deploy-docs:** allow republishing an existing version on demand ([85b349f](https://github.com/KhaosResearch/AgoraOWL/commit/85b349f2a4e536c6f16615a024ad726a81894924))
+
 ## [1.3.0](https://github.com/KhaosResearch/AgoraOWL/compare/v1.2.1...v1.3.0) (2026-09-07)
 
 
