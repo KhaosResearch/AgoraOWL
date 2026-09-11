@@ -13,6 +13,8 @@
 /AgoraOWL/DataApp	text/turtle	curl/8	GH/latest/ontology.ttl	NEW term, turtle (404 today)
 /AgoraOWL/DataApp	application/rdf+xml	curl/8	GH/latest/ontology.owl	NEW term, rdf-xml (404 today)
 /AgoraOWL/hasFieldMapping	application/ld+json	curl/8	GH/latest/ontology.jsonld	NEW term, json-ld (404 today)
+/AgoraOWL/DataApp	*/*	curl/8	GH/latest/ontology.ttl	FIX term, generic Accept (curl default) was 404
+/AgoraOWL/DataApp	application/json	curl/8	GH/latest/ontology.ttl	FIX term, unrecognised Accept type was 404
 /AgoraOWL/context.jsonld	application/ld+json	curl/8	GH/latest/context.jsonld	NEW EDC fetches this
 /AgoraOWL/context.jsonld	*/*	curl/8	GH/latest/context.jsonld	NEW no accept header
 /AgoraOWL/context.jsonld	text/html	Mozilla/5.0	GH/latest/context.jsonld	NEW browser gets the file too

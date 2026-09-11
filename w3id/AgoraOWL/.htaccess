@@ -1,26 +1,7 @@
-# =============================================================================
-# AgoraOWL - https://w3id.org/AgoraOWL
-#
-# Ontology for data spaces, aligned with the IDSA Information Model and
-# connected to BIGOWL. Targets are served from GitHub Pages.
-#
-#   Source    : https://github.com/KhaosResearch/AgoraOWL
-#   Targets   : https://khaosresearch.github.io/AgoraOWL/
-#   Maintainer: Martin J. Salvachua (@MartinM10)
-#               martinjs@uma.es / martin.salvachua1@gmail.com
-#               Khaos Research, Universidad de Malaga
-#
-# These rules were tested against a local Apache 2.4 checkout configured the
-# same way this service is (per-directory .htaccess, mod_rewrite,
-# AllowOverride All). The harness lives in the AgoraOWL repository under
-# w3id/simulation/ and asserts the Location header for every path and Accept
-# combination, plus fragment resolution in a real headless browser.
-# =============================================================================
+# AgoraOWL
 
-# Turn off MultiViews
 Options -MultiViews
 
-# Add content types for RDF serializations
 AddType application/rdf+xml .rdf
 AddType application/rdf+xml .owl
 AddType text/turtle .ttl
@@ -30,65 +11,31 @@ AddType application/ld+json .jsonld
 RewriteEngine On
 RewriteBase /
 
-# =============================================================================
-# Rule 0 (NEW in AgoraOWL 1.3.0): distribution artefacts
-#
-#   /context.jsonld          -> latest/context.jsonld
-#   /X.Y.Z/context.jsonld    -> that version
-#   /alignment.ttl           -> latest/alignment.ttl
-#   /X.Y.Z/alignment.ttl     -> that version
-#
-# The JSON-LD context is fetched by Eclipse EDC 0.18+ when a dataspace registers
-# AgoraOWL through edc.dataspace.profiles.*.jsonld.context.urls, so it must
-# resolve for non-browser clients too. These rules MUST precede the generic term
-# rule below, which would otherwise swallow them.
-# =============================================================================
-
+# Distribution artefacts (JSON-LD context, alignment module)
 RewriteRule ^(latest|[0-9]+\.[0-9]+\.[0-9]+)/(context\.jsonld|alignment\.ttl)$ https://khaosresearch.github.io/AgoraOWL/$1/$2 [R=303,L]
 RewriteRule ^(context\.jsonld|alignment\.ttl)$ https://khaosresearch.github.io/AgoraOWL/latest/$1 [R=303,L]
 
-# =============================================================================
-# Rule 1: Vocabularies
-#
-# CHANGED in AgoraOWL 1.3.0. Previously this always served raw Turtle, so a
-# concept fragment such as
-#     https://w3id.org/AgoraOWL/vocabularies/observed-properties#ndvi
-# landed in a plain text file with no way to reach the concept. A fragment is
-# never sent to the server, so the landing page has to resolve it: browsers now
-# get the generated HTML documentation, which carries one anchor per concept.
-#
-# Unversioned vocabulary PIDs (no version segment) are also NEW: concept IRIs
-# must not change between releases, so the identity of a concept lives at
-# /vocabularies/<name>#<id> and the versioned path is only a document location.
-# =============================================================================
-
-# 1z. Vocabulary index.
+# Vocabulary index
 RewriteRule ^(latest|[0-9]+\.[0-9]+\.[0-9]+)/vocabularies/?$ https://khaosresearch.github.io/AgoraOWL/$1/vocabularies/index.html [R=303,L]
 RewriteRule ^vocabularies/?$ https://khaosresearch.github.io/AgoraOWL/latest/vocabularies/index.html [R=303,L]
 
-# 1a. Explicit extension wins over negotiation, versioned or not.
+# Vocabularies: explicit extension
 RewriteRule ^(latest|[0-9]+\.[0-9]+\.[0-9]+)/vocabularies/([A-Za-z0-9_-]+)\.(ttl|html)$ https://khaosresearch.github.io/AgoraOWL/$1/vocabularies/$2.$3 [R=303,L]
 RewriteRule ^vocabularies/([A-Za-z0-9_-]+)\.(ttl|html)$ https://khaosresearch.github.io/AgoraOWL/latest/vocabularies/$1.$2 [R=303,L]
 
-# 1b. Versioned vocabulary, HTML request -> documentation page (fragments resolve here).
+# Vocabularies: content negotiation, versioned
 RewriteCond %{HTTP_ACCEPT} (text/html|application/xhtml\+xml) [OR]
 RewriteCond %{HTTP_USER_AGENT} ^Mozilla/
 RewriteRule ^(latest|[0-9]+\.[0-9]+\.[0-9]+)/vocabularies/([A-Za-z0-9_-]+)$ https://khaosresearch.github.io/AgoraOWL/$1/vocabularies/$2.html [R=303,L]
-
-# 1c. Versioned vocabulary, anything else -> Turtle (previous behaviour, preserved).
 RewriteRule ^(latest|[0-9]+\.[0-9]+\.[0-9]+)/vocabularies/([A-Za-z0-9_-]+)$ https://khaosresearch.github.io/AgoraOWL/$1/vocabularies/$2.ttl [R=303,L]
 
-# 1d. Unversioned vocabulary -> latest, same negotiation.
+# Vocabularies: content negotiation, unversioned -> latest
 RewriteCond %{HTTP_ACCEPT} (text/html|application/xhtml\+xml) [OR]
 RewriteCond %{HTTP_USER_AGENT} ^Mozilla/
 RewriteRule ^vocabularies/([A-Za-z0-9_-]+)$ https://khaosresearch.github.io/AgoraOWL/latest/vocabularies/$1.html [R=303,L]
-
 RewriteRule ^vocabularies/([A-Za-z0-9_-]+)$ https://khaosresearch.github.io/AgoraOWL/latest/vocabularies/$1.ttl [R=303,L]
 
-# =============================================================================
-# Rule 2: Versioned / latest ontology PID - content negotiation (UNCHANGED)
-# =============================================================================
-
+# Versioned / latest ontology PID: content negotiation
 RewriteCond %{HTTP_ACCEPT} (text/html|application/xhtml\+xml)
 RewriteRule ^(latest|([0-9]+\.[0-9]+\.[0-9]+))$ https://khaosresearch.github.io/AgoraOWL/$1/index-en.html [R=303,L]
 
@@ -106,10 +53,7 @@ RewriteRule ^(latest|([0-9]+\.[0-9]+\.[0-9]+))$ https://khaosresearch.github.io/
 
 RewriteRule ^(latest|([0-9]+\.[0-9]+\.[0-9]+))$ https://khaosresearch.github.io/AgoraOWL/$1/ontology.ttl [R=303,L]
 
-# =============================================================================
-# Rule 3: Base URI ( /AgoraOWL ) -> latest (UNCHANGED)
-# =============================================================================
-
+# Base URI -> latest
 RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
 RewriteCond %{HTTP_ACCEPT} text/html [OR]
 RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
@@ -130,16 +74,8 @@ RewriteRule ^$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.jsonld [
 
 RewriteRule ^$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.ttl [R=303,L]
 
-# =============================================================================
-# Rule 4: Term IRIs (e.g. /DataApp, /hasFieldMapping)
-#
-# CHANGED in AgoraOWL 1.3.0: RDF clients used to get a 404 here. Only the
-# browser branch existed, so `curl -H "Accept: text/turtle"
-# https://w3id.org/AgoraOWL/DataApp` returned 404 while the same URL in a
-# browser worked. A term IRI must dereference to the document that defines it.
-# =============================================================================
-
-# 4a. Browsers -> anchor in the latest documentation (UNCHANGED behaviour).
+# Term IRIs (e.g. /DataApp, /hasFieldMapping): browsers get the docs anchor,
+# RDF clients get the ontology document that defines the term.
 RewriteCond %{HTTP_ACCEPT} !application/rdf\+xml.*(text/html|application/xhtml\+xml)
 RewriteCond %{HTTP_ACCEPT} text/html [OR]
 RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml [OR]
@@ -147,7 +83,6 @@ RewriteCond %{HTTP_USER_AGENT} ^Mozilla/.*
 RewriteCond %{REQUEST_URI} !^/(latest|([0-9]+\.[0-9]+\.[0-9]+)|vocabularies)/?$
 RewriteRule ^([A-Za-z][A-Za-z0-9_-]*)$ https://khaosresearch.github.io/AgoraOWL/latest/index-en.html#$1 [R=303,NE,L]
 
-# 4b. RDF clients -> the ontology document that defines the term.
 RewriteCond %{HTTP_ACCEPT} application/rdf\+xml
 RewriteRule ^([A-Za-z][A-Za-z0-9_-]*)$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.owl [R=303,L]
 
@@ -158,4 +93,7 @@ RewriteCond %{HTTP_ACCEPT} application/ld\+json
 RewriteRule ^([A-Za-z][A-Za-z0-9_-]*)$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.jsonld [R=303,L]
 
 RewriteCond %{HTTP_ACCEPT} text/turtle
+RewriteRule ^([A-Za-z][A-Za-z0-9_-]*)$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.ttl [R=303,L]
+
+RewriteCond %{REQUEST_URI} !^/(latest|([0-9]+\.[0-9]+\.[0-9]+)|vocabularies)/?$
 RewriteRule ^([A-Za-z][A-Za-z0-9_-]*)$ https://khaosresearch.github.io/AgoraOWL/latest/ontology.ttl [R=303,L]
