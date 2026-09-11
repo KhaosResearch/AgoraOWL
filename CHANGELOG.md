@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1](https://github.com/KhaosResearch/AgoraOWL/compare/v1.3.0...v1.3.1) (2026-09-11)
+
+
+### Fixed
+
+* **context:** remove the invalid empty-string term definition ([55fd54b](https://github.com/KhaosResearch/AgoraOWL/commit/55fd54b695cd2346418fd677bf9da0e0e2ae454e))
+* **w3id:** add missing Turtle fallback for term IRIs; trim description comment ([a174f14](https://github.com/KhaosResearch/AgoraOWL/commit/a174f1459424f2ba16e4716f0888f23533bc43ce))
+* **w3id:** cut README down to Scope and Maintainers only ([5671e8b](https://github.com/KhaosResearch/AgoraOWL/commit/5671e8b50ce372b338f583056a81dd08f47ca3b8))
+* **w3id:** drop the .htaccess Contact block, now redundant with README ([4a958af](https://github.com/KhaosResearch/AgoraOWL/commit/4a958afe01036fac8003e778689527adb7d8a306))
+* **w3id:** trim README/.htaccess to the previously-approved format ([58e4411](https://github.com/KhaosResearch/AgoraOWL/commit/58e44119fd59913a9cb5c008c658f0b991783e40))
+* **w3id:** trim README/.htaccess to the previously-approved format ([a22de0d](https://github.com/KhaosResearch/AgoraOWL/commit/a22de0da538cab67c8a2cf8eba2ce0a16397df30))
+
+
+### Changed
+
+* **deploy-docs:** allow republishing an existing version on demand ([85b349f](https://github.com/KhaosResearch/AgoraOWL/commit/85b349f2a4e536c6f16615a024ad726a81894924))
+
 ## [1.3.0](https://github.com/KhaosResearch/AgoraOWL/compare/v1.2.1...v1.3.0) (2026-09-07)
 
 
